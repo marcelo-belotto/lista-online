@@ -4,7 +4,7 @@
  <print-settings printerName="Microsoft Print to PDF" numCopies="1" zoom="1.0" pageNumbersPrinted="false" orientation="0" paperWidth="595.275590551181" paperHeight="841.8897637795276" leftBorder="50.00314960629921" rightBorder="50.00314960629917" topBorder="50.00314960629921" bottomBorder="50.00314960629928" />
  <project-data-sources>
   <data-source id="DS0">
-   <property key="Logical" value="PlayPen Database" />
+   <property key="Logical" value="(Target Database)" />
   </data-source>
  </project-data-sources>
  <source-databases>
