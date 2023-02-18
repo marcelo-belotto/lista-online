@@ -11,7 +11,7 @@ CREATE TABLE usuario(
 INSERT INTO usuario (id_usuario,nome_usuario,genero,senha) VALUES
 (DEFAULT,"Pedro","M","1"),
 (DEFAULT,"Estela","F","12"),
-(DEFAULT,"Jo„o","M","123");
+(DEFAULT,"Jo√£o","M","123");
 
 CREATE TABLE conta(
   id_conta INT(6) AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -19,7 +19,7 @@ CREATE TABLE conta(
   nome_conta VARCHAR(100) NOT NULL,
   vencimento VARCHAR(10) NOT NULL,
   valor DECIMAL NOT NULL,
-  FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+  FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
 );
 
 INSERT INTO conta (id_conta,id_usuario,nome_conta,vencimento,valor) VALUES
@@ -34,7 +34,7 @@ CREATE TABLE tipo_lista(
   id_lista INT(6) AUTO_INCREMENT NOT NULL PRIMARY KEY,
   id_usuario INT(6) NOT NULL,
   nome_lista VARCHAR(100) NOT NULL,
-  FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+  FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
 );
 
 INSERT INTO tipo_lista (id_lista,id_usuario,nome_lista) VALUES
@@ -42,7 +42,7 @@ INSERT INTO tipo_lista (id_lista,id_usuario,nome_lista) VALUES
 (DEFAULT,2,"Estudo"),
 (DEFAULT,1,"Supermecado"),
 (DEFAULT,1,"Tarefas diarias"),
-(DEFAULT,3,"ConstruÁ„o"),
+(DEFAULT,3,"Constru√ß√£o"),
 (DEFAULT,3,"Supermecado");
 
 CREATE TABLE item(
@@ -57,7 +57,7 @@ CREATE TABLE item(
 
 INSERT INTO item(id_item,id_lista,id_usuario,nome_item,qtd) VALUES
 (DEFAULT,1,2,"arroz","5kg"),
-(DEFAULT,1,2,"feij„o","2kg"),
+(DEFAULT,1,2,"feij√£o","2kg"),
 (DEFAULT,2,2,"java",""),
 (DEFAULT,2,2,"phyton",""),
 
@@ -69,7 +69,7 @@ INSERT INTO item(id_item,id_lista,id_usuario,nome_item,qtd) VALUES
 (DEFAULT,5,3,"Prego","1kg"),
 (DEFAULT,5,3,"Cimento","3"),
 (DEFAULT,6,3,"Carne","3kg"),
-(DEFAULT,6,3,"MaÁ„","1kg");
+(DEFAULT,6,3,"Ma√ß√£","1kg");
 
 
 SELECT * FROM usuario;
@@ -86,7 +86,7 @@ SELECT * FROM item WHERE id_item = 1;
 
 UPDATE usuario SET `nome_usuario`="Fulano", `genero`="W", `senha`="123" WHERE id_usuario = 1;
 
-UPDATE conta SET `id_usuario`="1", `nome_conta`="·gua", `vencimento`="01-01-2022", `valor`="22" WHERE id_conta = 1;
+UPDATE conta SET `id_usuario`="1", `nome_conta`="√°gua", `vencimento`="01-01-2022", `valor`="22" WHERE id_conta = 1;
 
 UPDATE tipo_lista SET `id_usuario`="2",`nome_lista`="Academia" WHERE id_lista = 1;
 
