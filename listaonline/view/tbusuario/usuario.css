@@ -1,0 +1,42 @@
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
+h1 {
+    width: 200px;
+    height: 30px;
+    text-align: center;
+    margin: 30px 0 0 490px;
+    border: 1px solid;
+}
+
+form {
+    width: 320px;
+    height: auto;
+    border: 1px solid;
+    margin: 30px 0 0 400px;
+}
+
+fieldset {
+    margin-top: 20px;
+}
+
+img {
+    width: 20%;
+    height: 20%;
+    border: 1px solid;
+}
+
+p {
+    color: blue;
+    border: 1px solid;
+}
+
+button {
+    width: 110px;
+    margin: 10px 0 10px 300px;
+}
+
+table,
+td,
+th {
+    border: 1px solid;
+}

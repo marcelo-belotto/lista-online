@@ -5,20 +5,21 @@ CREATE TABLE usuario(
   id_usuario INT(6) AUTO_INCREMENT NOT NULL PRIMARY KEY,
   nome_usuario VARCHAR(25) NOT NULL,
   genero VARCHAR(1) NOT NULL,
+  img VARCHAR(42) NULL,
   senha VARCHAR(6) NOT NULL
 );
 
-INSERT INTO usuario (id_usuario,nome_usuario,genero,senha) VALUES
-(DEFAULT,"Pedro","M","1"),
-(DEFAULT,"Estela","F","12"),
-(DEFAULT,"João","M","123");
+INSERT INTO usuario (id_usuario,nome_usuario,genero,img,senha) VALUES
+(DEFAULT,"Pedro","M","","1"),
+(DEFAULT,"Estela","F","","12"),
+(DEFAULT,"João","M","","123");
 
 CREATE TABLE conta(
   id_conta INT(6) AUTO_INCREMENT NOT NULL PRIMARY KEY,
   id_usuario INT(6) NOT NULL,
   nome_conta VARCHAR(100) NOT NULL,
   vencimento VARCHAR(10) NOT NULL,
-  valor DECIMAL NOT NULL,
+  valor VARCHAR(10) NOT NULL,
   FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
 );
 
@@ -50,7 +51,7 @@ CREATE TABLE item(
   id_lista INT(6) NOT NULL,
   id_usuario INT(6) NOT NULL,
   nome_item VARCHAR(100) NOT NULL,
-  qtd DECIMAL NULL,
+  qtd  VARCHAR(10) NULL,
   FOREIGN KEY (id_lista) REFERENCES tipo_lista(id_lista) ON DELETE CASCADE,
   FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
 );

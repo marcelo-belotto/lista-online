@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./usuario.css">
+    <title>Perfil</title>
+</head>
+
+<body onload="readPerfil()">
+    <a href="../home.html">Volta para home</a>
+    <h1>Perfil</h1>
+    <form action="" method="POST" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Perfil do usuário</legend>
+            <label>Nome*<br>
+                <input type="text" placeholder="Nome do usuário" id="nome_usuario">
+            </label><br>
+
+            <label>Genero *<br>
+                <input type="radio" id="generom" name="generoradio" value="M">
+                <label for="masculino">Masculino</label>
+                <input type="radio" id="generof" name="generoradio" value="F">
+                <label for="feminino">Feminino</label>
+            </label><br>
+
+            <label id="p">Imagem<br>
+                <img id="exibir" src="" alt="">
+                <a href="./foto/foto.html">Alterar foto do perfil</a>
+            </label><br>
+
+            <label>Senha *<br>
+                <input type="password" placeholder="Senha" id="senha" maxlength="6">
+            </label>
+        </fieldset>
+    </form>
+    <button onclick="alterarPerfil()">Alterar perfil</button>
+    <button onclick="excluirPerfil()">Excluir perfil</button>
+</body>
+<script src="./usuario.js"></script>
+
+</html>

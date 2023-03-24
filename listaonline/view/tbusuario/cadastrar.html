@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./usuario.css">
+    <title>Cadastrar</title>
+</head>
+
+<body>
+    <h1>Cadastro</h1>
+    <form action="../../src/domain/usuario.php" method="POST" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Dados do usuário</legend>
+            <label>Nome*<br>
+                <input type="text" placeholder="Nome do usuário" id="nome_usuario">
+            </label><br>
+
+            <label>Genero *<br>
+                <input type="radio" id="genero" name="generoradio" value="M">
+                <label for="masculino">Masculino</label>
+                <input type="radio" id="genero" name="generoradio" value="F">
+                <label for="feminino">Feminino</label>
+            </label><br>
+            <label>Senha *<br>
+                <input type="password" placeholder="Senha" id="senha" maxlength="6">
+            </label>
+        </fieldset>
+    </form>
+    <button onclick="cadastrar()">Cadastrar</button>
+</body>
+<script src="./usuario.js"></script>
+
+</html>
