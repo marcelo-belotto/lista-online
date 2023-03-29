@@ -20,16 +20,17 @@ CREATE TABLE conta(
   nome_conta VARCHAR(100) NOT NULL,
   vencimento VARCHAR(10) NOT NULL,
   valor VARCHAR(10) NOT NULL,
+  status_conta VARCHAR(8) NULL,
   FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
 );
 
-INSERT INTO conta (id_conta,id_usuario,nome_conta,vencimento,valor) VALUES
-(DEFAULT,2,"Energia","12-03-2023","114"),
-(DEFAULT,2,"Internet","27-02-2023","99"),
-(DEFAULT,1,"Financiamento carro","05-03-2023","678"),
-(DEFAULT,1,"Energia","19-02-2023","93"),
-(DEFAULT,3,"Internet","27-02-2023","79"),
-(DEFAULT,3,"Aluguel","05-03-2023","900");
+INSERT INTO conta (id_conta,id_usuario,nome_conta,vencimento,valor,status_conta) VALUES
+(DEFAULT,2,"Energia","12-03-2023","114","pago"),
+(DEFAULT,2,"Internet","27-02-2023","99","pendente"),
+(DEFAULT,1,"Financiamento carro","05-03-2023","678","pago"),
+(DEFAULT,1,"Energia","19-02-2023","93","pendente"),
+(DEFAULT,3,"Internet","27-02-2023","79","pago"),
+(DEFAULT,3,"Aluguel","05-03-2023","900","pendente");
 
 CREATE TABLE tipo_lista(
   id_lista INT(6) AUTO_INCREMENT NOT NULL PRIMARY KEY,

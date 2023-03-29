@@ -40,3 +40,16 @@ td,
 th {
     border: 1px solid;
 }
+
+.edi,
+.del {
+    margin: 0 3px 0 3px;
+    padding: 0;
+    width: 30px;
+    height: 20px;
+}
+
+.sal {
+    margin: 0 6px 0 6px;
+    width: 60px;
+}

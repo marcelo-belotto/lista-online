@@ -6,6 +6,7 @@
 		var $nome_conta;
 		var $vencimento;
 		var $valor;
+		var $status_conta;
 
 		function getId_conta(){
 			return $this->id_conta;
@@ -41,6 +42,13 @@
 		function setValor($valor){
 			$this->valor = $valor;
 		}
+
+		function getStatus_conta(){
+			return $this->status_conta;
+		}
+		function setStatus_conta($status_conta){
+			$this->status_conta = $status_conta;
+		}
 	}
 
 	class ContaDAO {
@@ -50,8 +58,9 @@
 			$nome_conta = $conta->getNome_conta();
 			$vencimento = $conta->getVencimento();
 			$valor = $conta->getValor();
+			$status_conta = $conta->getStatus_conta();
 			try {
-				$query = "INSERT INTO conta (id_conta, id_usuario, nome_conta, vencimento, valor) VALUES (DEFAULT, $id_usuario,'$nome_conta','$vencimento','$valor')";
+				$query = "INSERT INTO conta (id_conta, id_usuario, nome_conta, vencimento, valor, status_conta) VALUES (DEFAULT, $id_usuario,'$nome_conta','$vencimento','$valor','$status_conta')";
 
 				$con = new Connection();
 				if(Connection::getInstance()->exec($query) >= 1){
@@ -80,6 +89,7 @@
 					$con->setNome_conta($row->nome_conta);
 					$con->setVencimento($row->vencimento);
 					$con->setValor($row->valor);
+					$con->setStatus_conta($row->status_conta);
 					$result[] = $con;
 				}
 				$con = null;
@@ -113,8 +123,9 @@
 			$nome_conta = $cont->getNome_conta();
 			$vencimento = $cont->getVencimento();
 			$valor = $cont->getValor();
+			$status_conta = $cont->getStatus_conta();
 			try {
-				$query = "UPDATE conta SET id_usuario = $id_usuario, nome_conta = '$nome_conta', vencimento = '$vencimento', valor = '$valor' WHERE id_conta = $id_conta";
+				$query = "UPDATE conta SET id_usuario = $id_usuario, nome_conta = '$nome_conta', vencimento = '$vencimento', valor = '$valor', status_conta = '$status_conta' WHERE id_conta = $id_conta";
 
 				$con = new Connection();
 				$status = Connection::getInstance()->prepare($query);
