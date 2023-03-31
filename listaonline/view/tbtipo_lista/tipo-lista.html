@@ -5,12 +5,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../tbusuario/usuario.css">
     <title>Tipo lista</title>
 </head>
 
-<body>
+<body onload="readTipoLista()">
     <h1>Tipo de lista</h1>
     <a href="../home.html">Volta para home</a>
-</body>
+    
+    <table>
+        <thead>
+            <tr>
+                <th colspan="3">Tipos de Lista</th>
+            </tr>
+            <tr>
+                <th>Id da Lista</th>
+                <!--<th>Id do Usuario</th>-->
+                <th>Nome da Lista</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="lista">
+            
+        </tbody>
+        <tfoot >
+            <tr>
+                <td></td>
+                <td></td>
+                <td style="text-align: center;">
+                    <button class='edi' onclick='addTipoLista(this.parentNode.parentNode.cells)'>
+                        <i class="fa fa-plus-square" aria-hidden="true"></i>
+                    </button>
+                    <button class='save' onclick='salvarNovaLista(this.parentNode.parentNode.cells[1].innerText)' hidden=true>
+                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                    </button>
+                    <button class='cancel' onclick='addTipoLista(this.parentNode.parentNode.cells)' hidden=true>
+                        <i class="fa fa-stop" aria-hidden="true"></i>
+                    </button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
 
+</body>
+<script src="./tipo-lista.js"></script>
 </html>

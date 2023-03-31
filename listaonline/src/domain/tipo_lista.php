@@ -66,10 +66,10 @@
 			return $result;
 		}
 
-		function read($id_lista) {
+		function read($id_usuario) {
 			$result = array();
 			try {
-				$query = "SELECT * FROM tipo_lista WHERE id_lista = $id_lista";
+				$query = "SELECT * FROM tipo_lista WHERE id_usuario = $id_usuario";
 
 				$con = new Connection();
 				$resultSet = Connection::getInstance()->query($query);
@@ -93,7 +93,7 @@
 			$id_usuario = $lista->getId_usuario();
 			$nome_lista = $lista->getNome_lista();
 			try {
-				$query = "UPDATE tipo_lista SET id_usuario = $id_usuario, nome_lista = '$nome_lista' WHERE id_lista = $id_lista";
+				$query = "UPDATE tipo_lista nome_lista SET nome_lista = '$nome_lista' WHERE id_lista = $id_lista AND id_usuario = $id_usuario";
 
 				$con = new Connection();
 				$status = Connection::getInstance()->prepare($query);
@@ -109,10 +109,10 @@
 			return $result;
 		}
 
-		function delete($id_lista) {
+		function delete($id_usuario, $id_lista) {
 			$result = array();
 			try {
-				$query = "DELETE FROM tipo_lista WHERE id_lista = $id_lista";
+				$query = "DELETE FROM tipo_lista WHERE id_lista = $id_lista and id_usuario = $id_usuario";
 
 				$con = new Connection();
 				if(Connection::getInstance()->exec($query) >= 1){

@@ -8,10 +8,10 @@
 
 		function doGet($arr){
 			$td = new Tipo_listaDAO();
-			if($arr["id_lista"] == "0") {
+			if($arr["id_usuario"] == "0") {
 				$result = $td->readAll();
 			} else {
-				$result = $td->read($arr["id_lista"]);
+				$result = $td->read($arr["id_usuario"]);
 			}
 			http_response_code(200);
 			echo json_encode($result);
@@ -44,7 +44,7 @@
 
 		function doDelete($arr){
 			$td = new Tipo_listaDAO();
-			$result = $td->delete($arr["id_lista"]);
+			$result = $td->delete($arr["id_usuario"],$arr["id_lista"]);
 			http_response_code(200);
 			echo json_encode($result);
 		}
