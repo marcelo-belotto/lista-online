@@ -25,7 +25,7 @@
 			$con->setNome_conta($arr["nome_conta"]);
 			$con->setVencimento($arr["vencimento"]);
 			$con->setValor($arr["valor"]);
-			$conta->setStaus_conta($arr["status_conta"]);
+			$con->setStatus_conta($arr["status_conta"]);
 			$result = $cd->create($con);
 			http_response_code(200);
 			echo json_encode($result);

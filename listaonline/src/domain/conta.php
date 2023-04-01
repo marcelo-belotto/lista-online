@@ -60,7 +60,7 @@
 			$valor = $conta->getValor();
 			$status_conta = $conta->getStatus_conta();
 			try {
-				$query = "INSERT INTO conta (id_conta, id_usuario, nome_conta, vencimento, valor, status_conta) VALUES (DEFAULT, $id_usuario,'$nome_conta','$vencimento','$valor','$status_conta')";
+				$query = "INSERT INTO conta (id_usuario, nome_conta, vencimento, valor, status_conta) VALUES ($id_usuario,'$nome_conta','$vencimento','$valor','$status_conta')";
 
 				$con = new Connection();
 				if(Connection::getInstance()->exec($query) >= 1){

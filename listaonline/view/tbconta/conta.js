@@ -1,6 +1,7 @@
 const xhr = new XMLHttpRequest();
 const urlConta = "http://localhost/listaonline/src/controll/routes/route.conta.php";
 var conta = document.querySelector("#conta");
+var div = document.querySelector("#div");
 var marcado = document.getElementById('pago');
 
 function readConta() {
@@ -103,9 +104,13 @@ function editConta(c) {
     c.parentNode.parentNode.cells[2].setAttribute("contentEditable", "true");
     c.parentNode.parentNode.cells[3].setAttribute("contentEditable", "true");
     c.parentNode.parentNode.cells[4].setAttribute("contentEditable", "true");
-    c.parentNode.parentNode.cells[5].innerHTML = "<button class='sal' onclick='putConta(this)'>Salvar</button>";
+    c.parentNode.parentNode.cells[5].innerHTML = "<button class='sal'onclick='putConta(this)'><i class='fa fa-floppy-o' aria-hidden='true'></i></button><button class='can'onclick='cancelar(this)'><i class='fa fa-times' aria-hidden='true'></i></button>";
+    //c.parentNode.parentNode.cells[5].innerHTML = "<button class='sal' onclick='putConta(this)'>Salvar</button>";
 }
 
+function cancelar() {
+    window.location.reload();
+}
 function putConta(c) {
     let idConta = c.parentNode.parentNode.cells[1].innerHTML;
     let nomeConta = c.parentNode.parentNode.cells[2].innerHTML;
@@ -139,23 +144,68 @@ function putConta(c) {
 }
 
 function novaConta() {
-    let linha = document.createElement("tr");
-    linha.innerHTML = `<td></td>`;
-    linha.innerHTML += `<td></td>`;
-    linha.innerHTML += `<td><input type="text" id="conta" placeholder="Digite o nome da conta"></td>`;
-    linha.innerHTML += `<td><input type="date" id="vencimento" placeholder="Digite o vencimento da conta"></td>`;
-    linha.innerHTML += `<td><input type="text" id="valor" placeholder="Digite o valor da conta"></td>`;
-    linha.innerHTML += `<td><i class="fa fa-arrow-right" aria-hidden="true" onclick="finalizar()"></i></td><tr>`;
-    conta.appendChild(linha);
+    let table = document.querySelector("#table");
+    table.style.display = "none";
+    let form = document.createElement("form");
+    form.innerHTML += `Conta<br><input type="text" id="input_conta" placeholder="Digite o nome da conta"><br>`;
+    form.innerHTML += `Vancimento<br><input type="date" id="vencimento" placeholder="Digite o vencimento da conta"><br>`;
+    form.innerHTML += `Valor<br><input type="text" id="valor" placeholder="Digite o valor da conta" onkeyup="formatarMoeda()"><br><br>`;
+    form.innerHTML += `<input type="button" onclick="finalizar()" value="Salvar conta"/></form>`;
+    //form.innerHTML += `<i class="fa fa-arrow-right" aria-hidden="true" onclick="finalizar()"></i></form>`;
+    div.appendChild(form);
 }
+
+function formatarMoeda() {
+    var elemento = document.getElementById('valor');
+    var valor = elemento.value;
+    if (valor != "") {
+        valor = valor + '';
+        valor = parseInt(valor.replace(/[\D]+/g, ''));
+        valor = valor + '';
+        valor = valor.replace(/([0-9]{2})$/g, ",$1");
+
+        if (valor.length > 6) {
+            valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+        }
+        elemento.value = valor;
+    } else {
+        elemento.value = "00,00";
+    }
+}
+
+
 function finalizar() {
-    let nomeConta = document.querySelector("#conta");
+    let nomeConta = document.querySelector("#input_conta");
     let vencimentoConta = document.querySelector("#vencimento");
     let valorConta = document.querySelector("#valor");
+    let valorPonto = valorConta.value.replace(",", ".");
     if (nomeConta.value != "" && vencimentoConta.value != "" && valorConta.value != "") {
-        alert("vamos add conta")
+        let dados = new FormData();
+        dados.append("id_usuario", localStorage.getItem("id_usu"));
+        dados.append("nome_conta", nomeConta.value);
+        dados.append("vencimento", vencimentoConta.value);
+        dados.append("valor", valorPonto);
+        dados.append("status_conta", "pendente");
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === this.DONE) {
+                alert("Conta Adiconada Com Sucesso!");
+                setTimeout(() => { window.location.reload(); }, 2000);
+                let resp = JSON.parse(this.responseText);
+                if (resp.hasOwnProperty("erro")) {
+                    //msg.innerHTML = resp.erro;
+                    alert(resp.erro);
+                } else {
+                    //msg.innerHTML = "Alimento adicionado Com Sucesso.";
+                }
+                //setTimeout(() => { window.location.reload(); }, 3000);
+            }
+        });
+        xhr.open("POST", urlConta);
+        xhr.send(dados);
     } else {
-        alert("preencher todos os campos")
+        alert("Favor preencher todos os campos!");
+        setTimeout(() => { window.location.reload(); }, 2000);
+        //setTimeout(() => { msg.innerHTML = "Mensagens do sistema"; }, 3000);
     }
 }
 
