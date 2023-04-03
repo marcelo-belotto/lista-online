@@ -11,12 +11,14 @@ function logar() {
         dados.append("senha", senha.value);
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
+                console.log(this.responseText);
                 let resp = JSON.parse(this.responseText);
                 let destino = "";
                 if (resp.length === 0) {
                     //msg.innerHTML = "Usuário ou senha inválido";
                     alert("Usuário ou senha inválido");
                 } else {
+                    
                     if (resp[0].id_usuario === "1") {
                         destino += "../../admsite/admsite.html";
                     } else {

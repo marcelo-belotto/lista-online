@@ -67,10 +67,10 @@
 			return $result;
 		}
 		
-		function read($id_item) {
+		function read($id_lista) {
 			$result = array();
 			try {
-				$query = "SELECT * FROM item WHERE id_item = $id_item";
+				$query = "SELECT * FROM item WHERE id_lista = $id_lista";
 
 				$con = new Connection();
 				$resultSet = Connection::getInstance()->query($query);
@@ -93,7 +93,7 @@
 		function readAll() {
 			$result = array();
 			try {
-				$query = "SELECT * FROM item";
+				$query = "SELECT * FROM item ";
 
 				$con = new Connection();
 				$resultSet = Connection::getInstance()->query($query);

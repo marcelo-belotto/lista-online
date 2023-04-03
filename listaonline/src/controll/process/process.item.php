@@ -8,10 +8,10 @@
 
 		function doGet($arr){
 			$id = new ItemDAO();
-			if($arr["id_item"] == "0") {
+			if($arr["id_lista"] == "0") {
 				$result = $id->readAll();
 			} else {
-				$result = $id->read($arr["id_item"]);
+				$result = $id->read($arr["id_lista"]);
 			}
 			http_response_code(200);
 			echo json_encode($result);
