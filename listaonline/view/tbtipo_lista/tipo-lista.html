@@ -12,23 +12,25 @@
 <body onload="readTipoLista()">
     <h1>Tipo de lista</h1>
     <a href="../home.html">Volta para home</a>
-    
+
     <table>
         <thead>
             <tr>
                 <th colspan="3">Tipos de Lista</th>
             </tr>
             <tr>
-                <th>Id da Lista</th>
+                <th> <button class='del' onclick='delTipoLista(this.parentNode.parentNode.cells[0].innerText)'>
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                    </button></th>
                 <!--<th>Id do Usuario</th>-->
                 <th>Nome da Lista</th>
                 <th>Ações</th>
             </tr>
         </thead>
         <tbody id="lista">
-            
+
         </tbody>
-        <tfoot >
+        <tfoot>
             <tr>
                 <td></td>
                 <td></td>
@@ -36,7 +38,8 @@
                     <button class='edi' onclick='addTipoLista(this.parentNode.parentNode.cells)'>
                         <i class="fa fa-plus-square" aria-hidden="true"></i>
                     </button>
-                    <button class='save' onclick='salvarNovaLista(this.parentNode.parentNode.cells[1].innerText)' hidden=true>
+                    <button class='save' onclick='salvarNovaLista(this.parentNode.parentNode.cells[1].innerText)'
+                        hidden=true>
                         <i class="fa fa-floppy-o" aria-hidden="true"></i>
                     </button>
                     <button class='cancel' onclick='addTipoLista(this.parentNode.parentNode.cells)' hidden=true>
@@ -49,4 +52,5 @@
 
 </body>
 <script src="./tipo-lista.js"></script>
+
 </html>

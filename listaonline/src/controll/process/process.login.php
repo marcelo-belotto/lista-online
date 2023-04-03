@@ -7,7 +7,7 @@
 		var $log;
 
 		function doPost($arr){
-      if(
+            if(
 				isset($arr["nome_usuario"]) &&
 				isset($arr["senha"])
 			) {
@@ -22,18 +22,6 @@
 			}
 			http_response_code(200);
 			echo json_encode($result);
-		}
-
-		function doGet($arr){
-
-		}
-
-		function doPut($arr){
-
-		}
-
-		function doDelete($arr){
-
 		}
 		
 	}

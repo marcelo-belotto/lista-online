@@ -13,14 +13,21 @@ function readConta() {
         })
         .then(function (data) {
             data.forEach((dado) => {
-                var moeda = Intl.NumberFormat('pt-br', { style: 'currency', currency: 'BRL' }).format(dado.valor);
+                var moeda = dado.valor.toString();
+                let formatado = moeda.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                let valorSplit = formatado.split(".");
+                var moeda = parseInt(valorSplit[0]).toFixed(2).split('.');
+
+                moeda[0] = "R$ " + moeda[0].split(/(?=(?:...)*$)/).join('.');
+                let valorCompleto = moeda[0] + "," + valorSplit[1];
+                //console.log(valorCompleto);
                 let row = document.createElement("tr");
                 if (dado.status_conta == "pago") {
                     row.innerHTML += `<td style="padding:3px"><input type="checkbox" id="pago" onclick="checado(this)" checked></td>`;
                     row.innerHTML += `<td>${dado.id_conta}</td>`;
                     row.innerHTML += `<td>${dado.nome_conta}</td>`;
                     row.innerHTML += `<td>${dado.vencimento}</td>`;
-                    row.innerHTML += `<td>${moeda}</td>`;
+                    row.innerHTML += `<td>${valorCompleto}</td>`;
                     row.innerHTML += `<td style="padding:3px"><button class="edi" onclick='editConta(this)'><i class="fa fa-pencil" aria-hidden="true"></i></button><button class="del" onclick='delConta(this)'><i class="fa fa-trash-o" aria-hidden="true"></i></button></td></tr>`;
                     row.style.textDecoration = 'line-through';
                 } else {
@@ -28,7 +35,7 @@ function readConta() {
                     row.innerHTML += `<td>${dado.id_conta}</td>`;
                     row.innerHTML += `<td>${dado.nome_conta}</td>`;
                     row.innerHTML += `<td>${dado.vencimento}</td>`;
-                    row.innerHTML += `<td>${moeda}</td>`;
+                    row.innerHTML += `<td>${valorCompleto}</td>`;
                     row.innerHTML += `<td style="padding:3px"><button class="edi" onclick='editConta(this)'><i class="fa fa-pencil" aria-hidden="true"></i></button><button class="del" onclick='delConta(this)'><i class="fa fa-trash-o" aria-hidden="true"></i></button></td></tr>`;
                 }
                 conta.appendChild(row);
@@ -111,6 +118,7 @@ function editConta(c) {
 function cancelar() {
     window.location.reload();
 }
+
 function putConta(c) {
     let idConta = c.parentNode.parentNode.cells[1].innerHTML;
     let nomeConta = c.parentNode.parentNode.cells[2].innerHTML;
@@ -163,9 +171,12 @@ function formatarMoeda() {
         valor = parseInt(valor.replace(/[\D]+/g, ''));
         valor = valor + '';
         valor = valor.replace(/([0-9]{2})$/g, ",$1");
-
-        if (valor.length > 6) {
+        if (valor.length > 6 && valor.length < 10) {
+            console.log("aqui 6 ");
             valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+        } else if (valor.length >= 10) {
+            console.log("aqui 9");
+            valor = valor.replace(/([0-9]{6}),([0-9]{2}$)/g, ".$1,$2");
         }
         elemento.value = valor;
     } else {
@@ -178,13 +189,14 @@ function finalizar() {
     let nomeConta = document.querySelector("#input_conta");
     let vencimentoConta = document.querySelector("#vencimento");
     let valorConta = document.querySelector("#valor");
-    let valorPonto = valorConta.value.replace(",", ".");
+    let valorPonto = valorConta.value.replace(".", "");
+    let valorVirgula = valorPonto.replace(",", ".");
     if (nomeConta.value != "" && vencimentoConta.value != "" && valorConta.value != "") {
         let dados = new FormData();
         dados.append("id_usuario", localStorage.getItem("id_usu"));
         dados.append("nome_conta", nomeConta.value);
         dados.append("vencimento", vencimentoConta.value);
-        dados.append("valor", valorPonto);
+        dados.append("valor", valorVirgula);
         dados.append("status_conta", "pendente");
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
