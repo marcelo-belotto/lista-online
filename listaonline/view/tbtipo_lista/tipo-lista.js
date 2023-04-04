@@ -17,7 +17,7 @@ function readTipoLista() {
                 let row = document.createElement("tr");
                     row.innerHTML += `<td>${dado.id_lista}</td>`;
                     //row.innerHTML += `<td>${dado.id_usuario}</td>`;
-                    row.innerHTML += `<td onclick='robesio(this.parentNode.cells[0].innerText)'>${dado.nome_lista}</td>`;
+                    row.innerHTML += `<td onclick='abreLista(this.parentNode.cells[0].innerText)'>${dado.nome_lista}</td>`;
                     row.innerHTML += `<td style="padding:3px">
                     <button class='edi' onclick='editTipoLista(this.parentNode.parentNode.cells)'>
                     <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -40,7 +40,7 @@ function readTipoLista() {
         });
 }
 
-function robesio(numero){
+function abreLista(numero){
     window.location.assign("../tbitens/itens.html?id_lista=" + numero);
 }
 
