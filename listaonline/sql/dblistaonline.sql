@@ -53,23 +53,22 @@ CREATE TABLE item(
   id_usuario INT(6) NOT NULL,
   nome_item VARCHAR(100) NOT NULL,
   qtd  VARCHAR(10) NULL,
-  concluido BIT(1) NULL,
   FOREIGN KEY (id_lista) REFERENCES tipo_lista(id_lista) ON DELETE CASCADE,
   FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario) ON DELETE CASCADE
 );
 
-INSERT INTO item(id_item,id_lista,id_usuario,nome_item,qtd,concluido) VALUES
-(DEFAULT,1,2,"arroz","5kg",0),
-(DEFAULT,1,2,"feijão","2kg",0),
-(DEFAULT,2,2,"java","",0),
-(DEFAULT,2,2,"phyton","",0),
+INSERT INTO item(id_item,id_lista,id_usuario,nome_item,qtd) VALUES
+(DEFAULT,1,2,"arroz","5kg"),
+(DEFAULT,1,2,"feijão","2kg"),
+(DEFAULT,2,2,"java",""),
+(DEFAULT,2,2,"phyton",""),
 
-(DEFAULT,3,1,"Amaciante","1L",0),
-(DEFAULT,3,1,"Leite","3L",0),
-(DEFAULT,4,1,"Ir para academia","",0),
-(DEFAULT,4,1,"Estudar","",0),
+(DEFAULT,3,1,"Amaciante","1L"),
+(DEFAULT,3,1,"Leite","3L"),
+(DEFAULT,4,1,"Ir para academia",""),
+(DEFAULT,4,1,"Estudar",""),
 
-(DEFAULT,5,3,"Prego","1kg",0),
-(DEFAULT,5,3,"Cimento","3",0),
-(DEFAULT,6,3,"Carne","3kg",0),
-(DEFAULT,6,3,"Maçã","1kg",0);
+(DEFAULT,5,3,"Prego","1kg"),
+(DEFAULT,5,3,"Cimento","3"),
+(DEFAULT,6,3,"Carne","3kg"),
+(DEFAULT,6,3,"Maçã","1kg");

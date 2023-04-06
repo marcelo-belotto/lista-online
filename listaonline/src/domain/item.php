@@ -61,7 +61,7 @@
 			$concluido = $item->getConcluido();
 			try {
 				$query = "INSERT INTO item (id_item, id_lista, id_usuario, nome_item, qtd, concluido) 
-				VALUES (DEFAULT, $id_lista, $id_usuario, '$nome_item', $qtd, $concluido)";
+				VALUES (DEFAULT, $id_lista, $id_usuario, '$nome_item', '$qtd', $concluido)";
 
 				$con = new Connection();
 				if(Connection::getInstance()->exec($query) >= 1){

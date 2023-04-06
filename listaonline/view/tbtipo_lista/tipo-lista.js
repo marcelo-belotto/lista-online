@@ -3,7 +3,6 @@ const urlTipoLista = "http://localhost/listaonline/src/controll/routes/route.tip
 var lista = document.querySelector("#lista");
 var form = document.querySelector('#div');
 var editAlt = true;
-var editAdd = true;
 
 function readTipoLista() {
     fetch(urlTipoLista + "?id_usuario=" + localStorage.getItem("id_usu"))
@@ -15,17 +14,16 @@ function readTipoLista() {
         .then(function (data) {
             data.forEach((dado) => {
                 let row = document.createElement("tr");
-                    row.innerHTML += `<td>${dado.id_lista}</td>`;
-                    //row.innerHTML += `<td>${dado.id_usuario}</td>`;
-                    row.innerHTML += `<td onclick='abreLista(this.parentNode.cells[0].innerText)'>${dado.nome_lista}</td>`;
+                    row.innerHTML += `<td></td>`;
+                    row.innerHTML += `<td onclick='abreLista(${dado.id_lista})'>${dado.nome_lista}</td>`;
                     row.innerHTML += `<td style="padding:3px">
                     <button class='edi' onclick='editTipoLista(this.parentNode.parentNode.cells)'>
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                     </button>
-                    <button class='del' onclick='delTipoLista(this.parentNode.parentNode.cells[0].innerText)'>
+                    <button class='del' onclick='delTipoLista(${dado.id_lista})'>
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                     </button>
-                    <button class='sal' onclick='salvarAlteracao(this.parentNode.parentNode.cells[0].innerText,this.parentNode.parentNode.cells[1].innerText)' hidden=true>
+                    <button class='sal' onclick='salvarAlteracao(${dado.id_lista},this.parentNode.parentNode.cells[1].innerText)' hidden=true>
                     <i class="fa fa-floppy-o" aria-hidden="true"></i>
                     </button>
                     <button class='can' onclick='editTipoLista(this.parentNode.parentNode.cells)' hidden=true>
@@ -41,7 +39,9 @@ function readTipoLista() {
 }
 
 function abreLista(numero){
-    window.location.assign("../tbitens/itens.html?id_lista=" + numero);
+    if (editAlt){
+        window.location.assign("../tbitens/itens.html?id_lista=" + numero); 
+    }
 }
 
 function editTipoLista(itemEditado) {
@@ -77,7 +77,7 @@ function delTipoLista(id_lista) {
 function salvarAlteracao(id_lista,nome_lista){
     let dados = "id_lista=" + id_lista + "&id_usuario=" + localStorage.getItem("id_usu") + "&nome_lista=" + nome_lista;
     console.log(dados);
-    if (confirm("Deseja alterar o item da lista?")) {
+    if (confirm("Deseja alterar o nome da lista?")) {
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
                 let resposta = JSON.parse(this.responseText);
@@ -95,16 +95,7 @@ function salvarAlteracao(id_lista,nome_lista){
 }
 }
 
-function addTipoLista(novoItem){
-    novoItem[2].children[0].hidden = editAdd;
-    novoItem[2].children[1].hidden = !editAdd;
-    novoItem[2].children[2].hidden = !editAdd;
-    novoItem[1].contentEditable = editAdd;
-    novoItem[1].focus();
-    editAdd = !editAdd;
-}
-
-function novaConta() {
+function novaLista() {
     let table = document.querySelector("#table");
     table.style.display = "none";
     let form = document.createElement("form");
