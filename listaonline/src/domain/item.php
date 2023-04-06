@@ -6,6 +6,7 @@
 		var $id_usuario;
 		var $nome_item;
 		var $qtd;
+		var $concluido;
 
 		function getId_item(){
 			return $this->id_item;
@@ -41,6 +42,12 @@
 		function setQtd($qtd){
 			$this->qtd = $qtd;
 		}
+		function getConcluido(){
+			return $this->concluido;
+		}
+		function setConcluido($concluido){
+			$this->concluido = $concluido;
+		}
 	}
 
 	class ItemDAO {
@@ -51,8 +58,10 @@
 			$id_usuario = $item->getId_usuario();
 			$nome_item = $item->getNome_item();
 			$qtd = $item->getQtd();
+			$concluido = $item->getConcluido();
 			try {
-				$query = "INSERT INTO item (id_item, id_lista, id_usuario, nome_item, qtd) VALUES (DEFAULT, $id_lista, $id_usuario, '$nome_item', '$qtd')";
+				$query = "INSERT INTO item (id_item, id_lista, id_usuario, nome_item, qtd, concluido) 
+				VALUES (DEFAULT, $id_lista, $id_usuario, '$nome_item', $qtd, $concluido)";
 
 				$con = new Connection();
 				if(Connection::getInstance()->exec($query) >= 1){
@@ -81,6 +90,7 @@
 					$ite->setId_usuario($row->id_usuario);
 					$ite->setNome_item($row->nome_item);
 					$ite->setQtd($row->qtd);
+					$ite->setConcluido($row->concluido);
 					$result[] = $ite;
 				}
 				$con = null;
@@ -114,8 +124,10 @@
 			$id_usuario = $ite->getId_usuario();
 			$nome_item = $ite->getNome_item();
 			$qtd = $ite->getQtd();
+			$concluido = $ite->getConcluido();
 			try {
-				$query = "UPDATE item SET id_lista = $id_lista, id_usuario = $id_usuario, nome_item = '$nome_item', qtd = '$qtd' WHERE id_item = $id_item";
+				$query = "UPDATE item SET nome_item = '$nome_item', qtd = '$qtd', concluido = $concluido 
+				WHERE id_item = $id_item AND id_lista = $id_lista AND id_usuario = $id_usuario";
 
 				$con = new Connection();
 				$status = Connection::getInstance()->prepare($query);
@@ -131,10 +143,10 @@
 			return $result;
 		}
 
-		function delete($id_item) {
+		function delete($id_item,$id_lista) {
 			$result = array();
 			try {
-				$query = "DELETE FROM item WHERE id_item = $id_item";
+				$query = "DELETE FROM item WHERE id_item = $id_item AND id_lista = $id_lista";
 
 				$con = new Connection();
 				if(Connection::getInstance()->exec($query) >= 1){

@@ -26,6 +26,7 @@
 			$ite->setId_usuario($arr["id_usuario"]);
 			$ite->setNome_item($arr["nome_item"]);
 			$ite->setQtd($arr["qtd"]);
+			$ite->setConcluido($arr["concluido"]);
 			$result = $id->create($ite);
 			http_response_code(200);
 			echo json_encode($result);
@@ -40,6 +41,7 @@
 			$ite->setId_usuario($arr["id_usuario"]);
 			$ite->setNome_item($arr["nome_item"]);
 			$ite->setQtd($arr["qtd"]);
+			$ite->setConcluido($arr["concluido"]);
 			$result = $id->update($ite);
 			http_response_code(200);
 			echo json_encode($result);
@@ -48,7 +50,7 @@
 
 		function doDelete($arr){
 			$id = new ItemDAO();
-			$result = $id->delete($arr["id_item"]);
+			$result = $id->delete($arr["id_item"],$arr["id_lista"]);
 			http_response_code(200);
 			echo json_encode($result);
 		}

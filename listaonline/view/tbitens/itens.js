@@ -21,7 +21,7 @@ function readItem() {
       data.forEach((dado) => {
         let row = document.createElement("tr");
         listaItens.push(dado);
-        row.innerHTML += `<td style="padding:3px"><input type="checkbox" id="pago" onclick="checado(this)" unchecked></td>`;
+        row.innerHTML += `<td style="padding:3px"><input type="checkbox" onclick="checado(this,${indice})" unchecked></td>`;
         row.innerHTML += `<td>${dado.nome_item}</td>`;
         row.innerHTML += `<td>${dado.qtd}</td>`;
         row.innerHTML += `<td style="padding:3px">
@@ -39,6 +39,11 @@ function readItem() {
                   </button>
                   </td>`;
         item.appendChild(row);
+        if(dado.concluido == 1){
+          row.cells[0].children[0].checked = true;
+          row.cells[1].style.textDecoration = 'line-through';
+          row.cells[2].style.textDecoration = 'line-through';
+        }
         indice++;
       });
     })
@@ -99,7 +104,9 @@ function salvarAlteracao(indice, celulas) {
     "&nome_item=" +
     listaItens[indice].nome_item +
     "&qtd=" +
-    listaItens[indice].qtd;
+    listaItens[indice].qtd + 
+    "&concluido=" + 
+    listaItens[indice].concluido;
 
   if (confirm("Deseja alterar o item da lista?")) {
         xhr.addEventListener("readystatechange", function () {
@@ -141,6 +148,7 @@ function salvarNovoItem(){
     dados.append("id_usuario" , localStorage.getItem("id_usu"));
     dados.append("nome_item" , novoItem);
     dados.append("qtd", qtd);
+    dados.append("concluido" , 0);
 
     if (confirm("Deseja Salvar o novo item?")) {
         xhr.addEventListener("readystatechange", function () {
@@ -161,15 +169,46 @@ function salvarNovoItem(){
 }
 }
 
-function checado(check) {
+function checado(check,indice) {
   let nome_item = check.parentNode.parentNode.cells[1];
   let qtd = check.parentNode.parentNode.cells[2];
+  let nome = localStorage.getItem("nome_usu");
 
-  if (check.checked) {    //se a conta for marcada conta foi paga
+  if (check.checked) {
     nome_item.style.textDecoration = 'line-through';
     qtd.style.textDecoration = 'line-through';
+    listaItens[indice].concluido = 1;
   }else{
     nome_item.style.textDecoration = 'none';
     qtd.style.textDecoration = 'none';
+    listaItens[indice].concluido = 0;
   }
+  let dados =
+    "id_lista=" +
+    listaItens[indice].id_lista +
+    "&id_usuario=" +
+    localStorage.getItem("id_usu") +
+    "&id_item=" +
+    listaItens[indice].id_item +
+    "&nome_item=" +
+    listaItens[indice].nome_item +
+    "&qtd=" +
+    listaItens[indice].qtd + 
+    "&concluido=" + 
+    listaItens[indice].concluido;
+
+  xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === this.DONE) {
+          let resposta = JSON.parse(this.responseText);
+          if (resposta.hasOwnProperty("erro")) {
+              alert(resposta.erro);
+          } else {
+              alert(listaItens[indice].concluido == 1 ? "Parabens! Menos uma Pendência, " + nome : "Poxa, " + nome + " Denovo?");
+          }
+      }
+  });
+  xhr.open("PUT", urlItem);
+  xhr.send(dados);
+  setTimeout(() => { window.location.reload(); }, 2000);
+
 }
