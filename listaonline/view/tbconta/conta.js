@@ -3,6 +3,8 @@ const urlConta = "http://localhost/listaonline/src/controll/routes/route.conta.p
 var conta = document.querySelector("#conta");
 var div = document.querySelector("#div");
 var marcado = document.getElementById('pago');
+var arrayLista = [];
+var indice = 0;
 
 function readConta() {
     fetch(urlConta + "?id_usuario=" + localStorage.getItem("id_usu"))
@@ -13,32 +15,31 @@ function readConta() {
         })
         .then(function (data) {
             data.forEach((dado) => {
-                var moeda = dado.valor.toString();
+                arrayLista.push(dado);
+                var moeda = dado.valor.toString(); //Formata valor para moeda 
                 let formatado = moeda.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
                 let valorSplit = formatado.split(".");
                 var moeda = parseInt(valorSplit[0]).toFixed(2).split('.');
-
                 moeda[0] = "R$ " + moeda[0].split(/(?=(?:...)*$)/).join('.');
-                let valorCompleto = moeda[0] + "," + valorSplit[1];
-                //console.log(valorCompleto);
+                let valorCompleto = moeda[0] + "," + valorSplit[1]; //Formata valor para moeda
                 let row = document.createElement("tr");
                 if (dado.status_conta == "pago") {
-                    row.innerHTML += `<td style="padding:3px"><input type="checkbox" id="pago" onclick="checado(this)" checked></td>`;
-                    row.innerHTML += `<td>${dado.id_conta}</td>`;
+                    row.innerHTML += `<td style="padding:3px"><input type="checkbox" id="pago" onclick="checado(this,${indice})" checked></td>`;
                     row.innerHTML += `<td>${dado.nome_conta}</td>`;
                     row.innerHTML += `<td>${dado.vencimento}</td>`;
                     row.innerHTML += `<td>${valorCompleto}</td>`;
                     row.innerHTML += `<td style="padding:3px"><button class="edi" onclick='editConta(this)'><i class="fa fa-pencil" aria-hidden="true"></i></button><button class="del" onclick='delConta(this)'><i class="fa fa-trash-o" aria-hidden="true"></i></button></td></tr>`;
                     row.style.textDecoration = 'line-through';
+                    row.style.color = 'green';
                 } else {
-                    row.innerHTML += `<td style="padding:3px"><input type="checkbox" onclick="checado(this)"></td>`;
-                    row.innerHTML += `<td>${dado.id_conta}</td>`;
+                    row.innerHTML += `<td style="padding:3px"><input type="checkbox" onclick="checado(this,${indice})"></td>`;
                     row.innerHTML += `<td>${dado.nome_conta}</td>`;
                     row.innerHTML += `<td>${dado.vencimento}</td>`;
                     row.innerHTML += `<td>${valorCompleto}</td>`;
-                    row.innerHTML += `<td style="padding:3px"><button class="edi" onclick='editConta(this)'><i class="fa fa-pencil" aria-hidden="true"></i></button><button class="del" onclick='delConta(this)'><i class="fa fa-trash-o" aria-hidden="true"></i></button></td></tr>`;
+                    row.innerHTML += `<td style="padding:3px"><button class="edi" onclick='editConta(this,${indice})'><i class="fa fa-pencil" aria-hidden="true"></i></button><button class="del" onclick='delConta(${indice})'><i class="fa fa-trash-o" aria-hidden="true"></i></button></td></tr>`;
                 }
                 conta.appendChild(row);
+                indice++;
             });
         })
         .catch(function (error) {
@@ -46,31 +47,30 @@ function readConta() {
         });
 }
 
-function checado(check) {
-    let idConta = check.parentNode.parentNode.cells[1];
-    let nomeConta = check.parentNode.parentNode.cells[2];
-    let vencimentoConta = check.parentNode.parentNode.cells[3];
-    let valor = check.parentNode.parentNode.cells[4];
-
+function checado(check, indice) {
+    let tdconta = check.parentNode.parentNode.cells[1];
+    let tdvencimento = check.parentNode.parentNode.cells[2];
+    let tdvalor = check.parentNode.parentNode.cells[3];
+    let valor = arrayLista[indice].valor;
+    let subVirPon = valor.replace(",", ".");
     if (check.checked) {    //se a conta for marcada conta foi paga
-        nomeConta.style.textDecoration = 'line-through';
-        vencimentoConta.style.textDecoration = 'line-through';
-        valor.style.textDecoration = 'line-through';
+        tdconta.style.textDecoration = 'line-through';    //Passa um alinha sobre o texto da td
+        tdvencimento.style.textDecoration = 'line-through';
+        tdvalor.style.textDecoration = 'line-through';
 
-        let dados = "id_conta=" + idConta.innerText;
+        let dados = "id_conta=" + arrayLista[indice].id_conta;
         dados += "&id_usuario=" + localStorage.getItem("id_usu");
-        dados += "&nome_conta=" + nomeConta.innerText;
-        dados += "&vencimento=" + vencimentoConta.innerText;
-        dados += "&valor=" + 56;
+        dados += "&nome_conta=" + arrayLista[indice].nome_conta;
+        dados += "&vencimento=" + arrayLista[indice].vencimento;
+        dados += "&valor=" + subVirPon;
         dados += "&status_conta=" + "pago";
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
-                console.log("Checado: " + this.responseText)
+                console.log("checado " + this.responseText)
                 let resp = JSON.parse(this.responseText);
                 if (resp.hasOwnProperty("erro")) {
                     msg.innerHTML = resp.erro;
                 } else {
-                    //msg.innerHTML = "Dados da conta alterada com sucesso!";
                     alert(localStorage.getItem("nome_usu") + " Menos uma divida, show de bola!");
                 }
                 setTimeout(() => { window.location.reload(); }, 1000);
@@ -79,24 +79,23 @@ function checado(check) {
         xhr.open("PUT", urlConta);
         xhr.send(dados);
     } else { //se desmarcar conta não paga
-        nomeConta.style.textDecoration = 'none';
-        vencimentoConta.style.textDecoration = 'none';
-        valor.style.textDecoration = 'none';
+        tdconta.style.textDecoration = 'line-through';    //Passa um alinha sobre o texto da td
+        tdvencimento.style.textDecoration = 'line-through';
+        tdvalor.style.textDecoration = 'line-through';
 
-        let dados = "id_conta=" + idConta.innerText;
+        let dados = "id_conta=" + arrayLista[indice].id_conta;
         dados += "&id_usuario=" + localStorage.getItem("id_usu");
-        dados += "&nome_conta=" + nomeConta.innerText;
-        dados += "&vencimento=" + vencimentoConta.innerText;
-        dados += "&valor=" + 110;
+        dados += "&nome_conta=" + arrayLista[indice].nome_conta;
+        dados += "&vencimento=" + arrayLista[indice].vencimento;
+        dados += "&valor=" + subVirPon;
         dados += "&status_conta=" + "pendente";
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
-                console.log("Não Checado: " + this.responseText)
+                console.log("Não checado" + this.responseText)
                 let resp = JSON.parse(this.responseText);
                 if (resp.hasOwnProperty("erro")) {
                     msg.innerHTML = resp.erro;
                 } else {
-                    //msg.innerHTML = "Dados da conta alterada com sucesso!";
                     // alert("Vamos pagar a conta " + localStorage.getItem("nome_usu") + " vai pagar multa em!");
                 }
                 setTimeout(() => { window.location.reload(); }, 1000);
@@ -107,43 +106,36 @@ function checado(check) {
     }
 }
 
-function editConta(c) {
+function editConta(c, indice) {
+    c.parentNode.parentNode.cells[1].setAttribute("contentEditable", "true");
     c.parentNode.parentNode.cells[2].setAttribute("contentEditable", "true");
     c.parentNode.parentNode.cells[3].setAttribute("contentEditable", "true");
-    c.parentNode.parentNode.cells[4].setAttribute("contentEditable", "true");
-    c.parentNode.parentNode.cells[5].innerHTML = "<button class='sal'onclick='putConta(this)'><i class='fa fa-floppy-o' aria-hidden='true'></i></button><button class='can'onclick='cancelar(this)'><i class='fa fa-times' aria-hidden='true'></i></button>";
-    //c.parentNode.parentNode.cells[5].innerHTML = "<button class='sal' onclick='putConta(this)'>Salvar</button>";
+    c.parentNode.parentNode.cells[4].innerHTML = `<button class="sal" onclick='putConta(this,${indice})'><i class="fa fa-floppy-o" aria-hidden="true"></i></button><button class="can" onclick="cancelar(this)"><i class="fa fa-times" aria-hidden="true"></i></button>`;
 }
 
-function cancelar() {
-    window.location.reload();
-}
-
-function putConta(c) {
-    let idConta = c.parentNode.parentNode.cells[1].innerHTML;
-    let nomeConta = c.parentNode.parentNode.cells[2].innerHTML;
-    let vencimentoConta = c.parentNode.parentNode.cells[3].innerHTML;
-    let valor = c.parentNode.parentNode.cells[4].innerText;
+function putConta(c, indice) {
+    let nomeConta = c.parentNode.parentNode.cells[1].innerHTML;
+    let vencimentoConta = c.parentNode.parentNode.cells[2].innerHTML;
+    let valor = c.parentNode.parentNode.cells[3].innerText;
     let valorReal = valor.substr(3);
     let valorSemVirgula = valorReal.replace(",", ".");
-    let dados = "id_conta=" + idConta;
+
+    let dados = "id_conta=" + arrayLista[indice].id_conta;
     dados += "&id_usuario=" + localStorage.getItem("id_usu");
     dados += "&nome_conta=" + nomeConta;
     dados += "&vencimento=" + vencimentoConta;
     dados += "&valor=" + valorSemVirgula;
-    dados += "&status_conta=" + "pago";
+    dados += "&status_conta=" + "";
     if (window.confirm("Confirma Alteração dos dados?")) {
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
-                console.log(this.responseText);
                 let resp = JSON.parse(this.responseText);
                 if (resp.hasOwnProperty("erro")) {
                     msg.innerHTML = resp.erro;
                 } else {
-                    //msg.innerHTML = "Dados da conta Alterada Com Sucesso.";
                     alert("Dados da conta Alterada Com Sucesso!");
                 }
-                //setTimeout(() => { window.location.reload(); }, 3000);
+                setTimeout(() => { window.location.reload(); }, 1000);
             }
         });
         xhr.open("PUT", urlConta);
@@ -156,14 +148,13 @@ function novaConta() {
     table.style.display = "none";
     let form = document.createElement("form");
     form.innerHTML += `Conta<br><input type="text" id="input_conta" placeholder="Digite o nome da conta"><br>`;
-    form.innerHTML += `Vancimento<br><input type="date" id="vencimento" placeholder="Digite o vencimento da conta"><br>`;
+    form.innerHTML += `Vencimento<br><input type="date" id="vencimento" placeholder="Digite o vencimento da conta"><br>`;
     form.innerHTML += `Valor<br><input type="text" id="valor" placeholder="Digite o valor da conta" onkeyup="formatarMoeda()"><br><br>`;
     form.innerHTML += `<input type="button" onclick="finalizar()" value="Salvar conta"/></form>`;
-    //form.innerHTML += `<i class="fa fa-arrow-right" aria-hidden="true" onclick="finalizar()"></i></form>`;
     div.appendChild(form);
 }
 
-function formatarMoeda() {
+function formatarMoeda() {  //Function para formata valor em real
     var elemento = document.getElementById('valor');
     var valor = elemento.value;
     if (valor != "") {
@@ -172,10 +163,8 @@ function formatarMoeda() {
         valor = valor + '';
         valor = valor.replace(/([0-9]{2})$/g, ",$1");
         if (valor.length > 6 && valor.length < 10) {
-            console.log("aqui 6 ");
             valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
         } else if (valor.length >= 10) {
-            console.log("aqui 9");
             valor = valor.replace(/([0-9]{6}),([0-9]{2}$)/g, ".$1,$2");
         }
         elemento.value = valor;
@@ -184,10 +173,10 @@ function formatarMoeda() {
     }
 }
 
-
-function finalizar() {
+function finalizar() {  //Function para salvar nova conta
     let nomeConta = document.querySelector("#input_conta");
-    let vencimentoConta = document.querySelector("#vencimento");
+    let vencimentoConta = document.querySelector("#vencimento").value.split("-");
+    let formatadata = vencimentoConta[2] + "-" + vencimentoConta[1] + "-" + vencimentoConta[0];
     let valorConta = document.querySelector("#valor");
     let valorPonto = valorConta.value.replace(".", "");
     let valorVirgula = valorPonto.replace(",", ".");
@@ -195,7 +184,7 @@ function finalizar() {
         let dados = new FormData();
         dados.append("id_usuario", localStorage.getItem("id_usu"));
         dados.append("nome_conta", nomeConta.value);
-        dados.append("vencimento", vencimentoConta.value);
+        dados.append("vencimento", formatadata);
         dados.append("valor", valorVirgula);
         dados.append("status_conta", "pendente");
         xhr.addEventListener("readystatechange", function () {
@@ -204,42 +193,43 @@ function finalizar() {
                 setTimeout(() => { window.location.reload(); }, 2000);
                 let resp = JSON.parse(this.responseText);
                 if (resp.hasOwnProperty("erro")) {
-                    //msg.innerHTML = resp.erro;
                     alert(resp.erro);
                 } else {
-                    //msg.innerHTML = "Alimento adicionado Com Sucesso.";
                 }
-                //setTimeout(() => { window.location.reload(); }, 3000);
             }
         });
         xhr.open("POST", urlConta);
         xhr.send(dados);
     } else {
         alert("Favor preencher todos os campos!");
-        setTimeout(() => { window.location.reload(); }, 2000);
+        setTimeout(() => { window.location.reload(); }, 1000);
         //setTimeout(() => { msg.innerHTML = "Mensagens do sistema"; }, 3000);
     }
 }
 
-function delConta(c) {
-    let id_conta = c.parentNode.parentNode.cells[1].innerText;
-    let nome_conta = c.parentNode.parentNode.cells[2].innerText;
-    let dados = "id_conta=" + id_conta;
-    if (window.confirm("Confirma Exclusão da conta = " + nome_conta + "?")) {
+function delConta(indice) {
+    let dados = "id_conta=" + arrayLista[indice].id_conta;
+    if (window.confirm("Confirma Exclusão da conta = " + arrayLista[indice].nome_conta + "?")) {
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
-                console.log(this.responseText);
                 let resp = JSON.parse(this.responseText);
                 if (resp.hasOwnProperty("erro")) {
                     msg.innerHTML = resp.erro;
                 } else {
-                    //msg.innerHTML = "Alimento Excluido Com Sucesso!";
                     alert("conta excluida com sucesso");
                 }
-                //setTimeout(() => { window.location.reload(); }, 3000);
+                setTimeout(() => { window.location.reload(); }, 1000);
             }
         });
         xhr.open("DELETE", urlConta);
         xhr.send(dados);
     }
+}
+
+function limpaLocalStorage() {
+    localStorage.clear();
+}
+
+function cancelar() {   //Function para atualizar pagina
+    window.location.reload();
 }

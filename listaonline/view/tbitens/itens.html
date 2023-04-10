@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,29 +8,25 @@
   <link rel="stylesheet" href="../tbusuario/usuario.css">
   <title>Itens</title>
 </head>
+
 <body onload="readItem()">
-    <h1>Itens</h1>
-    <a href="../tbtipo_lista/tipo-lista.html">Volta para Lista</a>
-    <table id="table">
-      <thead>
-        <tr><th colspan="4">
-          Itens
-        </th></tr>
-        <tr>
-        <th><button class='sal' onclick='novoItem()'>
-          <i class="fa fa-plus-square" aria-hidden="true"></i>
-      </button></th>
+  <a href="../tbconta/conta.html">Conta</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="../tbtipo_lista/tipo-lista.html">Lista</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="../tbusuario/login/login.html" onclick="limpaLocalStorage()">Sair</a><br><br>
+  <h1>Itens</h1>
+  <table id="table">
+    <thead>
+      <tr>
+        <th><button class='sal' onclick='novoItem()'><i class="fa fa-plus-square" aria-hidden="true"></i></button></th>
         <th>Item</th>
         <th>Quantidade</th>
         <th>Ações</th>
       </tr>
-
-      </thead>
-      <tbody id="item">
-        
-      </tbody>
-    </table>
-    <div id="div"></div>
+    </thead>
+    <tbody id="item"></tbody>
+  </table>
+  <div id="div"></div>
 </body>
 <script src="itens.js"></script>
+
 </html>

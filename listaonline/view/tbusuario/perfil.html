@@ -10,7 +10,9 @@
 </head>
 
 <body onload="readPerfil()">
-    <a href="../home.html">Volta para home</a>
+    <a href="../tbconta/conta.html">Conta</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="../tbtipo_lista/tipo-lista.html">Lista</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="../tbusuario/login/login.html" onclick="limpaLocalStorage()">Sair</a><br><br>
     <h1>Perfil</h1>
     <form action="" method="POST" enctype="multipart/form-data">
         <fieldset>
@@ -18,7 +20,9 @@
             <label>Nome*<br>
                 <input type="text" placeholder="Nome do usuário" id="nome_usuario">
             </label><br>
-
+            <label>Email*<br>
+                <input type="email" placeholder="Email do usuário" id="email_usuario">
+            </label><br>
             <label>Genero *<br>
                 <input type="radio" id="generom" name="generoradio" value="M">
                 <label for="masculino">Masculino</label>

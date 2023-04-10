@@ -14,9 +14,8 @@ function readTipoLista() {
         .then(function (data) {
             data.forEach((dado) => {
                 let row = document.createElement("tr");
-                    row.innerHTML += `<td></td>`;
-                    row.innerHTML += `<td onclick='abreLista(${dado.id_lista})'>${dado.nome_lista}</td>`;
-                    row.innerHTML += `<td style="padding:3px">
+                row.innerHTML += `<td onclick='abreLista(${dado.id_lista})'>${dado.nome_lista}</td>`;
+                row.innerHTML += `<td style="padding:3px">
                     <button class='edi' onclick='editTipoLista(this.parentNode.parentNode.cells)'>
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                     </button>
@@ -38,9 +37,9 @@ function readTipoLista() {
         });
 }
 
-function abreLista(numero){
-    if (editAlt){
-        window.location.assign("../tbitens/itens.html?id_lista=" + numero); 
+function abreLista(numero) {
+    if (editAlt) {
+        window.location.assign("../tbitens/itens.html?id_lista=" + numero);
     }
 }
 
@@ -74,7 +73,7 @@ function delTipoLista(id_lista) {
     }
 }
 
-function salvarAlteracao(id_lista,nome_lista){
+function salvarAlteracao(id_lista, nome_lista) {
     let dados = "id_lista=" + id_lista + "&id_usuario=" + localStorage.getItem("id_usu") + "&nome_lista=" + nome_lista;
     console.log(dados);
     if (confirm("Deseja alterar o nome da lista?")) {
@@ -84,15 +83,15 @@ function salvarAlteracao(id_lista,nome_lista){
                 if (resposta.hasOwnProperty("erro")) {
                     alert(resposta.erro);
                 } else {
-                    
+
                     alert("Lista alterada com sucesso!");
                 }
             }
         });
-    xhr.open("PUT", urlTipoLista);
-    xhr.send(dados);
-    setTimeout(() => { window.location.reload(); }, 1000);
-}
+        xhr.open("PUT", urlTipoLista);
+        xhr.send(dados);
+        setTimeout(() => { window.location.reload(); }, 1000);
+    }
 }
 
 function novaLista() {
@@ -105,33 +104,37 @@ function novaLista() {
     div.appendChild(form);
 }
 
-function salvarNovaLista(){
+function salvarNovaLista() {
     let novoItem = document.querySelector('#input_lista').value;
-    if (novoItem === ""){
+    if (novoItem === "") {
         alert("Preencha o Campo Nome da lista!")
-    }else{
-    var dados = new FormData();
-    //dados.append("id_lista", 0);
-    dados.append("id_usuario" , localStorage.getItem("id_usu"));
-    dados.append("nome_lista" , novoItem);
+    } else {
+        var dados = new FormData();
+        //dados.append("id_lista", 0);
+        dados.append("id_usuario", localStorage.getItem("id_usu"));
+        dados.append("nome_lista", novoItem);
 
-    console.log(dados);
+        console.log(dados);
 
-    if (confirm("Deseja Salvar o novo item?")) {
-        xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === this.DONE) {
-                let resposta = JSON.parse(this.responseText);
-                console.log(resposta);
-                if (resposta.hasOwnProperty("erro")) {
-                    alert(resposta.erro);
-                } else {
-                    alert("Novo Item salvo com sucesso!");
+        if (confirm("Deseja Salvar o novo item?")) {
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === this.DONE) {
+                    let resposta = JSON.parse(this.responseText);
+                    console.log(resposta);
+                    if (resposta.hasOwnProperty("erro")) {
+                        alert(resposta.erro);
+                    } else {
+                        alert("Novo Item salvo com sucesso!");
+                    }
                 }
-            }
-        });
-    xhr.open("POST", urlTipoLista);
-    xhr.send(dados);
-    setTimeout(() => { window.location.reload(); }, 1000);
+            });
+            xhr.open("POST", urlTipoLista);
+            xhr.send(dados);
+            setTimeout(() => { window.location.reload(); }, 1000);
+        }
     }
 }
+
+function limpaLocalStorage() {
+    localStorage.clear();
 }

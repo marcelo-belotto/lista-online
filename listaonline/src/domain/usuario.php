@@ -1,8 +1,8 @@
 <?php
-//session_start();
 	class Usuario {
 		var $id_usuario;
 		var $nome_usuario;
+		var $email_usuario;
 		var $genero;
 		var $img;
 		var $senha;
@@ -19,6 +19,13 @@
 		}
 		function setNome_usuario($nome_usuario){
 			$this->nome_usuario = $nome_usuario;
+		}
+
+		function getEmail_usuario(){
+			return $this->email_usuario;
+		}
+		function setEmail_usuario($email_usuario){
+			$this->email_usuario = $email_usuario;
 		}
 
 		function getGenero(){
@@ -47,19 +54,19 @@
 		function create($usuario) {
 			$result = array();
 			$nome_usuario = $usuario->getNome_usuario();
+			$email_usuario = $usuario->getEmail_usuario();
 			$genero = $usuario->getGenero();
 			$img = $usuario->getImg();
 			$senha = $usuario->getSenha();
 			try {
-				$query = "INSERT INTO usuario (id_usuario, nome_usuario, genero, img, senha) VALUES".
-				"(DEFAULT,'$nome_usuario','$genero','$img','$senha')";
+				$query = "INSERT INTO usuario (id_usuario, nome_usuario, email_usuario, genero, img, senha) VALUES".
+				"(DEFAULT,'$nome_usuario','$email_usuario','$genero','$img','$senha')";
 
 				$con = new Connection();
 				if(Connection::getInstance()->exec($query) >= 1){
 					$result = $usuario;
 				} else {
-					//echo $_SESSION["nome_img"];
-					$result["Erro"] = "Erro ao cadastrar usuário!";
+					$result["Erro"] = "Erro ao cadastrar usuario!";
 				}
 				$con = null;
 			}catch(PDOException $e) {
@@ -96,10 +103,11 @@
 					$usuario = new Usuario();
 					$usuario->setId_usuario($row->id_usuario);
 					$usuario->setNome_usuario($row->nome_usuario);
+					$usuario->setEmail_usuario($row->email_usuario);
 					$usuario->setGenero($row->genero);
 					$usuario->setImg($row->img);
 					$usuario->setSenha($row->senha);
-					$result[] = $usuario;
+					$result[] = $usuario;					
 				}
 				$con = null;
 			}catch(PDOException $e) {
@@ -112,11 +120,12 @@
 			$result = array();
 			$id_usuario = $usu->getId_usuario();
 			$nome_usuario = $usu->getNome_usuario();
+			$email_usuario = $usu->getEmail_usuario();
 			$genero = $usu->getGenero();
 			$img = $usu->getImg();
 			$senha = $usu->getSenha();
 			try {
-				$query = "UPDATE usuario SET nome_usuario = '$nome_usuario', genero = '$genero', img = '$img', senha = '$senha' WHERE id_usuario = '$id_usuario'";
+				$query = "UPDATE usuario SET nome_usuario = '$nome_usuario', email_usuario = '$email_usuario', genero = '$genero', img = '$img', senha = '$senha' WHERE id_usuario = '$id_usuario'";
 
 				$con = new Connection();
 				$status = Connection::getInstance()->prepare($query);
@@ -135,10 +144,17 @@
 		function delete($id_usuario) {
 			$result = array();
 			try {
-				$query = "DELETE FROM usuario WHERE id_usuario = $id_usuario";
+				$query_img_select = "SELECT * FROM `usuario` WHERE id_usuario = $id_usuario";	//selec para verificar se tem img no banco
+				$con = new Connection();
+				$resultSet = Connection::getInstance()->query($query_img_select);			
+				while($row = $resultSet->fetchObject()){
+					$nome_img = $row->img;
+				}
 
+				$query = "DELETE FROM usuario WHERE id_usuario = $id_usuario";
 				$con = new Connection();
 				if(Connection::getInstance()->exec($query) >= 1){
+					unlink("../../../foto_usuario/".$nome_img);
 					$result["Sucess"] = "Usuário excluido com sucesso!";
 				} else {
 					$result["Erro"] = "Erro ao excluir usuário!";

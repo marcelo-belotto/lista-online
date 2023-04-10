@@ -4,15 +4,16 @@ USE dblistaonline;
 CREATE TABLE usuario(
   id_usuario INT(6) AUTO_INCREMENT NOT NULL PRIMARY KEY,
   nome_usuario VARCHAR(25) NOT NULL,
+  email_usuario VARCHAR(50) NOT NULL,
   genero VARCHAR(1) NOT NULL,
   img VARCHAR(42) NULL,
   senha VARCHAR(6) NOT NULL
 );
 
-INSERT INTO usuario (id_usuario,nome_usuario,genero,img,senha) VALUES
-(DEFAULT,"Pedro","M","","1"),
-(DEFAULT,"Estela","F","","12"),
-(DEFAULT,"João","M","","123");
+INSERT INTO usuario (id_usuario,nome_usuario,email_usuario,genero,img,senha) VALUES
+(DEFAULT,"Pedro","pedro@gmail.com","M","","1"),
+(DEFAULT,"Estela","estela@gmail.com","F","","12"),
+(DEFAULT,"João","joão@gmail.com","M","","123");
 
 CREATE TABLE conta(
   id_conta INT(6) AUTO_INCREMENT NOT NULL PRIMARY KEY,
@@ -25,12 +26,12 @@ CREATE TABLE conta(
 );
 
 INSERT INTO conta (id_conta,id_usuario,nome_conta,vencimento,valor,status_conta) VALUES
-(DEFAULT,2,"Energia","12-03-2023","114","pago"),
-(DEFAULT,2,"Internet","27-02-2023","99","pendente"),
-(DEFAULT,1,"Financiamento carro","05-03-2023","678","pago"),
-(DEFAULT,1,"Energia","19-02-2023","93","pendente"),
-(DEFAULT,3,"Internet","27-02-2023","79","pago"),
-(DEFAULT,3,"Aluguel","05-03-2023","900","pendente");
+(DEFAULT,2,"Energia","12-03-2023","114.39","pago"),
+(DEFAULT,2,"Internet","27-02-2023","99.12","pendente"),
+(DEFAULT,1,"Financiamento carro","05-03-2023","678.99","pago"),
+(DEFAULT,1,"Energia","19-02-2023","93.56","pendente"),
+(DEFAULT,3,"Internet","27-02-2023","79.34","pago"),
+(DEFAULT,3,"Aluguel","05-03-2023","900.23","pendente");
 
 CREATE TABLE tipo_lista(
   id_lista INT(6) AUTO_INCREMENT NOT NULL PRIMARY KEY,

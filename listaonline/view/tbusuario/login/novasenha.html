@@ -6,23 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../usuario.css">
-    <title>Login</title>
+    <title>Nova senha</title>
 </head>
 
 <body>
     <a href="../../home.html">Home</a><br><br>
-    <h1>Login</h1>
+    <h1>Nova senha</h1>
     <form id="formlogin" action="" method="POST">
         <label>Nome*<br>
             <input type="text" placeholder="Nome do usuário" id="nome_usuario">
         </label><br>
-        <label>Senha *<br>
-            <input type="password" placeholder="Senha" id="senha" maxlength="6">
+        <label>Email *<br>
+            <input type="email" placeholder="Email do usuário" id="email">
         </label>
         </fieldset>
     </form>
-    <button id="btnlogar" onclick="logar()">Logar</button><br><br>
-    <a href="./novasenha.html">Esqueci minha senha</a>
+    <button id="btnlogar" onclick="emailNovaSenha()">Acessar</button><br><br>
 </body>
 <script src="./login.js"></script>
 

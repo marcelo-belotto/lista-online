@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <a href="../home.html">Home</a><br><br>
     <h1>Cadastro</h1>
     <form action="../../src/domain/usuario.php" method="POST" enctype="multipart/form-data">
         <fieldset>
@@ -17,7 +18,9 @@
             <label>Nome*<br>
                 <input type="text" placeholder="Nome do usuário" id="nome_usuario">
             </label><br>
-
+            <label>Email*<br>
+                <input type="email" placeholder="Email do usuário" id="email_usuario">
+            </label><br>
             <label>Genero *<br>
                 <input type="radio" id="genero" name="generoradio" value="M">
                 <label for="masculino">Masculino</label>

@@ -1,13 +1,11 @@
 const xhr = new XMLHttpRequest();
-const urlItem =
-  "http://localhost/listaonline/src/controll/routes/route.item.php";
+const urlItem = "http://localhost/listaonline/src/controll/routes/route.item.php";
 var item = document.querySelector("#item");
-let idse =  "";
+let idse = "";
 var editAlt = true;
 var editAdd = true;
 var listaItens = [];
 var indice = 0;
-
 
 function readItem() {
   let idse = new URL(window.location.href).searchParams.get("id_lista");
@@ -23,7 +21,11 @@ function readItem() {
         listaItens.push(dado);
         row.innerHTML += `<td style="padding:3px"><input type="checkbox" onclick="checado(this,${indice})" unchecked></td>`;
         row.innerHTML += `<td>${dado.nome_item}</td>`;
-        row.innerHTML += `<td>${dado.qtd}</td>`;
+        if (dado.qtd == null) {
+          row.innerHTML += `<td></td>`;
+        } else {
+          row.innerHTML += `<td>${dado.qtd}</td>`;
+        }
         row.innerHTML += `<td style="padding:3px">
                   <button class='edi' onclick='editItem(this.parentNode.parentNode.cells)'>
                   <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -39,7 +41,7 @@ function readItem() {
                   </button>
                   </td>`;
         item.appendChild(row);
-        if(dado.concluido == 1){
+        if (dado.concluido == 1) {
           row.cells[0].children[0].checked = true;
           row.cells[1].style.textDecoration = 'line-through';
           row.cells[2].style.textDecoration = 'line-through';
@@ -104,72 +106,72 @@ function salvarAlteracao(indice, celulas) {
     "&nome_item=" +
     listaItens[indice].nome_item +
     "&qtd=" +
-    listaItens[indice].qtd + 
-    "&concluido=" + 
+    listaItens[indice].qtd +
+    "&concluido=" +
     listaItens[indice].concluido;
 
   if (confirm("Deseja alterar o item da lista?")) {
-        xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === this.DONE) {
-                let resposta = JSON.parse(this.responseText);
-                if (resposta.hasOwnProperty("erro")) {
-                    alert(resposta.erro);
-                } else {
-                    
-                    alert("Lista alterada com sucesso!");
-                }
-            }
-        });
+    xhr.addEventListener("readystatechange", function () {
+      if (this.readyState === this.DONE) {
+        let resposta = JSON.parse(this.responseText);
+        if (resposta.hasOwnProperty("erro")) {
+          alert(resposta.erro);
+        } else {
+
+          alert("Lista alterada com sucesso!");
+        }
+      }
+    });
     xhr.open("PUT", urlItem);
     xhr.send(dados);
     setTimeout(() => { window.location.reload(); }, 1000);
-    }
+  }
 }
 
 function novoItem() {
-    let table = document.querySelector("#table");
-    table.style.display = "none";
-    let form = document.createElement("form");
-    form.innerHTML += `Item<br><input type="text" id="input_item" placeholder="Digite o nome do item"><br>`;
-    form.innerHTML += `Quantidade<br><input type="text" id="input_qtd" placeholder="Digite a quantidade"><br>`;
-    form.innerHTML += `<input type="button" onclick="salvarNovoItem()" value="Salvar Item"/></form>`;
-    div.appendChild(form);
+  let table = document.querySelector("#table");
+  table.style.display = "none";
+  let form = document.createElement("form");
+  form.innerHTML += `Item<br><input type="text" id="input_item" placeholder="Digite o nome do item"><br>`;
+  form.innerHTML += `Quantidade<br><input type="text" id="input_qtd" placeholder="Digite a quantidade"><br><br>`;
+  form.innerHTML += `<input type="button" onclick="salvarNovoItem()" value="Salvar Item"/></form>`;
+  div.appendChild(form);
 }
 
-function salvarNovoItem(){
-    let novoItem = document.querySelector('#input_item').value;
-    let qtd = document.querySelector('#input_qtd').value;
-    if (novoItem === "" || qtd === ""){
-        alert("Preencha os Campos Corretamente!")
-    }else{
+function salvarNovoItem() {
+  let novoItem = document.querySelector('#input_item').value;
+  let qtd = document.querySelector('#input_qtd').value;
+  if (novoItem === "" || qtd === "") {
+    alert("Preencha os Campos Corretamente!")
+  } else {
     var dados = new FormData();
     dados.append("id_item", null);
     dados.append("id_lista", new URL(window.location.href).searchParams.get("id_lista"));
-    dados.append("id_usuario" , localStorage.getItem("id_usu"));
-    dados.append("nome_item" , novoItem);
+    dados.append("id_usuario", localStorage.getItem("id_usu"));
+    dados.append("nome_item", novoItem);
     dados.append("qtd", qtd);
-    dados.append("concluido" , 0);
+    dados.append("concluido", 0);
 
     if (confirm("Deseja Salvar o novo item?")) {
-        xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === this.DONE) {
-                let resposta = JSON.parse(this.responseText);
-                console.log(resposta);
-                if (resposta.hasOwnProperty("erro")) {
-                    alert(resposta.erro);
-                } else {
-                    alert("Novo Item salvo com sucesso!");
-                }
-            }
-        });
-    xhr.open("POST", urlItem);
-    xhr.send(dados);
-    setTimeout(() => { window.location.reload(); }, 1000);
+      xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+          let resposta = JSON.parse(this.responseText);
+          console.log(resposta);
+          if (resposta.hasOwnProperty("erro")) {
+            alert(resposta.erro);
+          } else {
+            alert("Novo Item salvo com sucesso!");
+          }
+        }
+      });
+      xhr.open("POST", urlItem);
+      xhr.send(dados);
+      setTimeout(() => { window.location.reload(); }, 1000);
     }
-}
+  }
 }
 
-function checado(check,indice) {
+function checado(check, indice) {
   let nome_item = check.parentNode.parentNode.cells[1];
   let qtd = check.parentNode.parentNode.cells[2];
   let nome = localStorage.getItem("nome_usu");
@@ -178,7 +180,7 @@ function checado(check,indice) {
     nome_item.style.textDecoration = 'line-through';
     qtd.style.textDecoration = 'line-through';
     listaItens[indice].concluido = 1;
-  }else{
+  } else {
     nome_item.style.textDecoration = 'none';
     qtd.style.textDecoration = 'none';
     listaItens[indice].concluido = 0;
@@ -193,22 +195,25 @@ function checado(check,indice) {
     "&nome_item=" +
     listaItens[indice].nome_item +
     "&qtd=" +
-    listaItens[indice].qtd + 
-    "&concluido=" + 
+    listaItens[indice].qtd +
+    "&concluido=" +
     listaItens[indice].concluido;
 
   xhr.addEventListener("readystatechange", function () {
-      if (this.readyState === this.DONE) {
-          let resposta = JSON.parse(this.responseText);
-          if (resposta.hasOwnProperty("erro")) {
-              alert(resposta.erro);
-          } else {
-              alert(listaItens[indice].concluido == 1 ? "Parabens! Menos uma Pendência, " + nome : "Poxa, " + nome + " Denovo?");
-          }
+    if (this.readyState === this.DONE) {
+      let resposta = JSON.parse(this.responseText);
+      if (resposta.hasOwnProperty("erro")) {
+        alert(resposta.erro);
+      } else {
+        alert(listaItens[indice].concluido == 1 ? "Parabens! Menos uma Pendência, " + nome : "Poxa, " + nome + " Denovo?");
       }
+    }
   });
   xhr.open("PUT", urlItem);
   xhr.send(dados);
   setTimeout(() => { window.location.reload(); }, 2000);
+}
 
+function limpaLocalStorage() {
+  localStorage.clear();
 }

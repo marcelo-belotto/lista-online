@@ -15,12 +15,14 @@
 	while($row = $resultSet->fetchObject()){
 		$id = $row->id_usuario;
 		$nome = $row->nome_usuario;
+		$email = $row->email_usuario;
 		$genero = $row->genero;
 		$senha = $row->senha;
 		$nome_img = $row->img;
 	}
 	global $id;
 	global $nome;
+	global $email;
 	global $genero;
 	global $nome_img;
 	global $senha;
@@ -51,7 +53,7 @@
 		} else {
 			if($nome_img != ""){	//se tiver algum nome de imagem no banco exclui do diretorio e adiciona uma nova
 				unlink("../../../foto_usuario/".$nome_img);
-				$query = "UPDATE usuario SET nome_usuario = '$nome', genero = '$genero', img = '$novo_nome', senha = '$senha' WHERE id_usuario = '$id'";
+				$query = "UPDATE usuario SET nome_usuario = '$nome', email_usuario = '$email', genero = '$genero', img = '$novo_nome', senha = '$senha' WHERE id_usuario = '$id'";
 				$status = Connection::getInstance()->prepare($query);
 				if($status->execute()){			
 					move_uploaded_file($_FILES['img_usuario']['tmp_name'], $diretorio . $novo_nome);	//efetua o upload
@@ -66,7 +68,7 @@
 				}
 
 			} else {	//se não tiver algum nome de imagem no banco adiciona uma a img no diretorio	
-				$query = "UPDATE usuario SET nome_usuario = '$nome', genero = '$genero', img = '$novo_nome', senha = '$senha' WHERE id_usuario = '$id'";
+				$query = "UPDATE usuario SET nome_usuario = '$nome', email_usuario = '$email', genero = '$genero', img = '$novo_nome', senha = '$senha' WHERE id_usuario = '$id'";
 				$status = Connection::getInstance()->prepare($query);
 				if($status->execute()){			
 					move_uploaded_file($_FILES['img_usuario']['tmp_name'], $diretorio . $novo_nome);	//efetua o upload
@@ -85,7 +87,7 @@
 	}
 
 	if(isset($_POST['deletar_img'])){	//se o botão deletar for clicado
-		$query = "UPDATE usuario SET nome_usuario = '$nome', genero = '$genero', img = '', senha = '$senha' WHERE id_usuario = '$id'";
+		$query = "UPDATE usuario SET nome_usuario = '$nome', email_usuario = '$email', genero = '$genero', img = '', senha = '$senha' WHERE id_usuario = '$id'";
 		$status = Connection::getInstance()->prepare($query);
 		if($status->execute()){			
 			unlink("../../../foto_usuario/".$nome_img);

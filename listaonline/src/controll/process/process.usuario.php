@@ -22,6 +22,7 @@
 			$ud = new UsuarioDAO();
 			$usu = new Usuario();
 			$usu->setNome_usuario($arr["nome_usuario"]);
+			$usu->setEmail_usuario($arr["email_usuario"]);
 			$usu->setGenero($arr["genero"]);
 			$usu->setImg($arr["img"]);
 			$usu->setSenha($arr["senha"]);
@@ -36,6 +37,7 @@
 			$usu = new Usuario();
 			$usu->setId_usuario($arr["id_usuario"]);
 			$usu->setNome_usuario($arr["nome_usuario"]);
+			$usu->setEmail_usuario($arr["email_usuario"]);
 			$usu->setGenero($arr["genero"]);
 			$usu->setImg($arr["img"]);
 			$usu->setSenha($arr["senha"]);
