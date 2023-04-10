@@ -22,7 +22,7 @@ function readTipoLista() {
                     <button class='del' onclick='delTipoLista(${dado.id_lista})'>
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                     </button>
-                    <button class='sal' onclick='salvarAlteracao(${dado.id_lista},this.parentNode.parentNode.cells[1].innerText)' hidden=true>
+                    <button class='sal' onclick='salvarAlteracao(${dado.id_lista},this.parentNode.parentNode.cells[0].innerText)' hidden=true>
                     <i class="fa fa-floppy-o" aria-hidden="true"></i>
                     </button>
                     <button class='can' onclick='editTipoLista(this.parentNode.parentNode.cells)' hidden=true>
@@ -44,12 +44,12 @@ function abreLista(numero) {
 }
 
 function editTipoLista(itemEditado) {
-    itemEditado[1].contentEditable = editAlt;
-    itemEditado[1].focus();
-    itemEditado[2].children[0].hidden = editAlt;
-    itemEditado[2].children[1].hidden = editAlt;
-    itemEditado[2].children[2].hidden = !editAlt;
-    itemEditado[2].children[3].hidden = !editAlt;
+    itemEditado[0].contentEditable = editAlt;
+    itemEditado[0].focus();
+    itemEditado[1].children[0].hidden = editAlt;
+    itemEditado[1].children[1].hidden = editAlt;
+    itemEditado[1].children[2].hidden = !editAlt;
+    itemEditado[1].children[3].hidden = !editAlt;
     editAlt = !editAlt;
 }
 
