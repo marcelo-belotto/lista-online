@@ -46,6 +46,7 @@ function emailNovaSenha() {
                 let destino = "";
                 if (resp.length === 0) {
                     alert("Usuário ou email inválido");
+                    setTimeout(() => { window.location.reload(); }, 1000);
                 } else {
                     if (resp[0].id_usuario === "1") {
                         destino += "../../admsite/admsite.html";

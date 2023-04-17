@@ -1,5 +1,7 @@
 :root {
-  --cor-de-fundo-menu: #609966;
+  /*--cor-de-fundo-menu: #609966;*/
+  /*--cor-de-fundo-menu: #35f300;*/
+  --cor-de-fundo-menu: #008000;
   --cor-da-fonte-menu: #ffffff;
   --cor-de-fundo-corpo: #ddf7e3;
   --cor-da-fonte-corpo: #000000;
@@ -8,9 +10,11 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: "Gill Sans Extrabold", Helvetica, sans-serif;
 }
 
-body, html {
+body,
+html {
   min-height: 100vh;
   position: relative;
 }
@@ -74,6 +78,6 @@ body, html {
 }
 
 .rodape__texto {
-  font-size: 1rem;
+  font-size: 14px;
   color: var(--cor-da-fonte-menu);
 }

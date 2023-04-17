@@ -1,14 +1,17 @@
 <?php
     require("../../../src/domain/connection.php");
 
+	$protocolo = (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS']=="on") ? "https" : "http");
+	$url = '://'.$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME'].'?'.$_SERVER['QUERY_STRING'];
+	$chave = explode("=", $protocolo.$url);
+
 	$diretorio = "../../../foto_usuario/";	//define o diretorio para onde ira enviar o arquivo
 	$arquivo = $_FILES['img_usuario']['name'];
-	$id_input = $_POST["id_usu"];
 
 	$_UP['tamanho'] = 1000000;	//tamanho máximo do arquivo
 	$_UP['extensoes'] = array('jpg', 'jpeg', 'png');
 
-	$query_img_select = "SELECT * FROM `usuario` WHERE id_usuario = $id_input";	//selec para verificar se tem img no banco
+	$query_img_select = "SELECT * FROM `usuario` WHERE id_usuario = $chave[1]";	//selec para verificar se tem img no banco
 	$con = new Connection();
 	$resultSet = Connection::getInstance()->query($query_img_select);
 

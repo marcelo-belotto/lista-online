@@ -6,33 +6,74 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./contato.css">
+    <link rel="stylesheet" type="text/css" href="../home.css">
     <title>Contato</title>
 </head>
 
 <body>
-    <nav></nav>
+    <header class="menu__principal">
+        <img class="logo" src="../img/logo2.jpg" alt="">
+        <nav class="menu__navegacao">
+            <div class="item-menu-linha">
+                <a href="../home.html" class="item-menu">Home</a>
+                <a href="./quemsomos/quemsomos.html" class="item-menu">Quem Somos?</a>
+            </div>
+            <div class="item-menu-linha">
+                <a href="../tbusuario/cadastrar.html" class="item-menu">Cadastre-se</a>
+                <a href="../tbusuario/login/login.html" class="item-menu">Login</a>
+            </div>
+        </nav>
+    </header>
+
     <section>
         <h1>Contato</h1>
         <div class="divimg">
             <hr>
             </hr>
-            <img src="../img/homem aranha.jpeg" alt="">
+            <img class="programador" src="../img/marcelo.jpg" alt="">
+            <p class="nome">Marcelo Felipe</p>
             <hr>
             </hr><br>
-            <p><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Marcelo Felipe</p>
-            <p><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;marcelofelipe@gmail.com</p>
-            <p><i class="fa fa-whatsapp" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;(19) 90000-0000</p>
+            <h2><a href="mailto:marcelobelotto@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i></a></h2>
+            <h2><a href="https://www.linkedin.com/in/marcelo-belotto-497a65a3/"><i class="fa fa-linkedin-square"
+                        aria-hidden="true"></i></a></h2>
+            <h2><a href="https://github.com/marcelo-belotto"><i class="fa fa-github" aria-hidden="true"></i></a>
+            </h2>
+            <h2><a href="https://www.instagram.com/marcelo_felipe90/"><i class="fa fa-instagram"
+                        aria-hidden="true"></i></a></h2>
+            <h2><a href="https://www.facebook.com/profile.php?id=100075522137210"><i class="fa fa-facebook-official"
+                        aria-hidden="true"></i></a></h2>
+            <h2><a href="https://wa.me/5519997267440"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></h2>
             <hr>
             </hr><br>
-            <img src="../img/robes.jpg" alt="">
+            <img class="programador" src="../img/robes.jpg" alt="">
+            <p class="nome">Robésio</p>
             <hr>
             </hr><br>
-            <p><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Robésio</p>
-            <p><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;robesio@gmail.com</p>
-            <p><i class="fa fa-whatsapp" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;(19) 90000-0000</p>
+            <h2><a href="mailto:robesiodocarmo@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+            </h2>
+            <h2><a href="https://www.linkedin.com/in/rob%C3%A9sio-silva-40ba2a226/"><i class="fa fa-linkedin-square"
+                        aria-hidden="true"></i></a></h2>
+            <h2><a href="https://github.com/Robesio"><i class="fa fa-github" aria-hidden="true"></i></a></h2>
+            <h2><a href="https://www.instagram.com/robesiodocarmo/"><i class="fa fa-instagram"
+                        aria-hidden="true"></i></a></h2>
+            <h2><a href="https://www.facebook.com/robesio.docarmo"><i class="fa fa-facebook-official"
+                        aria-hidden="true"></i></a></h2>
+            <h2><a href="https://wa.me/5519983143044"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></h2>
         </div>
     </section>
-    <article></article>
+
+
+    <footer class="rodape">
+        <div class="rodape__container">
+            <p class="rodape__texto"></p>
+        </div>
+    </footer>
+    <script>
+        let data = new Date();
+        data = data.getFullYear();
+        document.querySelector(".rodape__texto").innerHTML = `Lista Online ${data} - Todos os Direitos Reservados.`;
+    </script>
 </body>
 
 </html>

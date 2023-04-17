@@ -15,7 +15,6 @@ function readPerfil() {
         })
         .then(function (data) {
             data.forEach((dado) => {
-                console.log(dado)
                 nome_usuario.value = dado.nome_usuario;
                 email.value = dado.email_usuario;
                 if (dado.img == null) {
@@ -121,6 +120,11 @@ function excluirPerfil() {
         xhr.open("DELETE", urlUsuario);
         xhr.send(dados);
     }
+}
+
+
+function passaIdUrl() {
+    window.location.assign("./foto/fotohtml.php?id=" + localStorage.getItem("id_usu"));
 }
 
 function limpaLocalStorage() {

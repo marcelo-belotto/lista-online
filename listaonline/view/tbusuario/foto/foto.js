@@ -4,7 +4,7 @@ var id = document.querySelector("#id_usu");
 var p = document.querySelector("#p");
 document.getElementById("salvar_img").style.display = "none";
 document.getElementById("deletar_img").style.display = "none";
-id.value = localStorage.getItem("id_usu");
+//id.value = localStorage.getItem("id_usu");
 
 if (localStorage.getItem("nome_img") == "null") {
     photo.src = "../../img/user.jpg";
