@@ -5,24 +5,70 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../usuario.css">
+    <link rel="stylesheet" type="text/css" href="../../home.css">
+    <link rel="stylesheet" type="text/css" href="./login.css">
     <title>Login</title>
 </head>
 
 <body>
-    <a href="../../home.html">Home</a><br><br>
-    <h1>Login</h1>
-    <form id="formlogin" action="" method="POST">
-        <label>Nome*<br>
-            <input type="text" placeholder="Nome do usuário" id="nome_usuario">
-        </label><br>
-        <label>Senha *<br>
-            <input type="password" placeholder="Senha" id="senha" maxlength="6">
-        </label>
-        </fieldset>
-    </form>
-    <button id="btnlogar" onclick="logar()">Logar</button><br><br>
-    <a href="./novasenha.html">Esqueci minha senha</a>
+    <header class="menu__principal">
+        <img class="logo" src="../../img/logo2.jpg" alt="">
+        <nav class="menu__navegacao">
+            <div class="item-menu-linha">
+                <a href="../../home.html" class="item-menu">Home</a>
+                <a href="../../quemsomos/quemsomos.html" class="item-menu">Quem Somos?</a>
+            </div>
+            <div class="item-menu-linha">
+                <a href="../../contato/contato.html" class="item-menu">Contato</a>
+                <a href="../tbusuario/cadastrar.html" class="item-menu">Cadastre-se</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- <h1>Login</h1>
+    <div class="divlogin">
+        <form id="formlogin" action="" method="POST">
+            <label>Nome*<br>
+                <input type="text" placeholder="Nome do usuário" id="nome_usuario">
+            </label><br>
+            <label>Senha *<br>
+                <input type="password" placeholder="Senha" id="senha" maxlength="6">
+            </label>
+            </fieldset>
+        </form>
+        <button id="btnlogar" onclick="logar()">Logar</button><br><br>
+        <a href="./novasenha.html">Esqueci minha senha</a>
+    </div> -->
+
+
+    <div class="divlogin">
+        <h1>Login</h1>
+        <form id="formlogin" action="" method="POST">
+            <div class="inputForm">
+                <input type="email" id="email_usuario">
+                <label>Email *</label>
+            </div>
+            <div class="inputForm">
+                <input type="password" id="senha" maxlength="6">
+                <label>Senha *</label>
+            </div>
+        </form>
+        <button id="btnlogar" onclick="logar()">Logar</button><br><br>
+        <a href="./novasenha.html">Esqueci minha senha</a>
+        <p class="msg" id="mensagem"></p>
+    </div>
+
+
+    <footer class="rodape">
+        <div class="rodape__container">
+            <p class="rodape__texto"></p>
+        </div>
+    </footer>
+    <script>
+        let data = new Date();
+        data = data.getFullYear();
+        document.querySelector(".rodape__texto").innerHTML = `Lista Online ${data} - Todos os Direitos Reservados.`;
+    </script>
 </body>
 <script src="./login.js"></script>
 

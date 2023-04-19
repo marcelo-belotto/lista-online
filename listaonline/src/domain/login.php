@@ -2,7 +2,7 @@
 //session_start();
 	class Login {
 		var $nome_usuario;
-		var $email;
+		var $email_usuario;
 		var $senha;
 
 		function getNome_usuario(){
@@ -15,6 +15,7 @@
 		function getEmail_usuario(){
 			return $this->email_usuario;
 		}
+
 		function setEmail_usuario($email_usuario){
 			$this->email_usuario = $email_usuario;
 		}
@@ -30,10 +31,10 @@
 	class LoginDAO {
 		function read($login) {
 			$result = array();
-			$nome_usuario = $login->getNome_usuario();
+			$email_usuario = $login->getEmail_usuario();
 			$senha = $login->getSenha();
 			try {
-				$query = "SELECT * FROM `usuario` WHERE nome_usuario = '$nome_usuario' AND senha = '$senha'";
+				$query = "SELECT * FROM `usuario` WHERE email_usuario = '$email_usuario' AND senha = '$senha'";
 
 				$con = new Connection();
 				$resultSet = Connection::getInstance()->query($query);

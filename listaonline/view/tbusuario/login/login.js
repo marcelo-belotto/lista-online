@@ -1,20 +1,23 @@
 const url = "http://localhost/listaonline/src/controll/routes/route.login.php";
 const xhr = new XMLHttpRequest();
 const nome = document.getElementById("nome_usuario");
-const email = document.getElementById("email");
+const email = document.getElementById("email_usuario");
 const senha = document.getElementById("senha");
 
 function logar() {
     let dados = new FormData();
-    if (nome.value != "" && senha.value != "") {
-        dados.append("nome_usuario", nome.value);
+    if (email.value != "" && senha.value != "") {
+        dados.append("email_usuario", email.value);
         dados.append("senha", senha.value);
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
+                console.log(email.value);
+                console.log(senha.value);
+                console.log(this.responseText);
                 let resp = JSON.parse(this.responseText);
                 let destino = "";
                 if (resp.length === 0) {
-                    alert("Usuário ou senha inválido");
+                    alert("Email ou senha inválido");
                 } else {
                     if (resp[0].id_usuario === "1") {
                         destino += "../../admsite/admsite.html";
