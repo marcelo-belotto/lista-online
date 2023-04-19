@@ -1,32 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../tbusuario/usuario.css">
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="tipo-lista.css" />
     <title>Lista</title>
-</head>
+  </head>
 
-<body onload="readTipoLista()">
-    <a href="../tbconta/conta.html">Conta</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="../tbusuario/perfil.html">Perfil</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="../tbusuario/login/login.html" onclick="limpaLocalStorage()">Sair</a><br><br>
-    <h1>Lista</h1>
-
-    <table id="table">
+  <body onload="readTipoLista()">
+    <header class="menu__principal">
+        <img class="logo" src="../img/logo2.jpg" alt="" />
+        <nav class="menu__navegacao">
+          <div class="item-menu-linha">
+            <!--<a href="../home.html" class="item-menu">Home</a>-->
+            <a href="../tbconta/conta.html" class="item-menu">Conta</a>
+          </div>
+          <div class="item-menu-linha">
+            <a href="../tbusuario/perfil.html" class="item-menu"
+              >Perfil</a
+            >
+            <a href="../tbusuario/login/login.html" class="item-menu" onclick="limpaLocalStorage()">Sair</a>
+          </div>
+        </nav>
+      </header>
+    
+    <main>
+      <table id="table">
         <thead>
-            <tr>
-                <th>Lista</th>
-                <th><button class='sal' onclick='novaLista()'><i class="fa fa-plus-square" aria-hidden="true"></i>
-                    </button></th>
-            </tr>
+          <tr>
+            <th class="Titulo__Principal">Lista</th>
+            <th>
+              <span class="novo" onclick="novaLista()">
+                <i class="fa fa-plus-square" aria-hidden="true"></i>
+              </span>
+            </th>
+          </tr>
         </thead>
         <tbody id="lista"></tbody>
-    </table>
-    <div id="div"></div>
-</body>
-<script src="./tipo-lista.js"></script>
-
+      </table>
+      <div id="div"></div>
+    </main>
+    
+    <footer class="rodape">
+        <div class="rodape__container">
+          <p class="rodape__texto"></p>
+        </div>
+      </footer>
+      <script>
+        let data = new Date();
+        data = data.getFullYear();
+        document.querySelector(
+          ".rodape__texto"
+        ).innerHTML = `Lista Online ${data} - Todos os Direitos Reservados.`;
+      </script>
+  </body>
+  <script src="./tipo-lista.js"></script>
 </html>

@@ -1,7 +1,5 @@
 :root {
-  /*--cor-de-fundo-menu: #609966;*/
-  /*--cor-de-fundo-menu: #35f300;*/
-  --cor-de-fundo-menu: #008000;
+  --cor-de-fundo-menu: #609966;
   --cor-da-fonte-menu: #ffffff;
   --cor-de-fundo-corpo: #ddf7e3;
   --cor-da-fonte-corpo: #000000;
@@ -10,13 +8,18 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "Gill Sans Extrabold", Helvetica, sans-serif;
 }
 
-body,
-html {
+body, html {
   min-height: 100vh;
   position: relative;
+}
+
+.logo {
+  margin: 0;
+  width: 10%;
+  height: auto;
+  border-radius: 100%
 }
 
 .menu__principal {
@@ -65,6 +68,15 @@ html {
   padding: 1rem;
 }
 
+.btn-principal{
+  padding: 1rem;
+  text-transform: uppercase;
+  color: var(--cor-da-fonte-menu);
+  background-color: var(--cor-de-fundo-menu);
+  text-decoration: none;
+  align-items: center;
+}
+
 .rodape {
   width: 100%;
   position: absolute;
@@ -78,6 +90,6 @@ html {
 }
 
 .rodape__texto {
-  font-size: 14px;
+  font-size: 1rem;
   color: var(--cor-da-fonte-menu);
 }

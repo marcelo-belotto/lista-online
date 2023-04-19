@@ -1,47 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="home.css" />
+    <title>Home</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="home.css" />
-  <title>Home</title>
-</head>
-
-<body>
-  <header class="menu__principal">
-    <h1>LOGO</h1>
-    <nav class="menu__navegacao">
-      <div class="item-menu-linha">
-        <a href="./quemsomos/quemsomos.html" class="item-menu">Quem Somos?</a>
-        <a href="./contato/contato.html" class="item-menu">Contato</a>
-      </div>
-      <div class="item-menu-linha">
-        <a href="./tbusuario/cadastrar.html" class="item-menu">Cadastre-se</a>
-        <a href="./tbusuario/login/login.html" class="item-menu">Login</a>
-      </div>
-    </nav>
-  </header>
-  <main class="principal">
-    <h1 class="titulo__principal">Lista Online</h1>
-    <p class="texto__principal">Lista Online é uma solução para seu dia a dia, Nele você pode cadastrar suas contas a
-      pagar, tarefas diárias, receber notificações de uma maneira prática e divertida!</p>
-    <h2>Imagem da Tela inicial e tal</h2>
-    <p class="texto__principal">Com poucos cliques você tem todo controle sobre suas contas!</p>
-    <h2>Imagem da tela de conta</h2>
-    <p class="texto__principal">Organize seu dia! Faça uma lista de atividades!</p>
-    <h2>Imagem da tela de Tarefas</h2>
-  </main>
-  <footer class="rodape">
-    <div class="rodape__container">
-      <p class="rodape__texto"></p>
-    </div>
-  </footer>
-  <script>
-    let data = new Date();
-    data = data.getFullYear();
-    document.querySelector(".rodape__texto").innerHTML = `Lista Online ${data} - Todos os Direitos Reservados.`;
-  </script>
-</body>
-
+  <body>
+    <header class="menu__principal">
+      <img class="logo" src="./img/logo2.jpg" alt="">
+      <nav class="menu__navegacao">
+        <div class="item-menu-linha">
+          <a href="./quemsomos/quemsomos.html" class="item-menu">Quem Somos?</a>
+          <a href="./contato/contato.html" class="item-menu">Contato</a>
+        </div>
+        <div class="item-menu-linha">
+          <a href="./tbusuario/cadastrar.html" class="item-menu">Cadastre-se</a>
+          <a href="./tbusuario/login/login.html" class="item-menu">Login</a>
+        </div>
+      </nav>
+    </header>
+    <main class="principal">
+      <h1 class="titulo__principal">Lista Online</h1>
+      <p class="texto__principal">Lista Online é uma solução para seu dia a dia, Nele você pode cadastrar suas contas a pagar, tarefas diárias, receber notificações de uma maneira prática e divertida!</p>
+      <h2>Imagem da Tela inicial e tal</h2>
+      <p class="texto__principal">Com poucos cliques você tem todo controle sobre suas contas!</p>
+      <h2>Imagem da tela de conta</h2>
+      <p class="texto__principal">Organize seu dia! Faça uma lista de atividades!</p>
+      <h2>Imagem da tela de Tarefas</h2>
+      <p class="texto__principal">Cadastre-se! é Simples rápido e prático! tenha acesso a qualquer lugar com seu smartphone!</p>
+      <a href="./tbusuario/cadastrar.html" class="btn-principal">Cadastre-se!</a>
+    </main>
+		<footer class="rodape">
+			<div class="rodape__container">
+				<p class="rodape__texto"></p>
+			</div>
+		</footer>
+    <script>
+      let data = new Date();
+      data = data.getFullYear();
+      document.querySelector(".rodape__texto").innerHTML = `Lista Online ${data} - Todos os Direitos Reservados.`;
+    </script>
+  </body>
 </html>

@@ -14,20 +14,20 @@ function readTipoLista() {
         .then(function (data) {
             data.forEach((dado) => {
                 let row = document.createElement("tr");
-                row.innerHTML += `<td onclick='abreLista(${dado.id_lista})'>${dado.nome_lista}</td>`;
-                row.innerHTML += `<td style="padding:3px">
-                    <button class='edi' onclick='editTipoLista(this.parentNode.parentNode.cells)'>
+                row.innerHTML += `<td onclick='abreLista(${dado.id_lista})' class="item--tabela">${dado.nome_lista}</td>`;
+                row.innerHTML += `<td style="padding:3px" ><div class="opcoes--tabela">
+                    <span class='edi' onclick='editTipoLista(this.parentNode.parentNode.parentNode.cells)'>
                     <i class="fa fa-pencil" aria-hidden="true"></i>
-                    </button>
-                    <button class='del' onclick='delTipoLista(${dado.id_lista})'>
+                    </span>
+                    <span class='del' onclick='delTipoLista(${dado.id_lista})'>
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
-                    </button>
-                    <button class='sal' onclick='salvarAlteracao(${dado.id_lista},this.parentNode.parentNode.cells[1].innerText)' hidden=true>
+                    </span>
+                    <span class='sal' onclick='salvarAlteracao(${dado.id_lista},this.parentNode.parentNode.parentNode.cells[0].innerText)' hidden=true>
                     <i class="fa fa-floppy-o" aria-hidden="true"></i>
-                    </button>
-                    <button class='can' onclick='editTipoLista(this.parentNode.parentNode.cells)' hidden=true>
+                    </span>
+                    <span class='can' onclick='editTipoLista(this.parentNode.parentNode.parentNode.cells)' hidden=true>
                     <i class="fa fa-times" aria-hidden="true"></i>
-                    </button>
+                    </span></div>
                     </td>`;
                 lista.appendChild(row);
             });
@@ -44,12 +44,12 @@ function abreLista(numero) {
 }
 
 function editTipoLista(itemEditado) {
-    itemEditado[1].contentEditable = editAlt;
-    itemEditado[1].focus();
-    itemEditado[2].children[0].hidden = editAlt;
-    itemEditado[2].children[1].hidden = editAlt;
-    itemEditado[2].children[2].hidden = !editAlt;
-    itemEditado[2].children[3].hidden = !editAlt;
+    itemEditado[0].contentEditable = editAlt;
+    itemEditado[0].focus();
+    itemEditado[1].children[0].children[0].hidden = editAlt;
+    itemEditado[1].children[0].children[1].hidden = editAlt;
+    itemEditado[1].children[0].children[2].hidden = !editAlt;
+    itemEditado[1].children[0].children[3].hidden = !editAlt;
     editAlt = !editAlt;
 }
 
