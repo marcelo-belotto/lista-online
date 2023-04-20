@@ -1,5 +1,5 @@
 const xhr = new XMLHttpRequest();
-const urlItem = "http://192.168.2.103/listaonline/src/controll/routes/route.item.php";
+const urlItem = "http://localhost/listaonline/src/controll/routes/route.item.php";
 var item = document.querySelector("#item");
 var form = document.querySelector('#div');
 let idse = "";

@@ -1,5 +1,5 @@
 const xhr = new XMLHttpRequest();
-const urlTipoLista = "http://192.168.2.103/listaonline/src/controll/routes/route.tipo_lista.php";
+const urlTipoLista = "http://localhost/listaonline/src/controll/routes/route.tipo_lista.php";
 var lista = document.querySelector("#lista");
 var form = document.querySelector('#div');
 var editAlt = true;

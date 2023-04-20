@@ -24,19 +24,19 @@ function readConta() {
                 let valorCompleto = moeda[0] + "," + valorSplit[1]; //Formata valor para moeda
                 let row = document.createElement("tr");
                 if (dado.status_conta == "pago") {
-                    row.innerHTML += `<td style="padding:3px"><input type="checkbox" id="pago" onclick="checado(this,${indice})" checked></td>`;
-                    row.innerHTML += `<td>${dado.nome_conta}</td>`;
-                    row.innerHTML += `<td>${dado.vencimento}</td>`;
-                    row.innerHTML += `<td>${valorCompleto}</td>`;
-                    row.innerHTML += `<td style="padding:3px"><button class="edi" onclick='editConta(this)'><i class="fa fa-pencil" aria-hidden="true"></i></button><button class="del" onclick='delConta(this)'><i class="fa fa-trash-o" aria-hidden="true"></i></button></td></tr>`;
+                    row.innerHTML += `<td class="item--tabela"><input type="checkbox" id="pago" onclick="checado(this,${indice})" checked></td>`;
+                    row.innerHTML += `<td class="item--tabela">${dado.nome_conta}</td>`;
+                    row.innerHTML += `<td class="item--tabela">${dado.vencimento}</td>`;
+                    row.innerHTML += `<td class="item--tabela">${valorCompleto}</td>`;
+                    row.innerHTML += `<td class="item--tabela"><div class="opcoes--tabela"><span class="del" onclick='delConta(${indice})'><i class="fa fa-trash-o" aria-hidden="true"></i></span></div></td></tr>`;
                     row.style.textDecoration = 'line-through';
                     row.style.color = 'green';
                 } else {
-                    row.innerHTML += `<td style="padding:3px"><input type="checkbox" onclick="checado(this,${indice})"></td>`;
-                    row.innerHTML += `<td>${dado.nome_conta}</td>`;
-                    row.innerHTML += `<td>${dado.vencimento}</td>`;
-                    row.innerHTML += `<td>${valorCompleto}</td>`;
-                    row.innerHTML += `<td style="padding:3px"><button class="edi" onclick='editConta(this,${indice})'><i class="fa fa-pencil" aria-hidden="true"></i></button><button class="del" onclick='delConta(${indice})'><i class="fa fa-trash-o" aria-hidden="true"></i></button></td></tr>`;
+                    row.innerHTML += `<td class="item--tabela"><input type="checkbox" onclick="checado(this,${indice})"></td>`;
+                    row.innerHTML += `<td class="item--tabela">${dado.nome_conta}</td>`;
+                    row.innerHTML += `<td class="item--tabela">${dado.vencimento}</td>`;
+                    row.innerHTML += `<td class="item--tabela">${valorCompleto}</td>`;
+                    row.innerHTML += `<td class="item--tabela"><div class="opcoes--tabela"><span class="edi" onclick='editConta(this.parentNode,${indice})'><i class="fa fa-pencil" aria-hidden="true"></i></span><span class="del" onclick='delConta(${indice})'><i class="fa fa-trash-o" aria-hidden="true"></i></span></div></td></tr>`;
                 }
                 conta.appendChild(row);
                 indice++;
@@ -110,7 +110,7 @@ function editConta(c, indice) {
     c.parentNode.parentNode.cells[1].setAttribute("contentEditable", "true");
     c.parentNode.parentNode.cells[2].setAttribute("contentEditable", "true");
     c.parentNode.parentNode.cells[3].setAttribute("contentEditable", "true");
-    c.parentNode.parentNode.cells[4].innerHTML = `<button class="sal" onclick='putConta(this,${indice})'><i class="fa fa-floppy-o" aria-hidden="true"></i></button><button class="can" onclick="cancelar(this)"><i class="fa fa-times" aria-hidden="true"></i></button>`;
+    c.parentNode.parentNode.cells[4].innerHTML = `<div class="opcoes--tabela"><span class="sal" onclick='putConta(this.parentNode,${indice})'><i class="fa fa-floppy-o" aria-hidden="true"></i></span><span class="can" onclick="cancelar(this)"><i class="fa fa-times" aria-hidden="true"></div></i></span>`;
 }
 
 function putConta(c, indice) {
@@ -147,12 +147,20 @@ function novaConta() {
     let table = document.querySelector("#table");
     table.style.display = "none";
     let form = document.createElement("form");
-    form.innerHTML += `Conta<br><input type="text" id="input_conta" placeholder="Digite o nome da conta"><br>`;
-    form.innerHTML += `Vencimento<br><input type="date" id="vencimento" placeholder="Digite o vencimento da conta"><br>`;
-    form.innerHTML += `Valor<br><input type="text" id="valor" placeholder="Digite o valor da conta" onkeyup="formatarMoeda()"><br><br>`;
-    form.innerHTML += `<input type="button" onclick="finalizar()" value="Salvar conta"/></form>`;
+    form.className = "Formulario__conta";
+    form.innerHTML += `<h2 class="Titulo__Form">Conta</h2><input type="text" id="input_conta" placeholder="Digite o nome da conta">`;
+    form.innerHTML += `<h2 class="Titulo__Form">Vencimento</h2><input type="date" id="vencimento">`;
+    form.innerHTML += `<h2 class="Titulo__Form">Valor</h2><input type="text" id="valor" placeholder="Digite o valor da conta" onkeyup="formatarMoeda()">`;
+    form.innerHTML += `<div class="container-botao"><input type="button" onclick="cancelarAdicionar()" value="Voltar" class="Botao-form"/>
+    <input type="button" onclick="finalizar()" value="Salvar conta" class="Botao-form"/></div></form>`;
     div.appendChild(form);
 }
+
+function cancelarAdicionar(){
+    let table = document.querySelector("#table");
+    table.style.display = "table";
+    div.innerHTML = '';
+  }
 
 function formatarMoeda() {  //Function para formata valor em real
     var elemento = document.getElementById('valor');
@@ -189,7 +197,7 @@ function finalizar() {  //Function para salvar nova conta
         dados.append("status_conta", "pendente");
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
-                alert("Conta Adiconada Com Sucesso!");
+                alert("Conta Adicionada Com Sucesso!");
                 setTimeout(() => { window.location.reload(); }, 2000);
                 let resp = JSON.parse(this.responseText);
                 if (resp.hasOwnProperty("erro")) {
@@ -209,7 +217,7 @@ function finalizar() {  //Function para salvar nova conta
 
 function delConta(indice) {
     let dados = "id_conta=" + arrayLista[indice].id_conta;
-    if (window.confirm("Confirma Exclusão da conta = " + arrayLista[indice].nome_conta + "?")) {
+    if (window.confirm("Confirma Exclusão da conta: " + arrayLista[indice].nome_conta + "?")) {
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
                 let resp = JSON.parse(this.responseText);
