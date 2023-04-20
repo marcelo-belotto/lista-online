@@ -1,9 +1,10 @@
 # Lista Online
 #### Sobre:
-> <p>Lista Online será uma lista de compras virtual com o intuíto de lembrar o usuário o que comprar quando for ao mercado.</p>
+> <p>Lista Online será uma lista virtual com o intuíto de lembrar o usuário as atividades e contas que ele cadastrou</p>
 #### Objetivo: 
-> <p>Criar uma lista de compras virtual, contendo Nome do item e quantidade, Gerenciamento de Usuário.</p>
+> <p>Criar uma lista virtual, contendo Nome do item e quantidade, Gerenciamento de Usuário, Gerenciamento de conta</p>
 #### Data de inicio:
 > <p>06/02/2023</p>
 #### Status:
 > <p>Em Desenvolvimento</p>
+> <p>Atualização em 20/04/2023</p>
