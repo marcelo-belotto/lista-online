@@ -106,6 +106,37 @@ tr:nth-child(even) {
     display: none;
 }
 
+.Formulario__lista{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+#input_lista{
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.container-botao{
+  width: 100%;
+  margin: 0 1rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.Botao-form{
+  background-color: var(--cor-de-fundo-menu);
+  color: var(--cor-da-fonte-menu);
+  width: 7.37rem;
+  height: 3.25rem;
+  font-size: 1rem;
+  border-radius: 0;
+  border: 1px var(--cor-de-fundo-menu) solid;
+}
+
 .rodape {
   width: 100%;
   position: absolute;

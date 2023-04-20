@@ -5,27 +5,50 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../tbusuario/usuario.css">
+  <link rel="stylesheet" href="itens.css">
   <title>Itens</title>
 </head>
 
 <body onload="readItem()">
-  <a href="../tbconta/conta.html">Conta</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="../tbtipo_lista/tipo-lista.html">Lista</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="../tbusuario/login/login.html" onclick="limpaLocalStorage()">Sair</a><br><br>
-  <h1>Itens</h1>
+  <header class="menu__principal">
+    <img class="logo" src="../img/logo2.jpg" alt="" />
+    <nav class="menu__navegacao">
+      <div class="item-menu-linha">
+        <!--<a href="../home.html" class="item-menu">Home</a>-->
+        <a href="../tbconta/conta.html" class="item-menu">Conta</a>
+      </div>
+      <div class="item-menu-linha">
+        <a href="../tbtipo_lista/tipo-lista.html" class="item-menu"
+          >Lista</a
+        >
+        <a href="../tbusuario/login/login.html" class="item-menu" onclick="limpaLocalStorage()">Sair</a>
+      </div>
+    </nav>
+  </header>
   <table id="table">
     <thead>
       <tr>
-        <th><button class='sal' onclick='novoItem()'><i class="fa fa-plus-square" aria-hidden="true"></i></button></th>
-        <th>Item</th>
-        <th>Quantidade</th>
-        <th>Ações</th>
+        <th class="Titulo__Principal"><span class='novo' onclick='novoItem()'><i class="fa fa-plus-square" aria-hidden="true"></i></span></th>
+        <th class="Titulo__Principal">Item</th>
+        <th class="Titulo__Principal">Quantidade</th>
+        <th class="Titulo__Principal">Ações</th>
       </tr>
     </thead>
     <tbody id="item"></tbody>
   </table>
   <div id="div"></div>
+  <footer class="rodape">
+    <div class="rodape__container">
+      <p class="rodape__texto"></p>
+    </div>
+  </footer>
+  <script>
+    let data = new Date();
+    data = data.getFullYear();
+    document.querySelector(
+      ".rodape__texto"
+    ).innerHTML = `Lista Online ${data} - Todos os Direitos Reservados.`;
+  </script>
 </body>
 <script src="itens.js"></script>
 

@@ -1,6 +1,7 @@
 const xhr = new XMLHttpRequest();
-const urlItem = "http://localhost/listaonline/src/controll/routes/route.item.php";
+const urlItem = "http://192.168.2.103/listaonline/src/controll/routes/route.item.php";
 var item = document.querySelector("#item");
+var form = document.querySelector('#div');
 let idse = "";
 var editAlt = true;
 var editAdd = true;
@@ -19,26 +20,26 @@ function readItem() {
       data.forEach((dado) => {
         let row = document.createElement("tr");
         listaItens.push(dado);
-        row.innerHTML += `<td style="padding:3px"><input type="checkbox" onclick="checado(this,${indice})" unchecked></td>`;
-        row.innerHTML += `<td>${dado.nome_item}</td>`;
+        row.innerHTML += `<td class="item--tabela"><input type="checkbox" onclick="checado(this,${indice})" unchecked class="item--tabela"></td>`;
+        row.innerHTML += `<td class="item--tabela">${dado.nome_item}</td>`;
         if (dado.qtd == null) {
-          row.innerHTML += `<td></td>`;
+          row.innerHTML += `<td class="item--tabela"></td>`;
         } else {
-          row.innerHTML += `<td>${dado.qtd}</td>`;
+          row.innerHTML += `<td class="item--tabela">${dado.qtd}</td>`;
         }
-        row.innerHTML += `<td style="padding:3px">
-                  <button class='edi' onclick='editItem(this.parentNode.parentNode.cells)'>
+        row.innerHTML += `<td class="item--tabela"><div class="opcoes--tabela">
+                  <span class='edi' onclick='editItem(this.parentNode.parentNode.parentNode.cells)'>
                   <i class="fa fa-pencil" aria-hidden="true"></i>
-                  </button>
-                  <button class='del' onclick='delItem(${indice})'>
+                  </span>
+                  <span class='del' onclick='delItem(${indice})'>
                   <i class="fa fa-trash-o" aria-hidden="true"></i>
-                  </button>
-                  <button class='sal' onclick='salvarAlteracao(${indice},this.parentNode.parentNode.cells)' hidden=true>
+                  </span>
+                  <span class='sal' onclick='salvarAlteracao(${indice},this.parentNode.parentNode.parentNode.cells)' hidden=true>
                   <i class="fa fa-floppy-o" aria-hidden="true"></i>
-                  </button>
-                  <button class='can' onclick='editItem(this.parentNode.parentNode.cells)' hidden=true>
+                  </span>
+                  <span class='can' onclick='editItem(this.parentNode.parentNode.parentNode.cells)' hidden=true>
                   <i class="fa fa-times" aria-hidden="true"></i>
-                  </button>
+                  </span></div>
                   </td>`;
         item.appendChild(row);
         if (dado.concluido == 1) {
@@ -55,13 +56,14 @@ function readItem() {
 }
 
 function editItem(itemEditado) {
+  console.log(itemEditado);
   itemEditado[1].contentEditable = editAlt;
   itemEditado[2].contentEditable = editAlt;
   itemEditado[1].focus();
-  itemEditado[3].children[0].hidden = editAlt;
-  itemEditado[3].children[1].hidden = editAlt;
-  itemEditado[3].children[2].hidden = !editAlt;
-  itemEditado[3].children[3].hidden = !editAlt;
+  itemEditado[3].children[0].children[0].hidden = editAlt;
+  itemEditado[3].children[0].children[1].hidden = editAlt;
+  itemEditado[3].children[0].children[2].hidden = !editAlt;
+  itemEditado[3].children[0].children[3].hidden = !editAlt;
   editAlt = !editAlt;
 }
 
@@ -132,10 +134,17 @@ function novoItem() {
   let table = document.querySelector("#table");
   table.style.display = "none";
   let form = document.createElement("form");
-  form.innerHTML += `Item<br><input type="text" id="input_item" placeholder="Digite o nome do item"><br>`;
-  form.innerHTML += `Quantidade<br><input type="text" id="input_qtd" placeholder="Digite a quantidade"><br><br>`;
-  form.innerHTML += `<input type="button" onclick="salvarNovoItem()" value="Salvar Item"/></form>`;
+  form.className = "Formulario__item";
+  form.innerHTML += `<h2 class="Titulo__Principal">Novo Item</h2><input type="text" id="input_item" placeholder="Digite o nome do item">`;
+  form.innerHTML += `<h2 class="Titulo__Principal">Quantidade</h2><input type="text" id="input_qtd" placeholder="Digite a quantidade">`;
+  form.innerHTML += `<div class="container-botao"><input type="button" onclick="cancelarAdicionar()" value="Voltar" class="Botao-form"/><input type="button" onclick="salvarNovoItem()" value="Salvar Item" class="Botao-form"/></div></form>`;
   div.appendChild(form);
+}
+
+function cancelarAdicionar(){
+  let table = document.querySelector("#table");
+  table.style.display = "table";
+  form.innerHTML = '';
 }
 
 function salvarNovoItem() {

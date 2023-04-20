@@ -1,0 +1,156 @@
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
+:root {
+  --cor-de-fundo-menu: #609966;
+  --cor-da-fonte-menu: #ffffff;
+  --cor-de-fundo-corpo: #ddf7e3;
+  --cor-da-fonte-corpo: #000000;
+  --fonte-principal: "Gill Sans Extrabold", Helvetica, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  min-height: 100vh;
+  position: relative;
+  font-family: var(--fonte-principal);
+}
+
+.logo {
+  margin: 0;
+  width: 10%;
+  height: auto;
+  border-radius: 100%
+}
+
+.menu__principal {
+  background-color: var(--cor-de-fundo-menu);
+  display: flex;
+  align-items: center;
+  padding: 0rem 0.25rem;
+}
+
+.menu__navegacao {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin: 0.5rem;
+  width: 100%;
+}
+
+.item-menu {
+  font-size: 1rem;
+  padding: 0.25rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--cor-da-fonte-menu);
+  width: 100%;
+  box-sizing: content-box;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.item-menu:hover {
+  background-color: white;
+  color: black;
+}
+
+.item-menu-linha {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+#table{
+  margin-top: 2rem;
+  padding: 0.5rem;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.Titulo__Principal{
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+  background:lightgray;
+}
+
+.item--tabela{
+  padding: 0.5rem;
+}
+
+.opcoes--tabela{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
+
+.edi,
+.del,
+.sal,
+.can,
+.novo {
+    margin: 0 0.25rem 0 0.25rem;
+    width: 2rem;
+    height: 1.25rem;
+    font-size: 1.5rem;
+}
+
+.div {
+    display: none;
+}
+
+.Formulario__item{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+#input_item,
+#input_qtd{
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.container-botao{
+  width: 100%;
+  margin: 0 1rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.Botao-form{
+  background-color: var(--cor-de-fundo-menu);
+  color: var(--cor-da-fonte-menu);
+  width: 7.37rem;
+  height: 3.25rem;
+  font-size: 1rem;
+  border-radius: 0;
+  border: 1px var(--cor-de-fundo-menu) solid;
+}
+
+.rodape {
+  width: 100%;
+  position: absolute;
+  bottom: -5rem;
+}
+
+.rodape__container {
+  padding: 1em;
+  background-color: var(--cor-de-fundo-menu);
+  margin-top: 3rem;
+}
+
+.rodape__texto {
+  font-size: 1rem;
+  color: var(--cor-da-fonte-menu);
+}

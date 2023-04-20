@@ -1,5 +1,5 @@
 const xhr = new XMLHttpRequest();
-const urlTipoLista = "http://localhost/listaonline/src/controll/routes/route.tipo_lista.php";
+const urlTipoLista = "http://192.168.2.103/listaonline/src/controll/routes/route.tipo_lista.php";
 var lista = document.querySelector("#lista");
 var form = document.querySelector('#div');
 var editAlt = true;
@@ -98,10 +98,17 @@ function novaLista() {
     let table = document.querySelector("#table");
     table.style.display = "none";
     let form = document.createElement("form");
-    form.innerHTML += `Lista<br><input type="text" id="input_lista" placeholder="Digite o nome da lista"><br>`;
-    form.innerHTML += `<input type="button" onclick="salvarNovaLista()" value="Salvar Lista"/></form>`;
+    form.className = "Formulario__lista";
+    form.innerHTML += `<h1 class="Titulo__Principal">Nova Lista</h1><input type="text" id="input_lista" placeholder="Digite o nome da lista">`;
+    form.innerHTML += `<div class="container-botao"><input type="button" onclick="cancelarAdicionar()" value="Voltar" class="Botao-form"/><input type="button" onclick="salvarNovaLista()" value="Salvar Lista" class="Botao-form"/></div></form>`
     //form.innerHTML += `<i class="fa fa-arrow-right" aria-hidden="true" onclick="finalizar()"></i></form>`;
     div.appendChild(form);
+}
+
+function cancelarAdicionar(){
+    let table = document.querySelector("#table");
+    table.style.display = "table";
+    form.innerHTML = '';
 }
 
 function salvarNovaLista() {
