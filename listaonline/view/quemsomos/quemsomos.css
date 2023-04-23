@@ -1,5 +1,13 @@
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Gill Sans Extrabold", Helvetica, sans-serif;
+}
+
 :root {
-  --cor-de-fundo-menu: #609966;
+  --cor-de-fundo-menu: #008000;
   --cor-da-fonte-menu: #ffffff;
   --cor-de-fundo-corpo: #ddf7e3;
   --cor-da-fonte-corpo: #000000;
@@ -10,7 +18,8 @@
   padding: 0;
 }
 
-body, html {
+body,
+html {
   min-height: 100vh;
   position: relative;
 }
@@ -68,12 +77,12 @@ body, html {
   gap: 2rem;
 }
 
-.Titulo__Principal{
+.Titulo__Principal {
   text-transform: uppercase;
   margin-top: 1rem;
 }
 
-.container{
+.container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -81,16 +90,16 @@ body, html {
   padding: 1rem;
 }
 
-.Foto--desenvolvedor{
+.Foto--desenvolvedor {
   width: 60%;
   border-radius: 50%;
 }
 
-.texto__principal{
+.texto__principal {
   margin-top: 1rem;
 }
 
-.btn-principal{
+.btn-principal {
   padding: 1rem;
   text-transform: uppercase;
   color: var(--cor-da-fonte-menu);

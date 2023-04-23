@@ -1,7 +1,7 @@
 @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
 
 :root {
-  --cor-de-fundo-menu: #609966;
+  --cor-de-fundo-menu: #008000;
   --cor-da-fonte-menu: #ffffff;
   --cor-de-fundo-corpo: #ddf7e3;
   --cor-da-fonte-corpo: #000000;
@@ -13,7 +13,8 @@
   padding: 0;
 }
 
-body, html {
+body,
+html {
   min-height: 100vh;
   position: relative;
   font-family: var(--fonte-principal);
@@ -64,27 +65,27 @@ body, html {
 }
 
 
-#table{
+#table {
   margin-top: 2rem;
   padding: 0.5rem;
   width: 100%;
   border-collapse: collapse;
 }
 
-.Titulo__Principal{
+.Titulo__Principal {
   font-size: 1rem;
   text-transform: uppercase;
 }
 
 tr:nth-child(even) {
-  background:lightgray;
+  background: lightgray;
 }
 
-.item--tabela{
+.item--tabela {
   padding: 0.5rem;
 }
 
-.opcoes--tabela{
+.opcoes--tabela {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -96,17 +97,17 @@ tr:nth-child(even) {
 .sal,
 .can,
 .novo {
-    margin: 0 0.25rem 0 0.25rem;
-    width: 2rem;
-    height: 1.25rem;
-    font-size: 1.5rem;
+  margin: 0 0.25rem 0 0.25rem;
+  width: 2rem;
+  height: 1.25rem;
+  font-size: 1.5rem;
 }
 
 .div {
-    display: none;
+  display: none;
 }
 
-.Formulario__item{
+.Formulario__item {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -116,19 +117,19 @@ tr:nth-child(even) {
 }
 
 #input_item,
-#input_qtd{
+#input_qtd {
   padding: 0.5rem;
   font-size: 1rem;
 }
 
-.container-botao{
+.container-botao {
   width: 100%;
   margin: 0 1rem;
   display: flex;
   justify-content: space-around;
 }
 
-.Botao-form{
+.Botao-form {
   background-color: var(--cor-de-fundo-menu);
   color: var(--cor-da-fonte-menu);
   width: 7.37rem;

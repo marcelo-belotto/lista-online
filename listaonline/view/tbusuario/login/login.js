@@ -1,5 +1,6 @@
 const url = "http://localhost/listaonline/src/controll/routes/route.login.php";
 const xhr = new XMLHttpRequest();
+const msg = document.getElementById("mensagem");
 const nome = document.getElementById("nome_usuario");
 const email = document.getElementById("email_usuario");
 const senha = document.getElementById("senha");
@@ -17,7 +18,8 @@ function logar() {
                 let resp = JSON.parse(this.responseText);
                 let destino = "";
                 if (resp.length === 0) {
-                    alert("Email ou senha inválido");
+                    msg.innerHTML = "Email ou senha inválido!";
+                    setTimeout(() => { window.location.reload(); }, 3000);
                 } else {
                     if (resp[0].id_usuario === "1") {
                         destino += "../../admsite/admsite.html";
@@ -33,9 +35,9 @@ function logar() {
         xhr.open("POST", url);
         xhr.send(dados);
     } else {
-        alert("Preencha os campos com nome e senha!");
+        msg.innerHTML = "Preencha os campos com nome e email!";
+        setTimeout(() => { window.location.reload(); }, 3000);
     }
-    //setTimeout(() => { msg.innerHTML = ""; }, 3000);
 }
 
 function emailNovaSenha() {
@@ -48,8 +50,8 @@ function emailNovaSenha() {
                 let resp = JSON.parse(this.responseText);
                 let destino = "";
                 if (resp.length === 0) {
-                    alert("Usuário ou email inválido");
-                    setTimeout(() => { window.location.reload(); }, 1000);
+                    msg.innerHTML = "Usuário ou email inválido!";
+                    setTimeout(() => { window.location.reload(); }, 3000);
                 } else {
                     if (resp[0].id_usuario === "1") {
                         destino += "../../admsite/admsite.html";
@@ -65,6 +67,7 @@ function emailNovaSenha() {
         xhr.open("POST", url);
         xhr.send(dados);
     } else {
-        alert("Preencha os campos com nome e email!");
+        msg.innerHTML = "Preencha os campos com nome e email!";
+        setTimeout(() => { window.location.reload(); }, 3000);
     }
 }

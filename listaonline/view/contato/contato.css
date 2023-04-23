@@ -33,11 +33,14 @@ section {
     border-radius: 100%
 }
 
-.programador {
-    margin: 10px 0 0 20%;
-    width: 50%;
-    height: 160px;
+aside .programador {
+    max-width: 200px;
+    max-height: 150px;
+    width: auto;
+    height: auto;
+    margin: 10px 0 0 30%;
     border-radius: 100%;
+    border: 1px solid #008000;
 }
 
 .fa-linkedin-square {

@@ -5,43 +5,76 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../home.css">
     <link rel="stylesheet" type="text/css" href="./usuario.css">
     <title>Perfil</title>
 </head>
 
 <body onload="readPerfil()">
-    <a href="../tbconta/conta.html">Conta</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="../tbtipo_lista/tipo-lista.html">Lista</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="../tbusuario/login/login.html" onclick="limpaLocalStorage()">Sair</a><br><br>
-    <h1>Perfil</h1>
-    <form action="" method="POST" enctype="multipart/form-data">
-        <fieldset>
-            <legend>Perfil do usuário</legend>
-            <label>Nome*<br>
+    <header class="menu__principal">
+        <img class="logo" src="../img/logo2.jpg" alt="">
+        <nav class="menu__navegacao">
+            <div class="item-menu-linha">
+                <a href="#" class="item-menu"></a>
+                <a href="../tbusuario/login/login.html" onclick="limpaLocalStorage()" class="item-menu">Sair</a>
+            </div>
+            <div class="item-menu-linha">
+                <a href="../tbconta/conta.html" class="item-menu">Conta</a>
+                <a href="../tbtipo_lista/tipo-lista.html" class="item-menu">Lista</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="divlogin">
+        <h1>Perfil</h1>
+        <form action="" method="POST" enctype="multipart/form-data">
+
+            <div class="inputForm">
+                <article>
+                    <img class="imgusu" id="exibir" src="" alt="">
+                    <i class="fa fa-pencil" aria-hidden="true" onclick="passaIdUrl()"></i>
+                </article>
+            </div>
+
+            <div class="inputForm">
                 <input type="text" placeholder="Nome do usuário" id="nome_usuario">
-            </label><br>
-            <label>Email*<br>
+                <label>Nome *</label>
+            </div>
+
+            <div class="inputForm">
                 <input type="email" placeholder="Email do usuário" id="email_usuario">
-            </label><br>
-            <label>Genero *<br>
-                <input type="radio" id="generom" name="generoradio" value="M">
-                <label for="masculino">Masculino</label>
-                <input type="radio" id="generof" name="generoradio" value="F">
-                <label for="feminino">Feminino</label>
-            </label><br>
+                <label>Email *</label>
+            </div>
 
-            <label id="p">Imagem<br>
-                <img id="exibir" src="" alt="">
-                <a href="#" onclick="passaIdUrl()">Alterar foto do perfil</a>
-            </label><br>
-
-            <label>Senha *<br>
+            <div class="inputForm">
                 <input type="password" placeholder="Senha" id="senha" maxlength="6">
-            </label>
-        </fieldset>
-    </form>
-    <button onclick="alterarPerfil()">Alterar perfil</button>
-    <button onclick="excluirPerfil()">Excluir perfil</button>
+                <label>Senha *</label>
+            </div>
+
+            <div class="inputForm">
+                <aside>
+                    <input type="radio" id="generom" name="generoradio" value="M">
+                    <legend for="masculino">Masculino</legend>
+                    <input type="radio" id="generof" name="generoradio" value="F">
+                    <legend for="feminino">Feminino</legend>
+                    <label class="genero">Genero *</label>
+                </aside>
+            </div>
+        </form>
+        <button class="deletar" onclick="excluirPerfil()">Excluir perfil</button>
+        <button class="alterar" onclick="alterarPerfil()">Alterar perfil</button>
+    </div>
+
+    <footer class="rodape">
+        <div class="rodape__container">
+            <p class="rodape__texto"></p>
+        </div>
+    </footer>
+    <script>
+        let data = new Date();
+        data = data.getFullYear();
+        document.querySelector(".rodape__texto").innerHTML = `Lista Online ${data} - Todos os Direitos Reservados.`;
+    </script>
 </body>
 <script src="./usuario.js"></script>
 

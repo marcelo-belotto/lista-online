@@ -1,59 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="tipo-lista.css" />
-    <title>Lista</title>
-  </head>
 
-  <body onload="readTipoLista()">
-    <header class="menu__principal">
-        <img class="logo" src="../img/logo2.jpg" alt="" />
-        <nav class="menu__navegacao">
-          <div class="item-menu-linha">
-            <!--<a href="../home.html" class="item-menu">Home</a>-->
-            <a href="../tbconta/conta.html" class="item-menu">Conta</a>
-          </div>
-          <div class="item-menu-linha">
-            <a href="../tbusuario/perfil.html" class="item-menu"
-              >Perfil</a
-            >
-            <a href="../tbusuario/login/login.html" class="item-menu" onclick="limpaLocalStorage()">Sair</a>
-          </div>
-        </nav>
-      </header>
-    
-    <main>
-      <table id="table">
-        <thead>
-          <tr>
-            <th class="Titulo__Principal">Lista</th>
-            <th>
-              <span class="novo" onclick="novaLista()">
-                <i class="fa fa-plus-square" aria-hidden="true"></i>
-              </span>
-            </th>
-          </tr>
-        </thead>
-        <tbody id="lista"></tbody>
-      </table>
-      <div id="div"></div>
-    </main>
-    
-    <footer class="rodape">
-        <div class="rodape__container">
-          <p class="rodape__texto"></p>
-        </div>
-      </footer>
-      <script>
-        let data = new Date();
-        data = data.getFullYear();
-        document.querySelector(
-          ".rodape__texto"
-        ).innerHTML = `Lista Online ${data} - Todos os Direitos Reservados.`;
-      </script>
-  </body>
-  <script src="./tipo-lista.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="tipo-lista.css" />
+  <title>Lista</title>
+</head>
+
+<body onload="readTipoLista()">
+  <header class="menu__principal">
+    <img class="logo" src="../img/logo2.jpg" alt="" />
+    <nav class="menu__navegacao">
+      <div class="item-menu-linha">
+        <a href="../tbusuario/perfil.html" class="item-menu">Perfil</a>
+      </div>
+      <div class="item-menu-linha">
+        <a href="../tbconta/conta.html" class="item-menu">Conta</a>
+        <a href="../tbusuario/login/login.html" class="item-menu" onclick="limpaLocalStorage()">Sair</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <table id="table">
+      <thead>
+        <tr>
+          <th class="Titulo__Principal">Lista</th>
+          <th>
+            <span class="novo" onclick="novaLista()">
+              <i class="fa fa-plus-square" aria-hidden="true"></i>
+            </span>
+          </th>
+        </tr>
+      </thead>
+      <tbody id="lista"></tbody>
+    </table>
+    <div id="div"></div>
+  </main>
+
+  <footer class="rodape">
+    <div class="rodape__container">
+      <p class="rodape__texto"></p>
+    </div>
+  </footer>
+  <script>
+    let data = new Date();
+    data = data.getFullYear();
+    document.querySelector(
+      ".rodape__texto"
+    ).innerHTML = `Lista Online ${data} - Todos os Direitos Reservados.`;
+  </script>
+</body>
+<script src="./tipo-lista.js"></script>
+
 </html>

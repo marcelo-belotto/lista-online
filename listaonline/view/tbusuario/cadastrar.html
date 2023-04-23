@@ -5,34 +5,66 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../home.css">
     <link rel="stylesheet" type="text/css" href="./usuario.css">
     <title>Cadastrar</title>
 </head>
 
 <body>
-    <a href="../home.html">Home</a><br><br>
-    <h1>Cadastro</h1>
-    <form action="../../src/domain/usuario.php" method="POST" enctype="multipart/form-data">
-        <fieldset>
-            <legend>Dados do usuário</legend>
-            <label>Nome*<br>
+    <header class="menu__principal">
+        <img class="logo" src="../img/logo2.jpg" alt="">
+        <nav class="menu__navegacao">
+            <div class="item-menu-linha">
+                <a href="../home.html" class="item-menu">Home</a>
+                <a href="../quemsomos/quemsomos.html" class="item-menu">Quem Somos?</a>
+            </div>
+            <div class="item-menu-linha">
+                <a href="../contato/contato.html" class="item-menu">Contato</a>
+                <a href="./login/login.html" class="item-menu">Login</a>
+            </div>
+        </nav>
+    </header>
+    <div class="divlogin">
+        <h1>Cadastro</h1>
+        <form action="../../src/domain/usuario.php" method="POST" enctype="multipart/form-data">
+            <div class="inputForm">
                 <input type="text" placeholder="Nome do usuário" id="nome_usuario">
-            </label><br>
-            <label>Email*<br>
+                <label>Nome *</label>
+            </div>
+
+            <div class="inputForm">
                 <input type="email" placeholder="Email do usuário" id="email_usuario">
-            </label><br>
-            <label>Genero *<br>
-                <input type="radio" id="genero" name="generoradio" value="M">
-                <label for="masculino">Masculino</label>
-                <input type="radio" id="genero" name="generoradio" value="F">
-                <label for="feminino">Feminino</label>
-            </label><br>
-            <label>Senha *<br>
-                <input type="password" placeholder="Senha" id="senha" maxlength="6">
-            </label>
-        </fieldset>
-    </form>
-    <button onclick="cadastrar()">Cadastrar</button>
+                <label>Email *</label>
+            </div>
+
+            <div class="inputForm">
+                <aside>
+                    <input type="radio" id="generom" name="generoradio" value="M">
+                    <legend for="masculino">Masculino</legend>
+                    <input type="radio" id="generof" name="generoradio" value="F">
+                    <legend for="feminino">Feminino</legend>
+                    <label class="genero">Genero *</label>
+                </aside>
+
+                <div class="inputForm">
+                    <input type="password" placeholder="Senha" id="senha" maxlength="6">
+                    <label>Senha *</label>
+                </div>
+
+        </form>
+        <button class="cadastrar" onclick="cadastrar()">Cadastrar</button>
+    </div>
+
+    <footer class="rodape">
+        <div class="rodape__container">
+            <p class="rodape__texto"></p>
+        </div>
+    </footer>
+    <script>
+        let data = new Date();
+        data = data.getFullYear();
+        document.querySelector(".rodape__texto").innerHTML = `Lista Online ${data} - Todos os Direitos Reservados.`;
+    </script>
 </body>
 <script src="./usuario.js"></script>
 
