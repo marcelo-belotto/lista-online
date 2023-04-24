@@ -1,4 +1,5 @@
 @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+@import "../style.css";
 
 h1,
 h2 {
@@ -21,6 +22,9 @@ h2 {
 }
 
 .divlogin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     border: 1px solid #008000;
     width: 97%;
     height: auto;
@@ -84,9 +88,9 @@ legend {
 }
 
 aside {
-    margin-top: 10px;
+    margin-top: 0.63rem;
     width: 100%;
-    height: 50px;
+    height: 3.12rem;
     display: inline-flex;
 }
 
@@ -172,11 +176,4 @@ i {
     color: white;
     font-size: 17pt;
     border-radius: 10px;
-}
-
-.rodape {
-    width: 100%;
-    position: absolute;
-    bottom: -5rem;
-    left: 0;
 }

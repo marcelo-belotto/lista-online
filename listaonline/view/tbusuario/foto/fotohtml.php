@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../../home.css">
     <link rel="stylesheet" type="text/css" href="./foto.css">
     <title>Imagem</title>
 </head>
@@ -15,11 +14,11 @@
         <img class="logo" src="../../img/logo2.jpg" alt="">
         <nav class="menu__navegacao">
             <div class="item-menu-linha">
-                <a href="../tbtipo_lista/tipo-lista.html" class="item-menu">Lista</a>
+                <a href="../../tbtipo_lista/tipo-lista.html" class="item-menu">Lista</a>
                 <a href="../perfil.html" class="item-menu">Perfil</a>
             </div>
             <div class="item-menu-linha">
-                <a href="./tbconta/conta.html" class="item-menu">Conta</a>
+                <a href="../../tbconta/conta.html" class="item-menu">Conta</a>
                 <a href="../login/login.html" onclick="limpaLocalStorage()" class="item-menu">Sair</a>
             </div>
         </nav>
