@@ -22,21 +22,19 @@ function readConta() {
                 var moeda = parseInt(valorSplit[0]).toFixed(2).split('.');
                 moeda[0] = "R$ " + moeda[0].split(/(?=(?:...)*$)/).join('.');
                 let valorCompleto = moeda[0] + "," + valorSplit[1]; //Formata valor para moeda
-                let row = document.createElement("tr");
+                let row = document.createElement("section");
                 if (dado.status_conta == "pago") {
-                    row.innerHTML += `<td class="item--tabela"><input type="checkbox" id="pago" onclick="checado(this,${indice})" checked></td>`;
-                    row.innerHTML += `<td class="item--tabela">${dado.nome_conta}</td>`;
-                    row.innerHTML += `<td class="item--tabela">${dado.vencimento}</td>`;
-                    row.innerHTML += `<td class="item--tabela">${valorCompleto}</td>`;
-                    row.innerHTML += `<td class="item--tabela"><div class="opcoes--tabela"><span class="del" onclick='delConta(${indice})'><i class="fa fa-trash-o" aria-hidden="true"></i></span></div></td></tr>`;
+                    row.innerHTML += `<p>${dado.nome_conta}</p>`;
+                    row.innerHTML += `<p>${dado.vencimento}</p>`;
+                    row.innerHTML += `<p>${valorCompleto}</p>`;
+                    row.innerHTML += `<div class="opcoes--tabela"><span class="del" onclick='delConta(${indice})'><i class="fa fa-trash-o" aria-hidden="true"></i></span><span><input type="checkbox" id="pago" onclick="checado(this,${indice})" checked></span></div></section>`;
                     row.style.textDecoration = 'line-through';
                     row.style.color = 'green';
                 } else {
-                    row.innerHTML += `<td class="item--tabela"><input type="checkbox" onclick="checado(this,${indice})"></td>`;
-                    row.innerHTML += `<td class="item--tabela">${dado.nome_conta}</td>`;
-                    row.innerHTML += `<td class="item--tabela">${dado.vencimento}</td>`;
-                    row.innerHTML += `<td class="item--tabela">${valorCompleto}</td>`;
-                    row.innerHTML += `<td class="item--tabela"><div class="opcoes--tabela"><span class="edi" onclick='editConta(this.parentNode,${indice})'><i class="fa fa-pencil" aria-hidden="true"></i></span><span class="del" onclick='delConta(${indice})'><i class="fa fa-trash-o" aria-hidden="true"></i></span></div></td></tr>`;
+                    row.innerHTML += `<p>${dado.nome_conta}</p>`;
+                    row.innerHTML += `<p>${dado.vencimento}</p>`;
+                    row.innerHTML += `<p>${valorCompleto}</p>`;
+                    row.innerHTML += `<div class="opcoes--tabela"><span class="del" onclick='delConta(${indice})'><i class="fa fa-trash-o" aria-hidden="true"></i></span><span class="edi" onclick='editConta(this.parentNode,${indice})'><i class="fa fa-pencil" aria-hidden="true"></i></span><span><input type="checkbox" onclick="checado(this,${indice})"></span></div></section>`;
                 }
                 conta.appendChild(row);
                 indice++;
@@ -48,10 +46,11 @@ function readConta() {
 }
 
 function checado(check, indice) {
-    let tdconta = check.parentNode.parentNode.cells[1];
-    let tdvencimento = check.parentNode.parentNode.cells[2];
-    let tdvalor = check.parentNode.parentNode.cells[3];
+    let tdconta = check.parentNode.parentNode.parentNode;
+    let tdvencimento = check.parentNode.parentNode.parentNode;
+    let tdvalor = check.parentNode.parentNode.parentNode;
     let valor = arrayLista[indice].valor;
+
     let subVirPon = valor.replace(",", ".");
     if (check.checked) {    //se a conta for marcada conta foi paga
         tdconta.style.textDecoration = 'line-through';    //Passa um alinha sobre o texto da td
@@ -66,7 +65,6 @@ function checado(check, indice) {
         dados += "&status_conta=" + "pago";
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
-                console.log("checado " + this.responseText)
                 let resp = JSON.parse(this.responseText);
                 if (resp.hasOwnProperty("erro")) {
                     msg.innerHTML = resp.erro;
@@ -91,7 +89,6 @@ function checado(check, indice) {
         dados += "&status_conta=" + "pendente";
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
-                console.log("Não checado" + this.responseText)
                 let resp = JSON.parse(this.responseText);
                 if (resp.hasOwnProperty("erro")) {
                     msg.innerHTML = resp.erro;
@@ -106,25 +103,30 @@ function checado(check, indice) {
     }
 }
 
-function editConta(c, indice) {
-    c.parentNode.parentNode.cells[1].setAttribute("contentEditable", "true");
-    c.parentNode.parentNode.cells[2].setAttribute("contentEditable", "true");
-    c.parentNode.parentNode.cells[3].setAttribute("contentEditable", "true");
-    c.parentNode.parentNode.cells[4].innerHTML = `<div class="opcoes--tabela"><span class="sal" onclick='putConta(this.parentNode,${indice})'><i class="fa fa-floppy-o" aria-hidden="true"></i></span><span class="can" onclick="cancelar(this)"><i class="fa fa-times" aria-hidden="true"></div></i></span>`;
+function editConta(c, indice) { //Cria formulario e passa os valores para dentro dos inputs
+    let main = document.querySelector("#conta");
+    main.style.display = "none";
+    let form = document.createElement("form");
+    form.className = "Formulario__conta";
+    form.innerHTML += `<h2 class="Titulo__Form">Conta</h2><input type="text" id="input_conta" placeholder="Digite o nome da conta">`;
+    form.innerHTML += `<h2 class="Titulo__Form">Vencimento</h2><input type="date" id="vencimento">`;
+    form.innerHTML += `<h2 class="Titulo__Form">Valor</h2><input type="text" id="valor" placeholder="Digite o valor da conta" onkeyup="formatarMoeda()">`;
+    form.innerHTML += `<div class="container-botao"><input type="button" onclick="cancelarAdicionar()" value="Voltar" class="Botao-form"/>
+    <input type="button" onclick="confirmarAlteracao(${arrayLista[indice].id_conta})" value="Salvar conta" class="Botao-form"/></div></form>`;
+    div.appendChild(form);
+
+    localStorage.setItem("id_con", arrayLista[indice].id_conta);
+    document.querySelector("#input_conta").value = arrayLista[indice].nome_conta;
+    document.querySelector("#vencimento").value = arrayLista[indice].vencimento;
+    document.querySelector("#valor").value = arrayLista[indice].valor;
 }
 
-function putConta(c, indice) {
-    let nomeConta = c.parentNode.parentNode.cells[1].innerHTML;
-    let vencimentoConta = c.parentNode.parentNode.cells[2].innerHTML;
-    let valor = c.parentNode.parentNode.cells[3].innerText;
-    let valorReal = valor.substr(3);
-    let valorSemVirgula = valorReal.replace(",", ".");
-
-    let dados = "id_conta=" + arrayLista[indice].id_conta;
+function confirmarAlteracao() { //Finaliza aleração conta
+    let dados = "id_conta=" + localStorage.getItem("id_con");
     dados += "&id_usuario=" + localStorage.getItem("id_usu");
-    dados += "&nome_conta=" + nomeConta;
-    dados += "&vencimento=" + vencimentoConta;
-    dados += "&valor=" + valorSemVirgula;
+    dados += "&nome_conta=" + document.querySelector("#input_conta").value;
+    dados += "&vencimento=" + document.querySelector("#vencimento").value;
+    dados += "&valor=" + document.querySelector("#valor").value.replace(",", ".");
     dados += "&status_conta=" + "";
     if (window.confirm("Confirma Alteração dos dados?")) {
         xhr.addEventListener("readystatechange", function () {
@@ -143,9 +145,9 @@ function putConta(c, indice) {
     }
 }
 
-function novaConta() {
-    let table = document.querySelector("#table");
-    table.style.display = "none";
+function novaConta() {  //Cria formulario para adicionar nova conta
+    let main = document.querySelector("#conta");
+    main.style.display = "none";
     let form = document.createElement("form");
     form.className = "Formulario__conta";
     form.innerHTML += `<h2 class="Titulo__Form">Conta</h2><input type="text" id="input_conta" placeholder="Digite o nome da conta">`;
@@ -156,11 +158,9 @@ function novaConta() {
     div.appendChild(form);
 }
 
-function cancelarAdicionar(){
-    let table = document.querySelector("#table");
-    table.style.display = "table";
-    div.innerHTML = '';
-  }
+function cancelarAdicionar() {
+    window.location.reload();
+}
 
 function formatarMoeda() {  //Function para formata valor em real
     var elemento = document.getElementById('valor');

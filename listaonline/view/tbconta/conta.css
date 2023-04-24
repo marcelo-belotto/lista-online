@@ -64,7 +64,7 @@ html {
   justify-content: space-between;
 }
 
-
+/*
 #table {
   margin-top: 2rem;
   padding: 0.5rem;
@@ -90,6 +90,7 @@ tr:nth-child(even) {
   /*display: flex;
   justify-content: space-between;
   align-items: center;*/
+/*
   gap: 1rem;
   text-align: center;
   padding: 1rem;
@@ -108,7 +109,7 @@ tr:nth-child(even) {
 
 .div {
   display: none;
-}
+}*/
 
 .Formulario__conta {
   display: flex;
@@ -163,4 +164,64 @@ tr:nth-child(even) {
 .rodape__texto {
   font-size: 1rem;
   color: var(--cor-da-fonte-menu);
+}
+
+/*-------------------------------------------------------*/
+aside {
+  border: 1px solid;
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: 100% 100%;
+}
+
+.novo {
+  margin: 10px;
+  width: 1.55rem;
+  height: 1.45rem;
+  font-size: 1.9rem;
+  color: #008000;
+}
+
+h1 {
+  text-align: left;
+  color: rgb(1, 29, 7);
+  margin: 10px 0;
+}
+
+div {
+  /* border: 1px solid; */
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: 100% 100% 100%;
+}
+
+section {
+  border: 1px solid;
+  margin: 10px;
+  width: 95%;
+  height: auto;
+  display: inline-block;
+}
+
+p {
+  /* border: 1px solid; */
+  font-size: 17pt;
+  text-align: center;
+  width: 93%;
+  height: auto;
+  margin: 8px 10px;
+}
+
+input[type="checkbox"] {
+  width: 100%;
+  height: 80%;
+  margin-top: 3px;
+}
+
+span {
+  /* border: 1px solid blue; */
+  font-size: 20pt;
+  margin: 0 0 5px 0;
+  width: 100%;
+  text-align: center;
 }

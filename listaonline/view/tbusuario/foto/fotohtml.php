@@ -35,7 +35,7 @@ $chave = explode("=", $protocolo.$url);
     <form action="./foto.php?id=<?php echo $chave[1]?>" method="POST" enctype="multipart/form-data">
         <div class="inputForm">
                 <img class="novaimg" id="exibir" src="" alt="">                
-                <label for="teste">Escolher nova imagem </label>
+                <label for="img">Escolher nova imagem </label>
                 <input type="file" id="img" name="img_usuario" class="escolherimg">
         </div> 
         <input type="submit" id="deletar_img" name="deletar_img" value="Excluir imagem"><br>

@@ -27,14 +27,18 @@ h2 {
     padding: 2, 5rem;
     box-sizing: border-box;
     padding: 1rem;
-    background: #98e998;
+    background: #eff5ef;
     border-radius: 6%;
-    margin: 4% 1% 5% 1%;
+    margin: 10% 2%;
     /* opacity: 0.10; */
 }
 
 .divlogin .inputForm {
     position: relative;
+}
+
+input {
+    text-transform: lowercase;
 }
 
 .divlogin .inputForm input {
@@ -70,7 +74,8 @@ h2 {
 
 .divlogin .inputForm input:focus~label,
 .divlogin .inputForm input:valid~label,
-.divlogin .inputForm input:not([value=""])~label {
+.divlogin .inputForm input:not([value=""])~label,
+legend {
     top: -0.525rem;
     left: 0;
     color: #008000;
@@ -111,10 +116,9 @@ article {
 }
 
 .imgusu {
-    max-width: 130px;
-    max-height: 140px;
+    max-width: 8rem;
     width: auto;
-    height: auto;
+    height: 7rem;
     margin-left: 30%;
     border-radius: 100%;
     border: 1px solid #008000;
@@ -173,6 +177,6 @@ i {
 .rodape {
     width: 100%;
     position: absolute;
-    bottom: -1rem;
+    bottom: -5rem;
     left: 0;
 }

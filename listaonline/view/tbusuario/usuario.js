@@ -18,12 +18,12 @@ function readPerfil() {
                 nome_usuario.value = dado.nome_usuario;
                 email.value = dado.email_usuario;
                 if (dado.img == null) {
-                    photo.src = "../img/user.jpg";
+                    photo.src = "../img/icon-verde.png";
                 } else {
                     localStorage.setItem("nome_img", dado.img);
                     photo.src = "../../foto_usuario/" + dado.img;
                     photo.onerror = function () {
-                        photo.src = "../img/user.jpg";
+                        photo.src = "../img/icon-verde.png";
                         const paragrafo = document.createElement("p");
                         paragrafo.textContent = "Imagem não encontrada no servidor!";
                         p.appendChild(paragrafo);
@@ -49,8 +49,8 @@ function cadastrar() {
             console.log("Escolha um genero!");
         } else {
             let dados = new FormData();
-            dados.append("nome_usuario", nome_usuario.value);
-            dados.append("email_usuario", email.value);
+            dados.append("nome_usuario", nome_usuario.value.toLowerCase());
+            dados.append("email_usuario", email.value.toLowerCase());
             dados.append("genero", document.querySelector('input[name="generoradio"]:checked').value);
             dados.append("img", "");
             dados.append("senha", senha.value);

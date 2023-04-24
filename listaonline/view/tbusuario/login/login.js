@@ -12,9 +12,6 @@ function logar() {
         dados.append("senha", senha.value);
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
-                console.log(email.value);
-                console.log(senha.value);
-                console.log(this.responseText);
                 let resp = JSON.parse(this.responseText);
                 let destino = "";
                 if (resp.length === 0) {
