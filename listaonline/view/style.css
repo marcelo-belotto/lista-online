@@ -1,5 +1,5 @@
 :root {
-  --cor-de-fundo-menu: #008000;
+  --cor-de-fundo-menu: #0B2447;
   --cor-da-fonte-menu: #ffffff;
   --cor-de-fundo-corpo: #ddf7e3;
   --cor-da-fonte-corpo: #000000;
@@ -69,12 +69,15 @@ html {
 }
 
 .rodape__container {
-  padding: 1em;
+  height: 3rem;
+  padding: 0.3em;
   background-color: var(--cor-de-fundo-menu);
   margin-top: 3rem;
 }
 
 .rodape__texto {
+  margin-top: 1rem;
   font-size: 1rem;
+  white-space: nowrap;
   color: var(--cor-da-fonte-menu);
 }
