@@ -11,7 +11,7 @@
 
 <body>
     <header class="menu__principal">
-        <img class="logo" src="../img/logo2.jpg" alt="">
+        <img class="logo" src="../img/logo.jpg" alt="">
         <nav class="menu__navegacao">
             <div class="item-menu-linha">
                 <a href="../home.html" class="item-menu">Home</a>
@@ -25,36 +25,36 @@
     </header>
     <main>
         <div class="divlogin">
-        <h1>Cadastro</h1>
-        <form action="" method="POST" enctype="multipart/form-data">
-            <div class="inputForm">
-                <input type="text" placeholder="Nome do usuário" id="nome_usuario">
-                <label>Nome *</label>
-            </div>
-
-            <div class="inputForm">
-                <input type="email" placeholder="Email do usuário" id="email_usuario">
-                <label>Email *</label>
-            </div>
-
-            <div class="inputForm">
-                <aside>
-                    <input type="radio" id="generom" name="generoradio" value="M">
-                    <legend for="masculino">Masculino</legend>
-                    <input type="radio" id="generof" name="generoradio" value="F">
-                    <legend for="feminino">Feminino</legend>
-                    <label class="genero">Genero *</label>
-                </aside>
+            <h1>Cadastro</h1>
+            <form action="" method="POST" enctype="multipart/form-data">
+                <div class="inputForm">
+                    <input type="text" placeholder="Nome do usuário" id="nome_usuario">
+                    <label>Nome *</label>
+                </div>
 
                 <div class="inputForm">
-                    <input type="password" placeholder="Senha" id="senha" maxlength="6">
-                    <label>Senha *</label>
+                    <input type="email" placeholder="Email do usuário" id="email_usuario">
+                    <label>Email *</label>
                 </div>
+
+                <div class="inputForm">
+                    <aside>
+                        <input type="radio" id="generom" name="generoradio" value="M">
+                        <legend for="masculino">Masculino</legend>
+                        <input type="radio" id="generof" name="generoradio" value="F">
+                        <legend for="feminino">Feminino</legend>
+                        <label class="genero">Genero *</label>
+                    </aside>
+
+                    <div class="inputForm">
+                        <input type="password" placeholder="Senha" id="senha" maxlength="6">
+                        <label>Senha *</label>
+                    </div>
             </form>
             <button class="cadastrar" onclick="cadastrar()">Cadastrar</button>
         </div>
     </main>
-    
+
 
     <footer class="rodape">
         <div class="rodape__container">

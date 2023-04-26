@@ -10,18 +10,45 @@
 </head>
 
 <body>
-    <a href="../../home.html">Home</a><br><br>
-    <h1>Nova senha</h1>
-    <form id="formlogin" action="" method="POST">
-        <label>Nome*<br>
-            <input type="text" placeholder="Nome do usuário" id="nome_usuario">
-        </label><br>
-        <label>Email *<br>
-            <input type="email" placeholder="Email do usuário" id="email_usuario">
-        </label>
-        </fieldset>
-    </form>
-    <button id="btnlogar" onclick="emailNovaSenha()">Acessar</button><br><br>
+    <header class="menu__principal">
+        <img class="logo" src="../../img/logo.jpg" alt="">
+        <nav class="menu__navegacao">
+            <div class="item-menu-linha">
+                <a href="../../home.html" class="item-menu">Home</a>
+                <a href="../../quemsomos/quemsomos.html" class="item-menu">Quem Somos?</a>
+            </div>
+            <div class="item-menu-linha">
+                <a href="../../contato/contato.html" class="item-menu">Contato</a>
+                <a href="../cadastrar.html" class="item-menu">Cadastre-se</a>
+            </div>
+        </nav>
+    </header>
+    <div class="divlogin">
+        <h1>Nova senha</h1>
+        <form id="formlogin" action="" method="POST">
+            <div class="inputForm">
+                <input type="text" id="nome_usuario">
+                <label>Nome *</label>
+            </div>
+            <div class="inputForm">
+                <input type="email" id="email_usuario">
+                <label>Email *</label>
+            </div>
+        </form>
+        <button id="btnlogar" onclick="emailNovaSenha()">Acessar</button>
+        <p class="msg" id="mensagem"></p>
+    </div>
+
+    <footer class="rodape">
+        <div class="rodape__container">
+            <p class="rodape__texto"></p>
+        </div>
+    </footer>
+    <script>
+        let data = new Date();
+        data = data.getFullYear();
+        document.querySelector(".rodape__texto").innerHTML = `Lista Online ${data} - Todos os Direitos Reservados.`;
+    </script>
 </body>
 <script src="./login.js"></script>
 

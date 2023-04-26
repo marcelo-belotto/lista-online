@@ -29,7 +29,7 @@ function readConta() {
                     row.innerHTML += `<p>${valorCompleto}</p>`;
                     row.innerHTML += `<div class="opcoes--tabela"><span class="del" onclick='delConta(${indice})'><i class="fa fa-trash-o" aria-hidden="true"></i></span><span><input type="checkbox" id="pago" onclick="checado(this,${indice})" checked></span></div></section>`;
                     row.style.textDecoration = 'line-through';
-                    row.style.color = 'green';
+                    row.style.color = '#0B2447';
                 } else {
                     row.innerHTML += `<p>${dado.nome_conta}</p>`;
                     row.innerHTML += `<p>${dado.vencimento}</p>`;
