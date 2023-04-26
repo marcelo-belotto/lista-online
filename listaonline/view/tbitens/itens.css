@@ -1,42 +1,52 @@
 @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
 @import "../style.css";
 
-#table {
-  margin-top: 2rem;
-  padding: 0.5rem;
-  width: 100%;
-  border-collapse: collapse;
-}
 
 .Titulo__Principal {
-  font-size: 1rem;
   text-transform: uppercase;
 }
 
-tr:nth-child(even) {
-  background: lightgray;
-}
-
-.item--tabela {
-  padding: 0.5rem;
-}
-
-.opcoes--tabela {
-  display: flex;
-  justify-content: space-between;
+.container_cabecalho{
+  display: grid;
+  grid-template-columns: 1fr 4fr;
   align-items: center;
+  text-align: center;
   padding: 1rem;
 }
 
-.edi,
-.del,
-.sal,
-.can,
-.novo {
-  margin: 0 0.25rem 0 0.25rem;
-  width: 2rem;
-  height: 1.25rem;
-  font-size: 1.5rem;
+.fa{
+  font-size: 2rem;
+}
+
+.item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container-item{
+  width: 90%;
+  margin: 1rem 0;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+.linha-item{
+  font-size: 1.25rem;
+  padding: 0.25rem;
+}
+
+.item-acoes{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.25rem 0;
+}
+
+input.checkbox-acoes{
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .div {
@@ -71,6 +81,6 @@ tr:nth-child(even) {
   width: 7.37rem;
   height: 3.25rem;
   font-size: 1rem;
-  border-radius: 0;
+  border-radius: 10px;
   border: 1px var(--cor-de-fundo-menu) solid;
 }

@@ -8,13 +8,11 @@
   <link rel="stylesheet" href="itens.css">
   <title>Itens</title>
 </head>
-
 <body onload="readItem()">
   <header class="menu__principal">
     <img class="logo" src="../img/logo2.jpg" alt="" />
     <nav class="menu__navegacao">
       <div class="item-menu-linha">
-        <!--<a href="../home.html" class="item-menu">Home</a>-->
         <a href="../tbconta/conta.html" class="item-menu">Conta</a>
       </div>
       <div class="item-menu-linha">
@@ -25,18 +23,17 @@
       </div>
     </nav>
   </header>
-  <table id="table">
-    <thead>
-      <tr>
-        <th class="Titulo__Principal"><span class='novo' onclick='novoItem()'><i class="fa fa-plus-square" aria-hidden="true"></i></span></th>
-        <th class="Titulo__Principal">Item</th>
-        <th class="Titulo__Principal">Quantidade</th>
-        <th class="Titulo__Principal">Ações</th>
-      </tr>
-    </thead>
-    <tbody id="item"></tbody>
-  </table>
+
+  <main>
+    <div class="container_cabecalho">
+      <i class="fa fa-plus-square" aria-hidden="true" onclick='novoItem()'></i>
+      <h1 class="Titulo__Principal">Itens</h1>
+    </div>
+    <section class="item"></section>
+  </main>
+  
   <div id="div"></div>
+
   <footer class="rodape">
     <div class="rodape__container">
       <p class="rodape__texto"></p>
