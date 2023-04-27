@@ -11,7 +11,7 @@
 
 <body>  
 <header class="menu__principal">
-        <img class="logo" src="../../img/logo2.jpg" alt="">
+        <img class="logo" src="../../img/logo.jpg" alt="">
         <nav class="menu__navegacao">
             <div class="item-menu-linha">
                 <a href="../../tbtipo_lista/tipo-lista.html" class="item-menu">Lista</a>

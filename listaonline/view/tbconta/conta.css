@@ -39,7 +39,6 @@
 }
 
 aside {
-  border: 1px solid;
   display: grid;
   grid-template-columns: auto auto;
   grid-template-rows: 100% 100%;
@@ -66,14 +65,15 @@ div {
 }
 
 section {
-  border: 1px solid;
-  margin: 10px;
+  border: 1px dashed #0B2447;
+  border-radius: 20px;
+  margin: 5px;
   width: 95%;
   height: auto;
   display: inline-block;
 }
 
-p {
+.con {
   font-size: 17pt;
   text-align: center;
   width: 93%;
@@ -92,4 +92,9 @@ span {
   margin: 0 0 5px 0;
   width: 100%;
   text-align: center;
+}
+
+main {
+  margin: 5px;
+  width: 98%;
 }

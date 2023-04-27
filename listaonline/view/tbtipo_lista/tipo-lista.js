@@ -33,7 +33,7 @@ function readTipoLista() {
             });
         })
         .catch(function (error) {
-            alert(error.message);
+            alert("Erro ao retornar dados do servidor!");
         });
 }
 
@@ -75,23 +75,17 @@ function delTipoLista(id_lista) {
 
 function salvarAlteracao(id_lista, nome_lista) {
     let dados = "id_lista=" + id_lista + "&id_usuario=" + localStorage.getItem("id_usu") + "&nome_lista=" + nome_lista;
-    console.log(dados);
-    if (confirm("Deseja alterar o nome da lista?")) {
-        xhr.addEventListener("readystatechange", function () {
-            if (this.readyState === this.DONE) {
-                let resposta = JSON.parse(this.responseText);
-                if (resposta.hasOwnProperty("erro")) {
-                    alert(resposta.erro);
-                } else {
-
-                    alert("Lista alterada com sucesso!");
-                }
+    xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+            let resposta = JSON.parse(this.responseText);
+            if (resposta.hasOwnProperty("erro")) {
+                alert(resposta.erro);
             }
-        });
-        xhr.open("PUT", urlTipoLista);
-        xhr.send(dados);
-        setTimeout(() => { window.location.reload(); }, 1000);
-    }
+        }
+    });
+    xhr.open("PUT", urlTipoLista);
+    xhr.send(dados);
+    setTimeout(() => { window.location.reload(); }, 1000);
 }
 
 function novaLista() {
@@ -101,11 +95,10 @@ function novaLista() {
     form.className = "Formulario__lista";
     form.innerHTML += `<h1 class="Titulo__Principal">Nova Lista</h1><input type="text" id="input_lista" placeholder="Digite o nome da lista">`;
     form.innerHTML += `<div class="container-botao"><input type="button" onclick="cancelarAdicionar()" value="Voltar" class="Botao-form"/><input type="button" onclick="salvarNovaLista()" value="Salvar Lista" class="Botao-form"/></div></form>`
-    //form.innerHTML += `<i class="fa fa-arrow-right" aria-hidden="true" onclick="finalizar()"></i></form>`;
     div.appendChild(form);
 }
 
-function cancelarAdicionar(){
+function cancelarAdicionar() {
     let table = document.querySelector("#table");
     table.style.display = "table";
     form.innerHTML = '';
@@ -117,17 +110,12 @@ function salvarNovaLista() {
         alert("Preencha o Campo Nome da lista!")
     } else {
         var dados = new FormData();
-        //dados.append("id_lista", 0);
         dados.append("id_usuario", localStorage.getItem("id_usu"));
         dados.append("nome_lista", novoItem);
-
-        console.log(dados);
-
         if (confirm("Deseja Salvar o novo item?")) {
             xhr.addEventListener("readystatechange", function () {
                 if (this.readyState === this.DONE) {
                     let resposta = JSON.parse(this.responseText);
-                    console.log(resposta);
                     if (resposta.hasOwnProperty("erro")) {
                         alert(resposta.erro);
                     } else {

@@ -24,16 +24,16 @@ function readConta() {
                 let valorCompleto = moeda[0] + "," + valorSplit[1]; //Formata valor para moeda
                 let row = document.createElement("section");
                 if (dado.status_conta == "pago") {
-                    row.innerHTML += `<p>${dado.nome_conta}</p>`;
-                    row.innerHTML += `<p>${dado.vencimento}</p>`;
-                    row.innerHTML += `<p>${valorCompleto}</p>`;
+                    row.innerHTML += `<p class="con">${dado.nome_conta}</p>`;
+                    row.innerHTML += `<p class="con">${dado.vencimento}</p>`;
+                    row.innerHTML += `<p class="con">${valorCompleto}</p>`;
                     row.innerHTML += `<div class="opcoes--tabela"><span class="del" onclick='delConta(${indice})'><i class="fa fa-trash-o" aria-hidden="true"></i></span><span><input type="checkbox" id="pago" onclick="checado(this,${indice})" checked></span></div></section>`;
                     row.style.textDecoration = 'line-through';
                     row.style.color = '#0B2447';
                 } else {
-                    row.innerHTML += `<p>${dado.nome_conta}</p>`;
-                    row.innerHTML += `<p>${dado.vencimento}</p>`;
-                    row.innerHTML += `<p>${valorCompleto}</p>`;
+                    row.innerHTML += `<p class="con">${dado.nome_conta}</p>`;
+                    row.innerHTML += `<p class="con">${dado.vencimento}</p>`;
+                    row.innerHTML += `<p class="con">${valorCompleto}</p>`;
                     row.innerHTML += `<div class="opcoes--tabela"><span class="del" onclick='delConta(${indice})'><i class="fa fa-trash-o" aria-hidden="true"></i></span><span class="edi" onclick='editConta(this.parentNode,${indice})'><i class="fa fa-pencil" aria-hidden="true"></i></span><span><input type="checkbox" onclick="checado(this,${indice})"></span></div></section>`;
                 }
                 conta.appendChild(row);
@@ -41,7 +41,7 @@ function readConta() {
             });
         })
         .catch(function (error) {
-            alert(error.message);
+            alert("Erro ao retornar dados do usuario do servidor!");
         });
 }
 
@@ -56,6 +56,7 @@ function checado(check, indice) {
         tdconta.style.textDecoration = 'line-through';    //Passa um alinha sobre o texto da td
         tdvencimento.style.textDecoration = 'line-through';
         tdvalor.style.textDecoration = 'line-through';
+        tdconta.style.color = "var(--cor-de-fundo-menu)";
 
         let dados = "id_conta=" + arrayLista[indice].id_conta;
         dados += "&id_usuario=" + localStorage.getItem("id_usu");
@@ -93,7 +94,6 @@ function checado(check, indice) {
                 if (resp.hasOwnProperty("erro")) {
                     msg.innerHTML = resp.erro;
                 } else {
-                    // alert("Vamos pagar a conta " + localStorage.getItem("nome_usu") + " vai pagar multa em!");
                 }
                 setTimeout(() => { window.location.reload(); }, 1000);
             }

@@ -30,7 +30,7 @@ h2 {
     padding: 1rem;
     background: #eff5ef;
     border-radius: 6%;
-    margin: 10% 2%;
+    margin: 4% 2%;
     /* opacity: 0.10; */
 }
 
@@ -176,7 +176,7 @@ section {
     height: 3rem;
     background: #0B2447;
     color: white;
-    font-size: 1rem;
+    font-size: 15pt;
     border-radius: 10px;
     padding: 0.5rem;
 }

@@ -10,6 +10,7 @@
 .Titulo__Principal {
   font-size: 1.2rem;
   text-transform: uppercase;
+  font-weight: 900;
 }
 
 tr:nth-child(even) {
@@ -20,6 +21,7 @@ tr:nth-child(even) {
   white-space: wrap;
   word-break: break-all;
   padding: 1rem;
+  font-size: 17pt;
 }
 
 .opcoes--tabela {

@@ -16,7 +16,7 @@ function logar() {
                 let destino = "";
                 if (resp.length === 0) {
                     msg.innerHTML = "Email ou senha inválido!";
-                    setTimeout(() => { window.location.reload(); }, 3000);
+                    setTimeout(() => { window.location.reload(); }, 2000);
                 } else {
                     if (resp[0].id_usuario === "1") {
                         destino += "../../admsite/admsite.html";
@@ -32,8 +32,8 @@ function logar() {
         xhr.open("POST", url);
         xhr.send(dados);
     } else {
-        msg.innerHTML = "Preencha os campos com nome e email!";
-        setTimeout(() => { window.location.reload(); }, 3000);
+        msg.innerHTML = "Preencha os campos com email e senha!";
+        setTimeout(() => { window.location.reload(); }, 2000);
     }
 }
 
@@ -48,7 +48,7 @@ function emailNovaSenha() {
                 let destino = "";
                 if (resp.length === 0) {
                     msg.innerHTML = "Usuário ou email inválido!";
-                    setTimeout(() => { window.location.reload(); }, 3000);
+                    setTimeout(() => { window.location.reload(); }, 2000);
                 } else {
                     if (resp[0].id_usuario === "1") {
                         destino += "../../admsite/admsite.html";
@@ -65,6 +65,6 @@ function emailNovaSenha() {
         xhr.send(dados);
     } else {
         msg.innerHTML = "Preencha os campos com nome e email!";
-        setTimeout(() => { window.location.reload(); }, 3000);
+        setTimeout(() => { window.location.reload(); }, 2000);
     }
 }
