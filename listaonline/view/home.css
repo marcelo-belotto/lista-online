@@ -16,5 +16,6 @@
   background-color: var(--cor-de-fundo-menu);
   text-decoration: none;
   align-items: center;
+  border-radius: 10px;
 }
 
