@@ -1,19 +1,6 @@
 @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
 @import "../style.css";
 
-body {
-    margin: 0;
-    padding: 0;
-}
-
-h1 {
-    margin: 15px 0 30px 0;
-    font-size: 32pt;
-    width: 99%;
-    text-align: center;
-    color: #008000;
-}
-
 section {
     margin: 0;
     width: 100%;

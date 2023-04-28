@@ -18,7 +18,7 @@
 #vencimento,
 #valor {
   padding: 0.5rem;
-  font-size: 1rem;
+  font-size: 1.3rem;
 }
 
 .container-botao {
@@ -52,13 +52,7 @@ aside {
   color: #0B2447;
 }
 
-h1 {
-  text-align: left;
-  color: #0B2447;
-  margin: 10px 0;
-}
-
-div {
+.opcoes--tabela {
   display: grid;
   grid-template-columns: auto auto auto;
   grid-template-rows: 100% 100% 100%;

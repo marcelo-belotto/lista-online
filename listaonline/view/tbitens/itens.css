@@ -1,21 +1,12 @@
 @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
 @import "../style.css";
 
-
-.Titulo__Principal {
-  text-transform: uppercase;
-}
-
 .container_cabecalho {
   display: grid;
   grid-template-columns: 1fr 4fr;
   align-items: center;
   text-align: center;
   padding: 1rem;
-}
-
-.fa {
-  font-size: 2rem;
 }
 
 .item {
@@ -67,7 +58,7 @@ input.checkbox-acoes {
 #input_item,
 #input_qtd {
   padding: 0.5rem;
-  font-size: 1rem;
+  font-size: 1.3rem;
 }
 
 .container-botao {

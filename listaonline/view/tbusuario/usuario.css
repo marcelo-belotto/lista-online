@@ -1,18 +1,5 @@
 @import "../style.css";
 
-h1,
-h2 {
-    margin: -10px 0 25px 0;
-    font-size: 25pt;
-    width: 99%;
-    text-align: center;
-    color: var(--cor-de-fundo-menu);
-}
-
-h2 {
-    font-size: 25pt;
-}
-
 .logo {
     margin: 0;
     width: 25%;
@@ -195,7 +182,7 @@ button {
 .esqueci {
     margin: 10px;
     align-items: center;
-    font-size: 12pt;
+    font-size: 15pt;
     color: #0B2447;
     font-weight: 700;
     text-decoration: none;

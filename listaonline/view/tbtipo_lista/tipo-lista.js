@@ -55,15 +55,12 @@ function editTipoLista(itemEditado) {
 
 function delTipoLista(id_lista) {
     let dados = "id_usuario=" + localStorage.getItem("id_usu") + "&" + "id_lista=" + id_lista;
-    if (confirm("Deseja realmente excluir a Lista?")) {
+    if (confirm("Deseja excluir Lista?")) {
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
                 let resposta = JSON.parse(this.responseText);
                 if (resposta.hasOwnProperty("erro")) {
                     alert(resposta.erro);
-                } else {
-                    //lista.innerHTML = "";
-                    alert("Lista excluida com sucesso!");
                 }
             }
         });
@@ -107,26 +104,22 @@ function cancelarAdicionar() {
 function salvarNovaLista() {
     let novoItem = document.querySelector('#input_lista').value;
     if (novoItem === "") {
-        alert("Preencha o Campo Nome da lista!")
+        alert("Preencha o Campo Com o Nome da lista!")
     } else {
         var dados = new FormData();
         dados.append("id_usuario", localStorage.getItem("id_usu"));
         dados.append("nome_lista", novoItem);
-        if (confirm("Deseja Salvar o novo item?")) {
-            xhr.addEventListener("readystatechange", function () {
-                if (this.readyState === this.DONE) {
-                    let resposta = JSON.parse(this.responseText);
-                    if (resposta.hasOwnProperty("erro")) {
-                        alert(resposta.erro);
-                    } else {
-                        alert("Novo Item salvo com sucesso!");
-                    }
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === this.DONE) {
+                let resposta = JSON.parse(this.responseText);
+                if (resposta.hasOwnProperty("erro")) {
+                    alert(resposta.erro);
                 }
-            });
-            xhr.open("POST", urlTipoLista);
-            xhr.send(dados);
-            setTimeout(() => { window.location.reload(); }, 1000);
-        }
+            }
+        });
+        xhr.open("POST", urlTipoLista);
+        xhr.send(dados);
+        setTimeout(() => { window.location.reload(); }, 1000);
     }
 }
 

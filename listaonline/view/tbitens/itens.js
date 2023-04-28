@@ -166,19 +166,9 @@ function checado(check, indice) {
     qtd.style.textDecoration = "none";
     listaItens[indice].concluido = 0;
   }
-  let dados =
-    "id_lista=" +
-    listaItens[indice].id_lista +
-    "&id_usuario=" +
-    localStorage.getItem("id_usu") +
-    "&id_item=" +
-    listaItens[indice].id_item +
-    "&nome_item=" +
-    listaItens[indice].nome_item +
-    "&qtd=" +
-    listaItens[indice].qtd +
-    "&concluido=" +
-    listaItens[indice].concluido;
+  let dados = "id_lista=" + listaItens[indice].id_lista + "&id_usuario=" + localStorage.getItem("id_usu") +
+    "&id_item=" + listaItens[indice].id_item + "&nome_item=" + listaItens[indice].nome_item + "&qtd=" +
+    listaItens[indice].qtd + "&concluido=" + listaItens[indice].concluido;
 
   xhr.addEventListener("readystatechange", function () {
     if (this.readyState === this.DONE) {
@@ -190,7 +180,7 @@ function checado(check, indice) {
   });
   xhr.open("PUT", urlItem);
   xhr.send(dados);
-  setTimeout(() => { window.location.reload(); }, 1000);
+  //setTimeout(() => { window.location.reload(); }, 1000);
 }
 
 function limpaLocalStorage() {

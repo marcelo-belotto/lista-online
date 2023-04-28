@@ -8,7 +8,7 @@
 }
 
 .Titulo__Principal {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   text-transform: uppercase;
   font-weight: 900;
 }
@@ -57,7 +57,7 @@ tr:nth-child(even) {
 
 #input_lista {
   padding: 0.5rem;
-  font-size: 1rem;
+  font-size: 1.3rem;
 }
 
 .container-botao {

@@ -1,18 +1,5 @@
 @import "../../style.css";
 
-h1,
-h2 {
-    margin: -10px 0 15px 0;
-    font-size: 30pt;
-    width: 99%;
-    text-align: center;
-    color: #0B2447;
-}
-
-h2 {
-    font-size: 25pt;
-}
-
 .divlogin {
     border: 1px solid #0B2447;
     width: 97%;

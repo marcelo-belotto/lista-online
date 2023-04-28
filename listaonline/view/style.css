@@ -19,6 +19,15 @@ html {
   font-family: "Gill Sans Extrabold", Helvetica, sans-serif;
 }
 
+h1,
+h2 {
+  margin: 10px 0 25px 0;
+  font-size: 22pt;
+  width: 99%;
+  text-align: center;
+  color: var(--cor-de-fundo-menu);
+}
+
 .logo {
   margin: 0;
   width: 25%;
@@ -83,6 +92,8 @@ html {
   color: var(--cor-da-fonte-menu);
 }
 
-.fa {
+.fa,
+.Titulo__Principal {
   color: #0B2447;
+  font-size: 2rem;
 }
