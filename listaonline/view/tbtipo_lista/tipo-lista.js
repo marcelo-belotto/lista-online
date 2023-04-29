@@ -14,12 +14,12 @@ function readTipoLista() {
         .then(function (data) {
             data.forEach((dado) => {
                 let row = document.createElement("tr");
-                row.innerHTML += `<td onclick='abreLista(${dado.id_lista})' class="item--tabela">${dado.nome_lista}</td>`;
+                row.innerHTML += `<td onclick='abreLista(${dado.id_lista},this.parentNode.innerText)' class="item--tabela">${dado.nome_lista}</td>`;
                 row.innerHTML += `<td style="padding:3px" ><div class="opcoes--tabela">
                     <span class='edi' onclick='editTipoLista(this.parentNode.parentNode.parentNode.cells)'>
                     <i class="fa fa-pencil" aria-hidden="true"></i>
                     </span>
-                    <span class='del' onclick='delTipoLista(${dado.id_lista})'>
+                    <span class='del' onclick='delTipoLista(${dado.id_lista},this.parentNode.parentNode.parentNode.cells[0].innerText)'>
                     <i class="fa fa-trash-o" aria-hidden="true"></i>
                     </span>
                     <span class='sal' onclick='salvarAlteracao(${dado.id_lista},this.parentNode.parentNode.parentNode.cells[0].innerText)' hidden=true>
@@ -37,7 +37,8 @@ function readTipoLista() {
         });
 }
 
-function abreLista(numero) {
+function abreLista(numero, nomelis) {
+    localStorage.setItem("nomelist", nomelis);
     if (editAlt) {
         window.location.assign("../tbitens/itens.html?id_lista=" + numero);
     }
@@ -53,9 +54,9 @@ function editTipoLista(itemEditado) {
     editAlt = !editAlt;
 }
 
-function delTipoLista(id_lista) {
+function delTipoLista(id_lista, listanome) {
     let dados = "id_usuario=" + localStorage.getItem("id_usu") + "&" + "id_lista=" + id_lista;
-    if (confirm("Deseja excluir Lista?")) {
+    if (confirm("Deseja excluir Lista '" + listanome + "'?")) {
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
                 let resposta = JSON.parse(this.responseText);

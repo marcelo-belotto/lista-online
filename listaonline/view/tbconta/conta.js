@@ -29,7 +29,8 @@ function readConta() {
                     row.innerHTML += `<p class="con">${valorCompleto}</p>`;
                     row.innerHTML += `<div class="opcoes--tabela"><span class="del" onclick='delConta(${indice})'><i class="fa fa-trash-o" aria-hidden="true"></i></span><span><input type="checkbox" id="pago" onclick="checado(this,${indice})" checked></span></div></section>`;
                     row.style.textDecoration = 'line-through';
-                    row.style.color = '#0B2447';
+                    row.style.background = "lightblue";
+                    row.style.color = "var(--cor-de-fundo-menu)";
                 } else {
                     row.innerHTML += `<p class="con">${dado.nome_conta}</p>`;
                     row.innerHTML += `<p class="con">${dado.vencimento}</p>`;
@@ -47,16 +48,11 @@ function readConta() {
 
 function checado(check, indice) {
     let tdconta = check.parentNode.parentNode.parentNode;
-    let tdvencimento = check.parentNode.parentNode.parentNode;
-    let tdvalor = check.parentNode.parentNode.parentNode;
     let valor = arrayLista[indice].valor;
 
     let subVirPon = valor.replace(",", ".");
     if (check.checked) {    //se a conta for marcada conta foi paga
         tdconta.style.textDecoration = 'line-through';    //Passa um alinha sobre o texto da td
-        tdvencimento.style.textDecoration = 'line-through';
-        tdvalor.style.textDecoration = 'line-through';
-        tdconta.style.color = "var(--cor-de-fundo-menu)";
 
         let dados = "id_conta=" + arrayLista[indice].id_conta;
         dados += "&id_usuario=" + localStorage.getItem("id_usu");
@@ -79,8 +75,6 @@ function checado(check, indice) {
         xhr.send(dados);
     } else { //se desmarcar conta não paga
         tdconta.style.textDecoration = 'line-through';    //Passa um alinha sobre o texto da td
-        tdvencimento.style.textDecoration = 'line-through';
-        tdvalor.style.textDecoration = 'line-through';
 
         let dados = "id_conta=" + arrayLista[indice].id_conta;
         dados += "&id_usuario=" + localStorage.getItem("id_usu");

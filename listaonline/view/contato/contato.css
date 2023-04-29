@@ -20,7 +20,7 @@ aside .programador {
     height: auto;
     margin: 10px 0 0 30%;
     border-radius: 100%;
-    border: 1px solid #008000;
+    border: 1px solid #0B2447;
 }
 
 .fa-linkedin-square {
@@ -55,7 +55,7 @@ aside .programador {
     margin-bottom: 20px;
     text-align: center;
     font-size: 25pt;
-    color: #008000;
+    color: #0B2447;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }
 
@@ -65,5 +65,4 @@ h2 {
     width: auto;
     font-size: 35pt;
     height: auto;
-    /* border: 1px solid; */
 }

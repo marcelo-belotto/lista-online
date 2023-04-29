@@ -7,6 +7,9 @@ var listaItens = [];
 var indice = 0;
 
 function readItem() {
+  var nmlista = localStorage.getItem("nomelist");
+  console.log(nmlista);
+
   let idse = new URL(window.location.href).searchParams.get("id_lista");
   fetch(urlItem + "?id_lista=" + idse)
     .then(function (resposta) {
@@ -124,7 +127,7 @@ function salvarNovoItem() {
   btnNovoItem.style.display = "none";
   let novoItem = document.querySelector("#input_item").value;
   let qtd = document.querySelector("#input_qtd").value;
-  if (novoItem === "" || qtd === "") {
+  if (novoItem === "") {
     alert("Preencha os Campos Corretamente!");
   } else {
     var dados = new FormData();
@@ -155,6 +158,9 @@ function checado(check, indice) {
   let qtd = check.parentNode.parentNode.children[1];
   let nome = localStorage.getItem("nome_usu");
 
+  if (listaItens[indice].qtd == null) {
+    listaItens[indice].qtd = "";
+  }
   if (check.checked) {
     nome_item.style.textDecoration = "line-through";
     nome_item.style.color = "var(--cor-de-fundo-menu)";
@@ -166,6 +172,7 @@ function checado(check, indice) {
     qtd.style.textDecoration = "none";
     listaItens[indice].concluido = 0;
   }
+
   let dados = "id_lista=" + listaItens[indice].id_lista + "&id_usuario=" + localStorage.getItem("id_usu") +
     "&id_item=" + listaItens[indice].id_item + "&nome_item=" + listaItens[indice].nome_item + "&qtd=" +
     listaItens[indice].qtd + "&concluido=" + listaItens[indice].concluido;
@@ -180,7 +187,7 @@ function checado(check, indice) {
   });
   xhr.open("PUT", urlItem);
   xhr.send(dados);
-  //setTimeout(() => { window.location.reload(); }, 1000);
+  setTimeout(() => { window.location.reload(); }, 1000);
 }
 
 function limpaLocalStorage() {
