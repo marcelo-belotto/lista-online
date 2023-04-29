@@ -68,7 +68,8 @@ function checado(check, indice) {
                 } else {
                     alert(localStorage.getItem("nome_usu") + " Menos uma divida, show de bola!");
                 }
-                setTimeout(() => { window.location.reload(); }, 1000);
+                //setTimeout(() => { window.location.reload(); }, 1000);
+                cancelar();
             }
         });
         xhr.open("PUT", urlConta);
@@ -87,9 +88,9 @@ function checado(check, indice) {
                 let resp = JSON.parse(this.responseText);
                 if (resp.hasOwnProperty("erro")) {
                     msg.innerHTML = resp.erro;
-                } else {
                 }
-                setTimeout(() => { window.location.reload(); }, 1000);
+                //setTimeout(() => { window.location.reload(); }, 1000);
+                cancelar();
             }
         });
         xhr.open("PUT", urlConta);
@@ -205,7 +206,6 @@ function finalizar() {  //Function para salvar nova conta
     } else {
         alert("Favor preencher todos os campos!");
         setTimeout(() => { window.location.reload(); }, 1000);
-        //setTimeout(() => { msg.innerHTML = "Mensagens do sistema"; }, 3000);
     }
 }
 

@@ -15,10 +15,13 @@
     padding: 2, 5rem;
     box-sizing: border-box;
     padding: 1rem;
-    background: #eff5ef;
+    /* background: #fcfdfc; */
     border-radius: 6%;
     margin: 4% 2%;
-    /* opacity: 0.10; */
+}
+
+::placeholder {
+    opacity: 0.4;
 }
 
 .divlogin .inputForm {

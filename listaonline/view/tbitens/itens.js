@@ -185,7 +185,8 @@ function checado(check, indice) {
   });
   xhr.open("PUT", urlItem);
   xhr.send(dados);
-  setTimeout(() => { window.location.reload(); }, 1000);
+  window.location.reload();
+  //setTimeout(() => { window.location.reload(); }, 1000);
 }
 
 function limpaLocalStorage() {

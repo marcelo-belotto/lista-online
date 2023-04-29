@@ -37,7 +37,7 @@ function readTipoLista() {
         });
 }
 
-function abreLista(numero,nomeLista) {
+function abreLista(numero, nomeLista) {
     if (editAlt) {
         window.location.assign("../tbitens/itens.html?id_lista=" + numero + "&nome_lista=" + nomeLista);
     }
@@ -91,7 +91,7 @@ function novaLista() {
     let form = document.createElement("form");
     form.className = "Formulario__lista";
     form.innerHTML += `<h1 class="Titulo__Principal">Nova Lista</h1><input type="text" id="input_lista" placeholder="Digite o nome da lista">`;
-    form.innerHTML += `<div class="container-botao"><input type="button" onclick="cancelarAdicionar()" value="Voltar" class="Botao-form"/><input type="button" onclick="salvarNovaLista()" value="Salvar Lista" class="Botao-form"/></div></form>`
+    form.innerHTML += `<div class="container-botao"><input type="button" onclick="cancelarAdicionar()" value="Voltar" class="Botao-form"/><input type="button" id="btnsalvar" onclick="salvarNovaLista()" value="Salvar Lista" class="Botao-form"/></div></form>`
     div.appendChild(form);
 }
 
@@ -106,6 +106,8 @@ function salvarNovaLista() {
     if (novoItem === "") {
         alert("Preencha o Campo Com o Nome da lista!")
     } else {
+        let btnsalvar = document.querySelector("#btnsalvar");
+        btnsalvar.style.display = "none";
         var dados = new FormData();
         dados.append("id_usuario", localStorage.getItem("id_usu"));
         dados.append("nome_lista", novoItem);

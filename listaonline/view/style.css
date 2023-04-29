@@ -67,6 +67,7 @@ h2 {
 }
 
 .item-menu-linha {
+  padding: 0.6rem;
   display: flex;
   justify-content: space-between;
 }
