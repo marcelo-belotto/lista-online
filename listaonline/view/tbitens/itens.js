@@ -2,15 +2,13 @@ const xhr = new XMLHttpRequest();
 const urlItem = "http://localhost/listaonline/src/controll/routes/route.item.php";
 var item = document.querySelector(".item");
 var form = document.querySelector("#div");
-let idse = "";
+var nmlista = new URL(window.location.href).searchParams.get("nome_lista");
+var idse = new URL(window.location.href).searchParams.get("id_lista");
 var listaItens = [];
 var indice = 0;
 
 function readItem() {
-  var nmlista = localStorage.getItem("nomelist");
-  console.log(nmlista);
-
-  let idse = new URL(window.location.href).searchParams.get("id_lista");
+  document.querySelector(".Titulo__Principal").innerHTML = nmlista;
   fetch(urlItem + "?id_lista=" + idse)
     .then(function (resposta) {
       if (!resposta.ok)

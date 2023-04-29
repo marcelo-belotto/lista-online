@@ -19,3 +19,19 @@
   border-radius: 10px;
 }
 
+.container__telas{
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 2rem;
+}
+
+.tela-imagem:nth-child(2){
+  transform: skew(-6deg,6deg);
+}
+
+.tela-imagem{
+  width: 50%;
+  transform: skew(6deg,-6deg);
+  box-shadow: 10px 5px 5px var(--cor-de-fundo-menu);
+  border: 1px solid var(--cor-de-fundo-menu);
+}

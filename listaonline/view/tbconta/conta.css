@@ -36,6 +36,7 @@
   font-size: 1rem;
   border-radius: 0;
   border: 1px var(--cor-de-fundo-menu) solid;
+  border-radius: 10px;
 }
 
 aside {

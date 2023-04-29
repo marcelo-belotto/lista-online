@@ -1,12 +1,17 @@
 @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
 @import "../style.css";
 
-.container_cabecalho {
+h1{
+  margin: 0;
+}
+
+.container_cabecalho{
   display: grid;
   grid-template-columns: 1fr 4fr;
   align-items: center;
   text-align: center;
   padding: 1rem;
+  word-break: break-all;
 }
 
 .item {

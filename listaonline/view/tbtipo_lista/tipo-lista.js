@@ -14,7 +14,7 @@ function readTipoLista() {
         .then(function (data) {
             data.forEach((dado) => {
                 let row = document.createElement("tr");
-                row.innerHTML += `<td onclick='abreLista(${dado.id_lista},this.parentNode.innerText)' class="item--tabela">${dado.nome_lista}</td>`;
+                row.innerHTML += `<td onclick='abreLista(${dado.id_lista},"${dado.nome_lista}")' class="item--tabela">${dado.nome_lista}</td>`;
                 row.innerHTML += `<td style="padding:3px" ><div class="opcoes--tabela">
                     <span class='edi' onclick='editTipoLista(this.parentNode.parentNode.parentNode.cells)'>
                     <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -37,10 +37,9 @@ function readTipoLista() {
         });
 }
 
-function abreLista(numero, nomelis) {
-    localStorage.setItem("nomelist", nomelis);
+function abreLista(numero,nomeLista) {
     if (editAlt) {
-        window.location.assign("../tbitens/itens.html?id_lista=" + numero);
+        window.location.assign("../tbitens/itens.html?id_lista=" + numero + "&nome_lista=" + nomeLista);
     }
 }
 
