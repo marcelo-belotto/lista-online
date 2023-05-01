@@ -50,3 +50,10 @@ input[type="submit"] {
     border: 1px solid #0B2447;
     border-radius: 10px;
 }
+
+@media screen and (min-width:800px) {
+    .divlogin{
+        width: 25rem;
+        margin: 2rem auto;
+    }
+}

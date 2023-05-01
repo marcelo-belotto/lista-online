@@ -61,13 +61,9 @@ h2 {
   text-align: center;
 }
 
-.item-menu:hover {
-  background-color: white;
-  color: black;
-}
+
 
 .item-menu-linha {
-  padding: 0.6rem;
   display: flex;
   justify-content: space-between;
 }
@@ -97,4 +93,34 @@ h2 {
 .Titulo__Principal {
   color: #0B2447;
   font-size: 2rem;
+}
+
+@media screen and (min-width:800px) {
+  .logo {
+    width: 8rem;
+  }
+
+  .menu__navegacao {
+    height: 5rem;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .item-menu-linha {
+    display: inline-block;
+  }
+
+  .item-menu{
+    font-weight: 800;
+    padding: 2rem;
+  }
+
+  .item-menu:hover {
+    border-radius: 10px;
+    background-color: white;
+    color: var(--cor-de-fundo-menu);
+  }
+
 }

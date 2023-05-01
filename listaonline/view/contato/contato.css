@@ -20,6 +20,7 @@ aside .programador {
     height: auto;
     margin: 10px 0 0 30%;
     border-radius: 100%;
+    border: 1px solid #0B2447;
 }
 
 .fa-linkedin-square {
@@ -55,7 +56,6 @@ aside .programador {
     text-align: center;
     font-size: 25pt;
     color: #0B2447;
-    font-weight: 700;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }
 
@@ -65,4 +65,41 @@ h2 {
     width: auto;
     font-size: 35pt;
     height: auto;
+}
+
+@media screen and (min-width:800px) {
+    section{
+        width: 46rem;
+        margin: auto;
+        text-align: center;
+        padding: 0.5rem;
+    }
+
+    .divimg{
+        width: 100%;
+        margin: 0;
+    }
+
+    h1{
+        width: 46rem;
+    }
+
+    h2{
+        margin: 0;
+        padding: 1rem;
+    }
+
+    hr{
+        margin: 0.5rem;
+    }
+
+    aside img.programador{
+        margin: auto;
+    }
+
+    h2 a i:hover{
+        transition: 0.5s;
+        font-size: 3rem;
+    }
+
 }

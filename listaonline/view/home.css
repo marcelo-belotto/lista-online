@@ -35,3 +35,21 @@
   box-shadow: 10px 5px 5px var(--cor-de-fundo-menu);
   border: 1px solid var(--cor-de-fundo-menu);
 }
+
+@media screen and (min-width:800px) {
+  .principal{
+    width: 50%;
+    margin: auto;
+  }
+
+  .tela-imagem{
+    width: 20rem;
+  }
+
+  .btn-principal:hover{
+    transition: 0.5s;
+    color: var(--cor-de-fundo-menu);
+    background-color: white;
+    border: 1px solid var(--cor-de-fundo-menu)
+  }
+}

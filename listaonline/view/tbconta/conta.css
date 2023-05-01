@@ -93,3 +93,34 @@ main {
   margin: 5px;
   width: 98%;
 }
+
+@media screen and (min-width:800px) {
+  #conta{
+    width: 50rem;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  section{
+    width: 15rem;
+    word-wrap: break-word;
+  }
+
+  aside{
+    width: 50rem;
+    margin: 2rem auto;
+    display: flex;
+    text-align: center;
+  }
+
+  .fa{
+    font-size: 2rem;
+  }
+
+  .fa:hover{
+    transition: 0.5s;
+    font-size: 2.5rem;
+  }
+}
