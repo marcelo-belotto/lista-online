@@ -201,4 +201,11 @@ button {
         cursor: pointer;
     }
 
+    button:hover{
+        cursor: pointer;
+        transition: 0.5s;
+        color: var(--cor-de-fundo-menu);
+        background-color: white;
+        border: 1px solid var(--cor-de-fundo-menu)
+    }
 }

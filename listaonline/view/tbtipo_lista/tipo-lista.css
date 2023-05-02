@@ -9,6 +9,7 @@
 
 .Titulo__Principal {
   font-size: 1.4rem;
+  text-transform: uppercase;
   font-weight: 900;
 }
 
@@ -75,4 +76,40 @@ tr:nth-child(even) {
   border-radius: 0;
   border: 1px var(--cor-de-fundo-menu) solid;
   border-radius: 10px;
+}
+
+@media screen and (min-width:800px) {
+  #table{
+    width: 50rem;
+    margin: 2rem auto;
+  }
+  .item--tabela:hover{
+    border: 1px solid black;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .fa:hover{
+    cursor: pointer;
+    font-size: 2.1rem;
+  }
+  .opcoes--tabela{
+    justify-content: center;
+    gap: 2rem;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 0;
+  }
+  #div{
+    width: 30rem;
+    margin: auto;
+  }
+  .Botao-form:hover{
+    cursor: pointer;
+    transition: 0.5s;
+    color: var(--cor-de-fundo-menu);
+    background-color: white;
+    border: 1px solid var(--cor-de-fundo-menu);
+  }
 }

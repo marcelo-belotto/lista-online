@@ -2,6 +2,7 @@ const xhr = new XMLHttpRequest();
 const urlItem = "http://localhost/listaonline/src/controll/routes/route.item.php";
 var item = document.querySelector(".item");
 var form = document.querySelector("#div");
+var cabecalho = document.querySelector(".container_cabecalho");
 var nmlista = new URL(window.location.href).searchParams.get("nome_lista");
 var idse = new URL(window.location.href).searchParams.get("id_lista");
 var listaItens = [];
@@ -52,6 +53,7 @@ function readItem() {
 
 function editItem(itemEditado, indice) {
   let table = document.querySelector(".item");
+  cabecalho.style.display = "none"
   table.style.display = "none";
   let form = document.createElement("form");
   form.className = "Formulario__item";
@@ -105,6 +107,7 @@ function salvarAlteracao(indice) {
 
 function novoItem() {
   let table = document.querySelector(".item");
+  cabecalho.style.display = "none";
   table.style.display = "none";
   let form = document.createElement("form");
   form.className = "Formulario__item";
@@ -116,6 +119,7 @@ function novoItem() {
 
 function cancelarAdicionar() {
   let table = document.querySelector(".item");
+  cabecalho.style.display = "grid";
   table.style.display = "flex";
   form.innerHTML = "";
 }
@@ -185,8 +189,7 @@ function checado(check, indice) {
   });
   xhr.open("PUT", urlItem);
   xhr.send(dados);
-  window.location.reload();
-  //setTimeout(() => { window.location.reload(); }, 1000);
+  setTimeout(() => { window.location.reload(); }, 1000);
 }
 
 function limpaLocalStorage() {

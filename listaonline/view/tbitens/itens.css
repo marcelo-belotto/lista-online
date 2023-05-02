@@ -82,3 +82,41 @@ input.checkbox-acoes {
   border-radius: 10px;
   border: 1px var(--cor-de-fundo-menu) solid;
 }
+
+@media screen and (min-width:800px) {
+  main{
+    width: 50rem;
+    margin: auto;
+  }
+
+  .item{
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .container-item{
+    width: 23.85rem;
+    word-wrap: break-word;
+  }
+
+  .fa:hover{
+    cursor: pointer;
+    font-size: 2.1rem;
+  }
+  #div{
+    width: 30rem;
+    margin: auto;
+  }
+
+  .Titulo__Principal{
+    margin: 0;
+  }
+
+  .Botao-form:hover{
+    cursor: pointer;
+    transition: 0.5s;
+    color: var(--cor-de-fundo-menu);
+    background-color: white;
+    border: 1px solid var(--cor-de-fundo-menu);
+  }
+}

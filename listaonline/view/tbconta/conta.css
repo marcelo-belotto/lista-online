@@ -119,8 +119,30 @@ main {
     font-size: 2rem;
   }
 
+  input[type="checkbox"]{
+    cursor: pointer;
+  }
+
   .fa:hover{
+    cursor: pointer;
     transition: 0.5s;
-    font-size: 2.5rem;
+    font-size: 2.3rem;
+  }
+  
+  #div{
+    width: 30rem;
+    margin: auto;
+  }
+
+  .Titulo__Form{
+    margin: 0;
+  }
+
+  input[type="button"]:hover{
+    cursor: pointer;
+    transition: 0.5s;
+    color: var(--cor-de-fundo-menu);
+    background-color: white;
+    border: 1px solid var(--cor-de-fundo-menu)
   }
 }
