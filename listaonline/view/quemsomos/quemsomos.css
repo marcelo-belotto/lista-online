@@ -15,6 +15,17 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  margin: 0 0.5rem;
+  border: 1px solid var(--cor-de-fundo-menu);
+  border-radius: 10px;
+  background-color: var(--cor-de-fundo-menu);
+  color: var(--cor-da-fonte-menu);
+}
+
+h2.Titulo__Principal{
+  color: var(--cor-da-fonte-menu);
+  margin-bottom: 0.5rem;
+  padding: 0;
 }
 
 .Foto--desenvolvedor {
@@ -26,6 +37,17 @@
   margin-top: 1rem;
 }
 
+.links-contato{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin-top: 0.5rem;
+}
+
+.links-contato a i{
+  color: var(--cor-da-fonte-menu);
+}
+
 @media screen and (min-width:800px) {
   .principal{
     width: 48rem;
@@ -34,6 +56,7 @@
     align-items: center;
     column-gap: 0.5rem;
     grid-template-columns: 50% 50%;
+    gap: 0;
   }
 
   h1{
@@ -44,19 +67,31 @@
   .container{
     padding: 0;
     height: 100%;
-    border: 1px solid var(--cor-de-fundo-menu);
-    border-radius: 10px;
-    background-color: var(--cor-de-fundo-menu);
-    color: var(--cor-da-fonte-menu);
   }
 
-  .texto__principal{
-    margin: 1rem;
+  h2.Titulo__Principal{
+    color: var(--cor-da-fonte-menu);
+    margin: 0;
+    padding: 0;
+    margin-top: 0.5rem;
   }
 
   .Foto--desenvolvedor {
     margin-top: 1rem;
     width: 15rem;
     border-radius: 50%;
+  }
+
+  .texto__principal{
+    margin: 1rem;
+  }
+
+  .links-contato{
+    padding-bottom: 2rem;
+  }
+
+   .links-contato a i:hover{
+    transition: 0.5s;
+    font-size: 2.4rem;
   }
 }
