@@ -30,10 +30,12 @@ $url = '://'.$_SERVER['HTTP_HOST'].$_SERVER['SCRIPT_NAME'].'?'.$_SERVER['QUERY_S
 $chave = explode("=", $protocolo.$url);
         ?>
     <div class="divlogin">
-    <h2>Imagem do perfil</h2>
+    <!--<h2>Imagem do perfil</h2>-->
     <form action="./foto.php?id=<?php echo $chave[1]?>" method="POST" enctype="multipart/form-data">
         <div class="inputForm">
+            <article>
                 <img class="novaimg" id="exibir" src="" alt="">                
+            </article>
                 <label for="img">Escolher nova imagem </label>
                 <input type="file" id="img" name="img_usuario" class="escolherimg">
         </div> 

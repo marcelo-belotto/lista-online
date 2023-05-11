@@ -1,17 +1,17 @@
-@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
 @import "../style.css";
 
-h1{
+h1 {
   margin: 0;
 }
 
-.container_cabecalho{
+.container_cabecalho {
   display: grid;
   grid-template-columns: 1fr 4fr;
   align-items: center;
   text-align: center;
   padding: 1rem;
   word-break: break-all;
+  background: #0B2447;
 }
 
 .item {
@@ -25,9 +25,10 @@ h1{
   margin: 8px;
   text-align: center;
   border-radius: 10px;
-  border: 1px dashed #0B2447;
+  background: #0B2447;
   border-radius: 10px;
   font-size: 17pt;
+  color: var(--cor-da-fonte-menu);
 }
 
 .linha-item {
@@ -84,35 +85,36 @@ input.checkbox-acoes {
 }
 
 @media screen and (min-width:800px) {
-  main{
+  main {
     width: 50rem;
     margin: auto;
   }
 
-  .item{
+  .item {
     flex-direction: row;
     flex-wrap: wrap;
   }
 
-  .container-item{
+  .container-item {
     width: 23.85rem;
     word-wrap: break-word;
   }
 
-  .fa:hover{
+  .fa:hover {
     cursor: pointer;
     font-size: 2.1rem;
   }
-  #div{
+
+  #div {
     width: 30rem;
     margin: auto;
   }
 
-  .Titulo__Principal{
+  .Titulo__Principal {
     margin: 0;
   }
 
-  .Botao-form:hover{
+  .Botao-form:hover {
     cursor: pointer;
     transition: 0.5s;
     color: var(--cor-de-fundo-menu);

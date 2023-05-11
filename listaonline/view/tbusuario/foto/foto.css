@@ -1,16 +1,14 @@
 @import "../../style.css";
 
 .divlogin {
-    border: 1px solid #0B2447;
     width: 97%;
     height: auto;
     padding: 2rem, 5rem;
     box-sizing: border-box;
     padding: 1rem;
-    background: #eff5ef;
-    border-radius: 6%;
-    margin: 10% 1% 5% 1%;
-    /* opacity: 0.10; */
+    background: #0B2447;
+    border-radius: 2%;
+    margin: 5% 1%;
 }
 
 .novaimg {
@@ -19,6 +17,7 @@
     width: 100%;
     height: auto;
     margin: 0;
+    border-radius: 10px;
 }
 
 input[type="file"] {
@@ -37,6 +36,7 @@ label {
     cursor: pointer;
     font-size: 15pt;
     border-radius: 10px;
+    border: 1px solid white;
 }
 
 input[type="submit"] {
@@ -47,12 +47,12 @@ input[type="submit"] {
     font-size: 15pt;
     color: white;
     text-align: center;
-    border: 1px solid #0B2447;
+    border: 1px solid white;
     border-radius: 10px;
 }
 
 @media screen and (min-width:800px) {
-    .divlogin{
+    .divlogin {
         width: 25rem;
         margin: 2rem auto;
     }

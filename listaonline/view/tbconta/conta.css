@@ -60,12 +60,18 @@ aside {
 }
 
 section {
-  border: 1px dashed #0B2447;
+  background: var(--cor-de-fundo-menu);
+  color: var(--cor-da-fonte-menu);
+  border: none;
   border-radius: 20px;
   margin: 5px;
   width: 95%;
   height: auto;
   display: inline-block;
+}
+
+.fa-plus-square {
+  color: var(--cor-de-fundo-menu);
 }
 
 .con {
@@ -95,7 +101,7 @@ main {
 }
 
 @media screen and (min-width:800px) {
-  #conta{
+  #conta {
     width: 50rem;
     margin: auto;
     display: flex;
@@ -103,42 +109,42 @@ main {
     flex-wrap: wrap;
   }
 
-  section{
+  section {
     width: 15rem;
     word-wrap: break-word;
   }
 
-  aside{
+  aside {
     width: 50rem;
     margin: 2rem auto;
     display: flex;
     text-align: center;
   }
 
-  .fa{
+  .fa {
     font-size: 2rem;
   }
 
-  input[type="checkbox"]{
+  input[type="checkbox"] {
     cursor: pointer;
   }
 
-  .fa:hover{
+  .fa:hover {
     cursor: pointer;
     transition: 0.5s;
     font-size: 2.3rem;
   }
-  
-  #div{
+
+  #div {
     width: 30rem;
     margin: auto;
   }
 
-  .Titulo__Form{
+  .Titulo__Form {
     margin: 0;
   }
 
-  input[type="button"]:hover{
+  input[type="button"]:hover {
     cursor: pointer;
     transition: 0.5s;
     color: var(--cor-de-fundo-menu);

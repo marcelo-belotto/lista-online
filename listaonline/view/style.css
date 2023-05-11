@@ -21,11 +21,15 @@ html {
 
 h1,
 h2 {
-  margin: 10px 0 25px 0;
+  margin: 5px 0;
   font-size: 22pt;
   width: 99%;
   text-align: center;
   color: var(--cor-de-fundo-menu);
+}
+
+form {
+  margin-top: 20px;
 }
 
 .logo {
@@ -64,6 +68,7 @@ h2 {
 .item-menu-linha {
   display: flex;
   justify-content: space-between;
+  padding: 0.6rem;
 }
 
 .rodape {
@@ -71,6 +76,7 @@ h2 {
   position: absolute;
   bottom: -5rem;
   z-index: -1;
+  text-align: center;
 }
 
 .rodape__container {
@@ -78,6 +84,7 @@ h2 {
   padding: 0.3em;
   background-color: var(--cor-de-fundo-menu);
   margin-top: 3rem;
+  text-align: center;
 }
 
 .rodape__texto {
@@ -85,11 +92,16 @@ h2 {
   font-size: 1rem;
   white-space: nowrap;
   color: var(--cor-da-fonte-menu);
+  text-align: center;
 }
 
-.fa,
+.fa {
+  color: var(--cor-da-fonte-menu);
+  font-size: 2rem;
+}
+
 .Titulo__Principal {
-  color: #0B2447;
+  color: var(--cor-de-fundo-menu);
   font-size: 2rem;
 }
 
@@ -110,7 +122,7 @@ h2 {
     display: inline-block;
   }
 
-  .item-menu{
+  .item-menu {
     font-weight: 800;
     padding: 2rem;
   }
@@ -121,4 +133,9 @@ h2 {
     color: var(--cor-de-fundo-menu);
   }
 
+  .rodape__texto {
+    width: 390px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

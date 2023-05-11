@@ -1,5 +1,4 @@
 <?php
-//session_start();
 	class Login {
 		var $nome_usuario;
 		var $email_usuario;

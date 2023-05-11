@@ -11,42 +11,44 @@
 
 .btn-principal {
   padding: 1rem;
+  width: 130px;
   text-transform: uppercase;
   color: var(--cor-da-fonte-menu);
   background-color: var(--cor-de-fundo-menu);
   text-decoration: none;
   align-items: center;
+  text-align: center;
   border-radius: 10px;
 }
 
-.container__telas{
+.container__telas {
   display: flex;
   flex-wrap: nowrap;
   padding: 2rem;
 }
 
-.tela-imagem:nth-child(2){
-  transform: skew(-6deg,6deg);
+.tela-imagem:nth-child(2) {
+  transform: skew(-6deg, 6deg);
 }
 
-.tela-imagem{
+.tela-imagem {
   width: 50%;
-  transform: skew(6deg,-6deg);
+  transform: skew(6deg, -6deg);
   box-shadow: 10px 5px 5px var(--cor-de-fundo-menu);
   border: 1px solid var(--cor-de-fundo-menu);
 }
 
 @media screen and (min-width:800px) {
-  .principal{
+  .principal {
     width: 50%;
     margin: auto;
   }
 
-  .tela-imagem{
+  .tela-imagem {
     width: 20rem;
   }
 
-  .btn-principal:hover{
+  .btn-principal:hover {
     transition: 0.5s;
     color: var(--cor-de-fundo-menu);
     background-color: white;

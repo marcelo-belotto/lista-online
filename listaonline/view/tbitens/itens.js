@@ -1,5 +1,5 @@
 const xhr = new XMLHttpRequest();
-const urlItem = "http://localhost/listaonline/src/controll/routes/route.item.php";
+const urlItem = "https://agendaccbro.000webhostapp.com/src/controll/routes/route.item.php";
 var item = document.querySelector(".item");
 var form = document.querySelector("#div");
 var cabecalho = document.querySelector(".container_cabecalho");
@@ -9,6 +9,7 @@ var listaItens = [];
 var indice = 0;
 
 function readItem() {
+  let idse = new URL(window.location.href).searchParams.get("id_lista");
   document.querySelector(".Titulo__Principal").innerHTML = nmlista;
   fetch(urlItem + "?id_lista=" + idse)
     .then(function (resposta) {
@@ -35,12 +36,12 @@ function readItem() {
         item.appendChild(row);
         if (dado.concluido == 1) {
           row.style.border = "1px solid var(--cor-de-fundo-menu)";
-          row.style.background = "lightblue";
+          row.style.background = "#008000";
           row.children[2].children[2].checked = true;
           row.children[0].style.textDecoration = "line-through";
           row.children[1].style.textDecoration = "line-through";
-          row.children[0].style.color = "var(--cor-de-fundo-menu)";
-          row.children[1].style.color = "var(--cor-de-fundo-menu)";
+          row.children[0].style.color = "var(--cor-da-fonte-menu)";
+          row.children[1].style.color = "var(--cor-da-fonte-menu)";
           row.children[2].children[1].style = "Display: none";
         }
         indice++;
@@ -64,21 +65,23 @@ function editItem(itemEditado, indice) {
 }
 
 function delItem(indice) {
-  let dados = "id_usuario=" + localStorage.getItem("id_usu") + "&id_lista=" + listaItens[indice].id_lista +
-    "&id_item=" + listaItens[indice].id_item;
-
+  let dados = new FormData();
+  dados.append("id_lista", listaItens[indice].id_lista);
+  dados.append("id_item", listaItens[indice].id_item);
+  dados.append("verbo", "DELETE");
   if (confirm("Deseja excluir o item da Lista?")) {
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === this.DONE) {
+        console.log(this.responseText);
         let resposta = JSON.parse(this.responseText);
         if (resposta.hasOwnProperty("erro")) {
           alert(resposta.erro);
         }
       }
     });
-    xhr.open("DELETE", urlItem);
+    xhr.open("POST", urlItem);
     xhr.send(dados);
-    setTimeout(() => { window.location.reload(); }, 1000);
+    cancelar();
   }
 }
 
@@ -88,21 +91,27 @@ function salvarAlteracao(indice) {
   listaItens[indice].qtd = document.querySelector("#input_qtd").value;
   listaItens[indice].nome_item = document.querySelector("#input_item").value;
   listaItens[indice].qtd = document.querySelector("#input_qtd").value;
-  let dados = "id_lista=" + listaItens[indice].id_lista + "&id_usuario=" + localStorage.getItem("id_usu") +
-    "&id_item=" + listaItens[indice].id_item + "&nome_item=" + listaItens[indice].nome_item + "&qtd=" +
-    listaItens[indice].qtd + "&concluido=" + listaItens[indice].concluido;
-
+  let dados = new FormData();
+  dados.append("id_lista", listaItens[indice].id_lista);
+  dados.append("id_usuario", localStorage.getItem("id_usu"));
+  dados.append("id_item", listaItens[indice].id_item);
+  dados.append("nome_item", listaItens[indice].nome_item);
+  dados.append("qtd", listaItens[indice].qtd);
+  dados.append("concluido", listaItens[indice].concluido);
+  dados.append("verbo", "PUT");
   xhr.addEventListener("readystatechange", function () {
     if (this.readyState === this.DONE) {
+      console.log(this.responseText);
       let resposta = JSON.parse(this.responseText);
       if (resposta.hasOwnProperty("erro")) {
         alert(resposta.erro);
       }
+      //setTimeout(() => { window.location.reload(); }, 500);
     }
   });
-  xhr.open("PUT", urlItem);
+  xhr.open("POST", urlItem);
   xhr.send(dados);
-  setTimeout(() => { window.location.reload(); }, 1000);
+  cancelar();
 }
 
 function novoItem() {
@@ -139,19 +148,21 @@ function salvarNovoItem() {
     dados.append("nome_item", novoItem);
     dados.append("qtd", qtd);
     dados.append("concluido", 0);
-
+    dados.append("verbo", "POST");
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === this.DONE) {
+        console.log(this.responseText);
         let resposta = JSON.parse(this.responseText);
         console.log(resposta);
         if (resposta.hasOwnProperty("erro")) {
           alert(resposta.erro);
         }
+        //setTimeout(() => { window.location.reload(); }, 500);
       }
     });
     xhr.open("POST", urlItem);
     xhr.send(dados);
-    setTimeout(() => { window.location.reload(); }, 1000);
+    cancelar();
   }
 }
 
@@ -175,23 +186,32 @@ function checado(check, indice) {
     listaItens[indice].concluido = 0;
   }
 
-  let dados = "id_lista=" + listaItens[indice].id_lista + "&id_usuario=" + localStorage.getItem("id_usu") +
-    "&id_item=" + listaItens[indice].id_item + "&nome_item=" + listaItens[indice].nome_item + "&qtd=" +
-    listaItens[indice].qtd + "&concluido=" + listaItens[indice].concluido;
-
+  let dados = new FormData();
+  dados.append("id_lista", listaItens[indice].id_lista);
+  dados.append("id_usuario", localStorage.getItem("id_usu"));
+  dados.append("id_item", listaItens[indice].id_item);
+  dados.append("nome_item", listaItens[indice].nome_item);
+  dados.append("qtd", listaItens[indice].qtd);
+  dados.append("concluido", listaItens[indice].concluido);
+  dados.append("verbo", "PUT");
   xhr.addEventListener("readystatechange", function () {
     if (this.readyState === this.DONE) {
+      console.log(this.responseText);
       let resposta = JSON.parse(this.responseText);
       if (resposta.hasOwnProperty("erro")) {
         alert(resposta.erro);
       }
     }
   });
-  xhr.open("PUT", urlItem);
+  xhr.open("POST", urlItem);
   xhr.send(dados);
-  setTimeout(() => { window.location.reload(); }, 1000);
+  cancelar();
 }
 
 function limpaLocalStorage() {
   localStorage.clear();
+}
+
+function cancelar() {
+  window.location.reload();
 }

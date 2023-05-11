@@ -4,20 +4,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid #0B2447;
+    /*border: 1px solid #0B2447;*/
     width: 97%;
     height: auto;
-    padding: 2, 5rem;
     box-sizing: border-box;
     padding: 1rem;
-    background: #eff5ef;
-    border-radius: 6%;
+    background: #0B2447;
+    border-radius: 2%;
     margin: 4% 2%;
-    /* opacity: 0.10; */
 }
 
 .divlogin .inputForm {
     position: relative;
+    margin-bottom: 9px;
 }
 
 input {
@@ -28,16 +27,16 @@ input {
     width: 100%;
     padding: 2rem 0 0;
     font-size: 1rem;
-    color: #0B2447;
+    color: var(--cor-da-fonte-menu);
     letter-spacing: 0.062rem;
     margin-bottom: 1.875rem;
     border: none;
-    border-bottom: 0.065rem solid #0B2447;
+    border-bottom: 0.065rem solid white;
     outline: none;
     background: transparent;
     top: -0.125rem;
     left: 0;
-    color: black;
+    color: #808080;
     font-size: 1.5rem;
     font-weight: 700;
 }
@@ -60,7 +59,7 @@ input {
 legend {
     top: -0.525rem;
     left: 0;
-    color: #0B2447;
+    color: white;
     font-weight: 700;
     font-size: 1.5rem;
 }
@@ -90,18 +89,45 @@ input[type="radio"] {
     font-size: 26pt;
 }
 
-article {
-    width: 100%;
-    height: 7rem;
-    margin-bottom: 15px;
-    display: inline-flex;
+/*article {
+    width:auto;
+    text-align:center;
+    padding:20px;
 }
 
 .imgusu {
-    max-width: 8rem;
-    width: auto;
-    height: auto;
-    margin-left: 30%;
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  object-position: bottom;
+}
+
+article {
+    text-align: center;
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.imgusu {
+  width: min(260px, 10rem);
+  height: 10rem;
+  aspect-ratio: 19 / 13;
+  border-radius: 100%; 
+}*/
+
+article {
+    text-align: center;
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.imgusu {
+    box-sizing: border-box;
+    aspect-ratio: 16 / 9;
+    width: 7rem;
+    height: 7rem;
     border-radius: 100%;
     border: 1px solid #0B2447;
 }
@@ -128,16 +154,19 @@ i {
 }
 
 .fa-pencil {
-    color: #0B2447;
+    color: white;
     font-size: 28pt;
     height: 40px;
+    position: absolute;
+    left: 71%;
+    top: 6%
 }
 
 .cadastrar {
     border: 1px solid;
     margin: 0;
     width: 100%;
-    height: 40px;
+    height: 50px;
     background: #0B2447;
     color: white;
     font-size: 17pt;
@@ -178,7 +207,7 @@ button {
     margin: 10px;
     align-items: center;
     font-size: 15pt;
-    color: #0B2447;
+    color: white;
     font-weight: 700;
     text-decoration: none;
 }
@@ -187,21 +216,22 @@ button {
     text-align: center;
     margin: 10% 0 5% 0;
     font-size: 1.3rem;
+    color: white;
 }
 
 @media screen and (min-width:800px) {
-    .divlogin{
+    .divlogin {
         width: 400px;
-        margin: 2rem auto;        
+        margin: 2rem auto;
     }
 
     input[type="radio"]:hover,
     button:hover,
-    i:hover{
+    i:hover {
         cursor: pointer;
     }
 
-    button:hover{
+    button:hover {
         cursor: pointer;
         transition: 0.5s;
         color: var(--cor-de-fundo-menu);

@@ -5,11 +5,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adm site</title>
+    <link rel="stylesheet" type="text/css" href="./admsite.css">
+    <title>Conta</title>
 </head>
 
-<body>
-    <h1>Robésio</h1>
+<body onload="readAll()">
+    <a href="../tbusuario/login/login.html" onclick="limpaLocalStorage()">Sair</a><br><br>
+    <h1>Robesio</h1>
+    <table id="table">
+        <thead>
+            <tr>
+                <th><i onclick="novaConta()" class="fa fa-plus-square" aria-hidden="true"></i></th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Genero</th>
+                <th>Imagem</th>
+                <th>Senha</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="user"></tbody>
+        <tfoot>
+            <td>Auto</td>
+            <td><input type="text" id="nome" /></td>
+            <td><input type="text" id="email" /></td>
+            <td><input class="g" type="text" id="genero" /></td>
+            <td>Auto</td>
+            <td><input class="s" type="text" id="senha" /></td>
+            <td><input type="button" onclick="cadastrar()" value="Cadastrar" /></td>
+        </tfoot>
+    </table>
 </body>
+<script src="./admsite.js"></script>
 
 </html>

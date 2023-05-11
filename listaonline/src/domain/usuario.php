@@ -66,7 +66,7 @@
 				if(Connection::getInstance()->exec($query) >= 1){
 					$result = $usuario;
 				} else {
-					$result["Erro"] = "Erro ao cadastrar usuario!";
+					$result = 1;
 				}
 				$con = null;
 			}catch(PDOException $e) {

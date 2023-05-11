@@ -4,9 +4,9 @@
 		public static $instance;
 
 		public static function getInstance(){
-			$url = "mysql:host=localhost;port=3306;dbname=dblistaonline;";
+			$url = "mysql:host=localhost;port=3306;dbname=;";
 
-			$user = "root";
+			$user = "";
 
 			$password = "";
 

@@ -1,5 +1,5 @@
 const xhr = new XMLHttpRequest();
-const urlTipoLista = "http://localhost/listaonline/src/controll/routes/route.tipo_lista.php";
+const urlTipoLista = "https://agendaccbro.000webhostapp.com/src/controll/routes/route.tipo_lista.php";
 var lista = document.querySelector("#lista");
 var form = document.querySelector('#div');
 var editAlt = true;
@@ -54,35 +54,46 @@ function editTipoLista(itemEditado) {
 }
 
 function delTipoLista(id_lista, listanome) {
-    let dados = "id_usuario=" + localStorage.getItem("id_usu") + "&" + "id_lista=" + id_lista;
+    let dados = new FormData();
+    dados.append("id_usuario", localStorage.getItem("id_usu"));
+    dados.append("id_lista", id_lista);
+    dados.append("verbo", "DELETE");
     if (confirm("Deseja excluir Lista '" + listanome + "'?")) {
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
+                console.log(this.responseText);
                 let resposta = JSON.parse(this.responseText);
                 if (resposta.hasOwnProperty("erro")) {
                     alert(resposta.erro);
                 }
+                //setTimeout(() => { window.location.reload(); }, 500);
             }
         });
-        xhr.open("DELETE", urlTipoLista);
+        xhr.open("POST", urlTipoLista);
         xhr.send(dados);
-        setTimeout(() => { window.location.reload(); }, 1000);
+        cancelar();
     }
 }
 
 function salvarAlteracao(id_lista, nome_lista) {
-    let dados = "id_lista=" + id_lista + "&id_usuario=" + localStorage.getItem("id_usu") + "&nome_lista=" + nome_lista;
+    let dados = new FormData();
+    dados.append("id_lista", id_lista);
+    dados.append("id_usuario", localStorage.getItem("id_usu"));
+    dados.append("nome_lista", nome_lista);
+    dados.append("verbo", "PUT");
     xhr.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
+            console.log(this.responseText);
             let resposta = JSON.parse(this.responseText);
             if (resposta.hasOwnProperty("erro")) {
                 alert(resposta.erro);
             }
+            //setTimeout(() => { window.location.reload(); }, 500);
         }
     });
-    xhr.open("PUT", urlTipoLista);
+    xhr.open("POST", urlTipoLista);
     xhr.send(dados);
-    setTimeout(() => { window.location.reload(); }, 1000);
+    cancelar();
 }
 
 function novaLista() {
@@ -111,20 +122,27 @@ function salvarNovaLista() {
         var dados = new FormData();
         dados.append("id_usuario", localStorage.getItem("id_usu"));
         dados.append("nome_lista", novoItem);
+        dados.append("verbo", "POST");
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
+                console.log(this.responseText);
                 let resposta = JSON.parse(this.responseText);
                 if (resposta.hasOwnProperty("erro")) {
                     alert(resposta.erro);
                 }
+                //setTimeout(() => { window.location.reload(); }, 500);
             }
         });
         xhr.open("POST", urlTipoLista);
         xhr.send(dados);
-        setTimeout(() => { window.location.reload(); }, 1000);
+        cancelar();
     }
 }
 
 function limpaLocalStorage() {
     localStorage.clear();
+}
+
+function cancelar() {
+    window.location.reload();
 }

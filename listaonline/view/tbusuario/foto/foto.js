@@ -7,13 +7,13 @@ document.getElementById("deletar_img").style.display = "none";
 //id.value = localStorage.getItem("id_usu");
 
 if (localStorage.getItem("nome_img") == "null") {
-    photo.src = "../../img/icon-verde.png";
+    photo.src = "../../img/userazul.png";
 } else {
     photo.src = "../../../foto_usuario/" + localStorage.getItem("nome_img");
     document.getElementById("deletar_img").style.display = "block";
 
     photo.onerror = function () {
-        photo.src = "../../img/icon-verde.png";
+        photo.src = "../../img/userazul.png";
         const paragrafo = document.createElement("p");
         paragrafo.textContent = "Imagem não encontrada no servidor!";
         p.appendChild(paragrafo);
