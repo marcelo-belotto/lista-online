@@ -1,0 +1,45 @@
+@import "../style.css";
+
+form{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.input-usuario{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#txtnome,
+#txtemail{
+  width: 15rem;
+  font-size: 1.2rem;
+}
+
+label{
+  font-size: 1.5rem;
+}
+
+#sugestao{
+  resize: none;
+  font-size: 1.5rem;
+  width: 90%;
+  margin: 2rem;
+  padding: 0.5rem;
+}
+
+.btn-form{
+    border: 1px solid;
+    margin: 0;
+    width: 10rem;
+    height: 40px;
+    background: #0B2447;
+    color: white;
+    font-size: 17pt;
+    border-radius: 10px;
+}

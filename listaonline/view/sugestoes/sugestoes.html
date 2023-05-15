@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="./sugestoes.css">
+  <title>Sugestões - Lista Online</title>
+</head>
+<body>
+  <header class="menu__principal">
+    <img class="logo" src="../img/logo.jpg" alt="">
+    <nav class="menu__navegacao">
+        <div class="item-menu-linha">
+            <a href="../tbtipo_lista/tipo-lista.html" class="item-menu">Lista</a>
+        </div>
+        <div class="item-menu-linha">
+            <a href="../tbconta/conta.html" class="item-menu">Conta</a>
+            <a href="../tbusuario/login/login.html" onclick="limpaLocalStorage()" class="item-menu">Sair</a>
+        </div>
+    </nav>
+</header>
+<main>
+  <form action="sugestoes.php" method="POST">
+    <label for="sugestao"><h1>Sugestões</h1></label>
+    <div class="input-usuario">
+      <label for="nome">Nome: </label><input type="text" name="nome" id="txtnome">
+      <label for="email">E-Mail: </label><input type="email" name="email" id="txtemail">
+    </div>
+    <textarea name="sugestao" id="sugestao" cols="30" rows="10" placeholder="Digite aqui sua sugestão..." ></textarea>
+    <input type="submit" class="btn-form" value="Enviar">
+    <input type="button" class="btn-form"value="Voltar" onclick="window.history.back()">
+  </form>
+</main>
+<footer class="rodape">
+  <div class="rodape__container">
+      <p class="rodape__texto"></p>
+  </div>
+</footer>
+<script>
+  let data = new Date();
+  data = data.getFullYear();
+  document.querySelector(".rodape__texto").innerHTML = `Lista Online ${data} - Todos os Direitos Reservados.`;
+</script>
+</body>
+</html>
