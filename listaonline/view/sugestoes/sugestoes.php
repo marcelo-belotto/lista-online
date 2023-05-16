@@ -4,23 +4,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $email = $_POST['email'];
   $sugestao = $_POST['sugestao'];
   
-  $arquivo = fopen('arquivos/'.$email.'.txt','a');
+  if ($sugestao != '' || !empty($sugestao)){
+    $arquivo = fopen('arquivos/'.$email.'.txt','a');
 
-  $contexto = 'Nome: ' . $nome . PHP_EOL;
-  $contexto .= 'E-Mail: ' . $email . PHP_EOL;
-  $contexto .= 'Sugestão:'. $sugestao . PHP_EOL;
-  $contexto .= PHP_EOL;
-
-  if (empty($sugestao)) {?>
-    <script>alert("Sugestão Em branco!")</script>
-  <?php
-  fclose($arquivo);
-  } else {
+    $contexto = 'Nome: ' . $nome . PHP_EOL;
+    $contexto .= 'E-Mail: ' . $email . PHP_EOL;
+    $contexto .= 'Sugestão:'. $sugestao . PHP_EOL;
+    $contexto .= PHP_EOL;
+      
     fwrite($arquivo,$contexto);
     fclose($arquivo);?>
     <script>alert("Enviado Com Sucesso!")</script>
     <?php
-}
+  }else{
+    ?>
+    <script>alert("Favor digitar uma sugestão antes de enviar!")</script>
+    <?php
+  }
+  
 }
 
 ?>
