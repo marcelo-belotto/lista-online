@@ -11,14 +11,13 @@ form{
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  align-items: center;
-  justify-content: space-around;
 }
 
 #txtnome,
 #txtemail{
-  width: 15rem;
+  margin: 0 1.5rem;
   font-size: 1.2rem;
+  border: none;
 }
 
 label{
@@ -29,7 +28,7 @@ label{
   resize: none;
   font-size: 1.5rem;
   width: 90%;
-  margin: 2rem;
+  margin: 1rem;
   padding: 0.5rem;
 }
 
@@ -42,4 +41,23 @@ label{
     color: white;
     font-size: 17pt;
     border-radius: 10px;
+}
+
+@media screen and (min-width:800px) {  
+  main{
+    width: 800px;
+    margin: auto;
+  }
+  .input-usuario{
+    display: flex;
+    justify-content: baseline;
+  }
+  
+  #txtnome,
+  #txtemail{
+    margin: 0 2rem;
+    font-size: 1.2rem;
+    border: none;
+  }
+  
 }
