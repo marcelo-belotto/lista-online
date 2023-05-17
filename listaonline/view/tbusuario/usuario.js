@@ -137,6 +137,10 @@ function passaIdUrl() {
     window.location.assign("./foto/fotohtml.php?id=" + localStorage.getItem("id_usu"));
 }
 
+function passaDadosUrl(){
+    window.location.assign("../sugestoes/sugestoes.html?nome="+nome_usuario.value+"&email="+email.value);
+}
+
 function limpaLocalStorage() {
     localStorage.clear();
 }
