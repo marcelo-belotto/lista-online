@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../img/logo.jpg">
     <link rel="stylesheet" type="text/css" href="./usuario.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Perfil</title>
 </head>
 
@@ -14,18 +17,18 @@
         <img class="logo" src="../img/logo.jpg" alt="">
         <nav class="menu__navegacao">
             <div class="item-menu-linha">
-                <a href="../tbtipo_lista/tipo-lista.html" class="item-menu">Lista</a>
-		<!--<a href="../sugestoes/sugestoes.html" onclick="passaDadosUrl()"class="item-menu">Sugestões</a>-->
+		        <a href="#" onclick="passaDadosUrl()" class="item-menu">Sugestões</a>
+                <a href="../tbusuario/login/login.html" onclick="limpaLocalStorage()" class="item-menu">Sair</a>
             </div>
             <div class="item-menu-linha">
+                <a href="../tbtipo_lista/tipo-lista.html" class="item-menu">Lista</a>
                 <a href="../tbconta/conta.html" class="item-menu">Conta</a>
-                <a href="../tbusuario/login/login.html" onclick="limpaLocalStorage()" class="item-menu">Sair</a>
             </div>
         </nav>
     </header>
 
     <div class="divlogin">
-        <!--<h1 class="h1perfil">Perfil</h1>-->
+        <h1 class="titulodiv">Perfil</h1>
         <form action="" method="POST" enctype="multipart/form-data">
             <div class="inputForm">
                 <article>
@@ -43,9 +46,10 @@
                 <input type="email" placeholder="Email do usuário" id="email_usuario">
                 <label>Email *</label>
             </div>
-
+                <i class="fa fa-eye-slash emoji" id="esconderSenha" aria-hidden="true"></i>
+                <i class="fa fa-eye emoji" id="verSenha" aria-hidden="true" style="display:none;"></i>
             <div class="inputForm">
-                <input type="password" placeholder="Senha" id="senha" maxlength="6">
+                <input type="password" placeholder="Senha" id="senha">
                 <label>Senha *</label>
             </div>
 

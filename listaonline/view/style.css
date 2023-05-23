@@ -19,6 +19,10 @@ html {
   font-family: "Gill Sans Extrabold", Helvetica, sans-serif;
 }
 
+.titulodiv{
+  color: var(--cor-da-fonte-menu);
+}
+
 h1,
 h2 {
   margin: 5px 0;
@@ -101,7 +105,6 @@ form {
 }
 
 .Titulo__Principal {
-  color: var(--cor-de-fundo-menu);
   font-size: 2rem;
 }
 
@@ -137,5 +140,9 @@ form {
     width: 390px;
     margin-left: auto;
     margin-right: auto;
+  }
+  
+  .fa-plus-square{
+    color: var(--cor-de-fundo-menu);
   }
 }

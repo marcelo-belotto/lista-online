@@ -1,5 +1,5 @@
 const xhr = new XMLHttpRequest();
-const urlItem = "https://agendaccbro.000webhostapp.com/src/controll/routes/route.item.php";
+const urlItem = "https://listaonline.online/src/controll/routes/route.item.php";
 var item = document.querySelector(".item");
 var form = document.querySelector("#div");
 var cabecalho = document.querySelector(".container_cabecalho");
@@ -48,7 +48,7 @@ function readItem() {
       });
     })
     .catch(function (error) {
-      alert(error.message);
+      swal(error.message);
     });
 }
 
@@ -69,13 +69,42 @@ function delItem(indice) {
   dados.append("id_lista", listaItens[indice].id_lista);
   dados.append("id_item", listaItens[indice].id_item);
   dados.append("verbo", "DELETE");
+  swal({
+  title: "Atenção!",
+  text: "Clique no botão para confirmar sua ação!",
+  icon: "warning",
+  buttons: true,
+  }).then(function(result) {
+        if (result) {
+          xhr.addEventListener("readystatechange", function () {
+              if (this.readyState === this.DONE) {
+                let resposta = JSON.parse(this.responseText);
+                if (resposta.hasOwnProperty("erro")) {
+                  swal(resposta.erro);
+                }
+              }
+            });
+            xhr.open("POST", urlItem);
+            xhr.send(dados);
+            cancelar();
+        } else {
+          cancelar();
+        }
+    });
+}
+
+/*function delItem(indice) {
+  let dados = new FormData();
+  dados.append("id_lista", listaItens[indice].id_lista);
+  dados.append("id_item", listaItens[indice].id_item);
+  dados.append("verbo", "DELETE");
   if (confirm("Deseja excluir o item da Lista?")) {
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === this.DONE) {
         console.log(this.responseText);
         let resposta = JSON.parse(this.responseText);
         if (resposta.hasOwnProperty("erro")) {
-          alert(resposta.erro);
+          swal(resposta.erro);
         }
       }
     });
@@ -83,35 +112,42 @@ function delItem(indice) {
     xhr.send(dados);
     cancelar();
   }
-}
+}*/
 
 function salvarAlteracao(indice) {
-  let btnsalvar = document.querySelector("#btnsalvar");
-  btnsalvar.style.display = "none";
-  listaItens[indice].qtd = document.querySelector("#input_qtd").value;
-  listaItens[indice].nome_item = document.querySelector("#input_item").value;
-  listaItens[indice].qtd = document.querySelector("#input_qtd").value;
-  let dados = new FormData();
-  dados.append("id_lista", listaItens[indice].id_lista);
-  dados.append("id_usuario", localStorage.getItem("id_usu"));
-  dados.append("id_item", listaItens[indice].id_item);
-  dados.append("nome_item", listaItens[indice].nome_item);
-  dados.append("qtd", listaItens[indice].qtd);
-  dados.append("concluido", listaItens[indice].concluido);
-  dados.append("verbo", "PUT");
-  xhr.addEventListener("readystatechange", function () {
-    if (this.readyState === this.DONE) {
-      console.log(this.responseText);
-      let resposta = JSON.parse(this.responseText);
-      if (resposta.hasOwnProperty("erro")) {
-        alert(resposta.erro);
-      }
-      //setTimeout(() => { window.location.reload(); }, 500);
-    }
-  });
-  xhr.open("POST", urlItem);
-  xhr.send(dados);
-  cancelar();
+  let item = document.querySelector("#input_item");
+  if(item.value != ""){
+      let btnsalvar = document.querySelector("#btnsalvar");
+      btnsalvar.style.display = "none";
+      listaItens[indice].qtd = document.querySelector("#input_qtd").value;
+      listaItens[indice].nome_item = item.value;
+      listaItens[indice].qtd = document.querySelector("#input_qtd").value;
+      let dados = new FormData();
+      dados.append("id_lista", listaItens[indice].id_lista);
+      dados.append("id_usuario", localStorage.getItem("id_usu"));
+      dados.append("id_item", listaItens[indice].id_item);
+      dados.append("nome_item", listaItens[indice].nome_item);
+      dados.append("qtd", listaItens[indice].qtd);
+      dados.append("concluido", listaItens[indice].concluido);
+      dados.append("verbo", "PUT");
+      xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+          let resposta = JSON.parse(this.responseText);
+          if (resposta.hasOwnProperty("erro")) {
+            swal(resposta.erro);
+          }
+        }
+      });
+      xhr.open("POST", urlItem);
+      xhr.send(dados);
+      cancelar();
+  }else{
+    swal({
+    title: "Atenção!",
+    text: "Preencha todos os campos!",
+    icon: "info",
+    });
+  }
 }
 
 function novoItem() {
@@ -134,13 +170,17 @@ function cancelarAdicionar() {
 }
 
 function salvarNovoItem() {
-  let btnNovoItem = document.querySelector("#btnNovoItem");
-  btnNovoItem.style.display = "none";
   let novoItem = document.querySelector("#input_item").value;
   let qtd = document.querySelector("#input_qtd").value;
   if (novoItem === "") {
-    alert("Preencha os Campos Corretamente!");
+    swal({
+    title: "Atenção!",
+    text: "Preencha todos os campos!",
+    icon: "info",
+    });
   } else {
+    let btnNovoItem = document.querySelector("#btnNovoItem");
+    btnNovoItem.style.display = "none";
     var dados = new FormData();
     dados.append("id_item", null);
     dados.append("id_lista", new URL(window.location.href).searchParams.get("id_lista"));
@@ -151,13 +191,10 @@ function salvarNovoItem() {
     dados.append("verbo", "POST");
     xhr.addEventListener("readystatechange", function () {
       if (this.readyState === this.DONE) {
-        console.log(this.responseText);
         let resposta = JSON.parse(this.responseText);
-        console.log(resposta);
         if (resposta.hasOwnProperty("erro")) {
-          alert(resposta.erro);
+          swal(resposta.erro);
         }
-        //setTimeout(() => { window.location.reload(); }, 500);
       }
     });
     xhr.open("POST", urlItem);
@@ -167,6 +204,7 @@ function salvarNovoItem() {
 }
 
 function checado(check, indice) {
+  let backdiv = check.parentNode.parentNode;
   let nome_item = check.parentNode.parentNode.children[0];
   let qtd = check.parentNode.parentNode.children[1];
   let nome = localStorage.getItem("nome_usu");
@@ -175,14 +213,20 @@ function checado(check, indice) {
     listaItens[indice].qtd = "";
   }
   if (check.checked) {
+    check.parentNode.children[1].style = "Display: none";
+    backdiv.style.background = "#008000";
     nome_item.style.textDecoration = "line-through";
-    nome_item.style.color = "var(--cor-de-fundo-menu)";
+    nome_item.style.color = "var(--cor-da-fonte-menu)";
     qtd.style.textDecoration = "line-through";
-    qtd.style.color = "var(--cor-de-fundo-menu)";
+    qtd.style.color = "var(--cor-da-fonte-menu)";
     listaItens[indice].concluido = 1;
   } else {
+    check.parentNode.children[1].style = "Display: block";
+    backdiv.style.background = "var(--cor-de-fundo-menu)";
     nome_item.style.textDecoration = "none";
     qtd.style.textDecoration = "none";
+    nome_item.style.color = "var(--cor-da-fonte-menu)";
+    qtd.style.color = "var(--cor-da-fonte-menu)";
     listaItens[indice].concluido = 0;
   }
 
@@ -196,16 +240,15 @@ function checado(check, indice) {
   dados.append("verbo", "PUT");
   xhr.addEventListener("readystatechange", function () {
     if (this.readyState === this.DONE) {
-      console.log(this.responseText);
       let resposta = JSON.parse(this.responseText);
       if (resposta.hasOwnProperty("erro")) {
-        alert(resposta.erro);
+        swal(resposta.erro);
       }
     }
   });
   xhr.open("POST", urlItem);
   xhr.send(dados);
-  cancelar();
+  //cancelar();
 }
 
 function limpaLocalStorage() {

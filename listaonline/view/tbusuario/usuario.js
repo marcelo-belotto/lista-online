@@ -1,10 +1,28 @@
 const xhr = new XMLHttpRequest();
-const urlUsuario = "https://agendaccbro.000webhostapp.com/src/controll/routes/route.usuario.php";
+const urlUsuario = "https://listaonline.online/src/controll/routes/route.usuario.php";
 var nome_usuario = document.querySelector("#nome_usuario");
 var email = document.querySelector("#email_usuario");
 var p = document.querySelector("#p");
 var senha = document.querySelector("#senha");
 var photo = document.getElementById('exibir');
+const mostrarSenha = document.querySelector("#verSenha");
+const button = document.querySelector("#esconderSenha");
+button.addEventListener('click', esconderSenha);
+mostrarSenha.addEventListener('click', verSenha);
+
+function esconderSenha() {
+    if (senha.type == "password") {
+        senha.type = "text";
+        button.style.display = "none";
+        mostrarSenha.style.display = "block";
+    }
+}
+
+function verSenha() {
+    senha.type = "password"; 
+    button.style.display = "block";
+    mostrarSenha.style.display = "none";
+}
 
 function readPerfil() {
     fetch(urlUsuario + "?id_usuario=" + localStorage.getItem("id_usu"))
@@ -39,14 +57,14 @@ function readPerfil() {
             });
         })
         .catch(function (error) {
-            alert("Erro ao fazer requisição ao servidor!");
+            swal("Erro ao fazer requisição ao servidor!");
         });
 }
 
 function cadastrar() {
     if (nome_usuario.value != "" && email.value != "" && senha.value != "") {
         if (document.querySelector('input[name="generoradio"]:checked') == null) {
-            alert("Escolha um genero!");
+            swal("Escolha um genero!");
         } else {
             if (senha.value.length >= 6) {
                 let dados = new FormData();
@@ -61,32 +79,44 @@ function cadastrar() {
                         if (this.responseText != 1) {
                             let resposta = JSON.parse(this.responseText);
                             if (resposta.hasOwnProperty("erro")) {
-                                alert(resposta.erro);
+                                swal(resposta.erro);
                             } else {
                                 let btncadastrar = document.querySelector("#btncadastrar");
                                 btncadastrar.style.display = "none";
                                 setTimeout(() => { window.location.assign("./login/login.html"); }, 500);
                             }
                         } else {
-                            alert("Email já cadastrado digite novo email!");
+                            swal({
+                            title: "Atenção!",
+                            text: "Email já cadastrado digite novo email!",
+                            icon: "info",
+                            });
                         }
                     }
                 });
                 xhr.open("POST", urlUsuario);
                 xhr.send(dados);
             } else {
-                alert("Senha fraca mínimo 6 caracteres!");
+                swal({
+                title: "Atenção!",
+                text: "Senha fraca mínimo 6 caracteres!",
+                icon: "info",
+                });
             }
         }
     } else {
-        alert("Prencha todo os campos com *");
+        swal({
+        title: "Atenção!",
+        text: "Preencha todos os campos!",
+        icon: "info",
+        });
     }
 }
 
 function alterarPerfil() {
     if (nome_usuario.value != "" && email.value != "" && senha.value != "") {
         if (document.querySelector('input[name="generoradio"]:checked') == null) {
-            console.log("Escolha um genero!");
+            swal("Escolha um genero!");
         } else {
             let dados = new FormData();
             dados.append("id_usuario", localStorage.getItem("id_usu"));
@@ -100,7 +130,7 @@ function alterarPerfil() {
                 if (this.readyState === this.DONE) {
                     let resposta = JSON.parse(this.responseText);
                     if (resposta.hasOwnProperty("erro")) {
-                        alert(resposta.erro);
+                        swal(resposta.erro);
                     }
                     window.location.reload();
                 }
@@ -109,11 +139,43 @@ function alterarPerfil() {
             xhr.send(dados);
         }
     } else {
-        alert("Prencha todo os campos com *");
+        swal({
+        title: "Atenção!",
+        text: "Preencha todos os campos!",
+        icon: "info",
+        });
     }
 }
 
 function excluirPerfil() {
+    let dados = new FormData();
+    dados.append("id_usuario", localStorage.getItem("id_usu"));
+    dados.append("verbo", "DELETE");
+    swal({
+    title: "Atenção!",
+    text: "Clique no botão para ser redirecionado!",
+    icon: "warning",
+    buttons: true,
+    }).then(function(result) {
+        if (result) {
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === this.DONE) {
+                    let resposta = JSON.parse(this.responseText);
+                    if (resposta.hasOwnProperty("erro")) {
+                        swal(resposta.erro);
+                    }
+                    setTimeout(() => { window.location.assign("../home.html"); }, 500);
+                }
+            });
+            xhr.open("POST", urlUsuario);
+            xhr.send(dados);
+        } else {
+          cancelar();
+        }
+    });
+}
+
+/*function excluirPerfil() {
     let dados = new FormData();
     dados.append("id_usuario", localStorage.getItem("id_usu"));
     dados.append("verbo", "DELETE");
@@ -122,7 +184,7 @@ function excluirPerfil() {
             if (this.readyState === this.DONE) {
                 let resposta = JSON.parse(this.responseText);
                 if (resposta.hasOwnProperty("erro")) {
-                    alert(resposta.erro);
+                    swal(resposta.erro);
                 }
                 setTimeout(() => { window.location.assign("../home.html"); }, 500);
             }
@@ -130,15 +192,14 @@ function excluirPerfil() {
         xhr.open("POST", urlUsuario);
         xhr.send(dados);
     }
-}
-
+}*/
 
 function passaIdUrl() {
     window.location.assign("./foto/fotohtml.php?id=" + localStorage.getItem("id_usu"));
 }
 
 function passaDadosUrl(){
-    window.location.assign("../sugestoes/sugestoes.html?nome="+nome_usuario.value+"&email="+email.value);
+    window.location.assign("../sugestoes/sugestoeshtml.php?nome="+nome_usuario.value+"&email="+email.value);
 }
 
 function limpaLocalStorage() {

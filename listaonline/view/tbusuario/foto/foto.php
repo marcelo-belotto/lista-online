@@ -40,7 +40,7 @@
 	if(isset($_POST['salvar_img'])){	//se o botão salvar for clicado
 		if(array_search($extensao_minuscula, $_UP['extensoes']) === false){	//procura no array se a extensao do arquivo e valida
 			echo "
-				<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=https://agendaccbro.000webhostapp.com/view/tbusuario/perfil.html'>
+				<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=https://listaonline.online/view/tbusuario/perfil.html'>
 				<script type=\"text/javascript\">
 					alert(\"Extensão da imagem invalida, só e perimtido extensao jpg, jpeg ou png.\");
 				</script>
@@ -48,7 +48,7 @@
 			
 		} else if($_UP['tamanho'] < $_FILES['img_usuario']['size']){	//verifica se o tamanha da img e maior que um 1kb
 				echo "
-				<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=https://agendaccbro.000webhostapp.com/view/tbusuario/perfil.html'>
+				<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=https://listaonline.online/view/tbusuario/perfil.html'>
 					<script type=\"text/javascript\">
 						alert(\"Imagem muito grande.\");
 					</script>
@@ -61,7 +61,7 @@
 				if($status->execute()){			
 					move_uploaded_file($_FILES['img_usuario']['tmp_name'], $diretorio . $novo_nome);	//efetua o upload
 					echo "
-					<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=https://agendaccbro.000webhostapp.com/view/tbusuario/perfil.html'>
+					<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=https://listaonline.online/view/tbusuario/perfil.html'>
 						<script type=\"text/javascript\">
 						alert(\"Imagem alterada com sucesso!\");
 						</script>
@@ -77,7 +77,7 @@
 					move_uploaded_file($_FILES['img_usuario']['tmp_name'], $diretorio . $novo_nome);	//efetua o upload
 	
 					echo "
-					<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=https://agendaccbro.000webhostapp.com/view/tbusuario/perfil.html'>
+					<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=https://listaonline.online/view/tbusuario/perfil.html'>
 						<script type=\"text/javascript\">
 							alert(\"Imagem alterada com sucesso!\" + $nome);
 						</script>
@@ -96,7 +96,7 @@
 			unlink("../../../foto_usuario/".$nome_img);
 			
 			echo "
-			<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=https://agendaccbro.000webhostapp.com/view/tbusuario/perfil.html'>
+			<META HTTP-EQUIV=REFRESH CONTENT = '0;URL=https://listaonline.online/view/tbusuario/perfil.html'>
 				<script type=\"text/javascript\">
 				alert(\"Imagem excluida com sucesso!\");
 				</script>

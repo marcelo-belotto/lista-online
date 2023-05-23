@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../img/logo.jpg">
     <link rel="stylesheet" type="text/css" href="./usuario.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Cadastrar</title>
 </head>
 
@@ -24,7 +27,7 @@
     </header>
     <main>
         <div class="divlogin">
-            <h1>Cadastro</h1>
+            <h1 class="titulodiv">Cadastro</h1>
             <form action="" method="POST" enctype="multipart/form-data">
                 <div class="inputForm">
                     <input type="text" placeholder="digite seu nome" id="nome_usuario">
@@ -44,11 +47,12 @@
                         <legend for="feminino">Feminino</legend>
                         <label class="genero">Genero *</label>
                     </aside>
-
-                    <div class="inputForm">
-                        <input type="password" placeholder="digite sua senha" id="senha">
-                        <label>Senha *</label>
-                    </div>
+                </div>
+                    <i class="fa fa-eye-slash emoji" id="esconderSenha" aria-hidden="true"></i>
+                    <i class="fa fa-eye emoji" id="verSenha" aria-hidden="true" style="display:none;"></i>
+                <div class="inputForm">
+                    <input type="password" placeholder="digite sua senha" id="senha">
+                    <label>Senha *</label>
                 </div>
             </form>
             <button id="btncadastrar" class="cadastrar" onclick="cadastrar()">Cadastrar</button>

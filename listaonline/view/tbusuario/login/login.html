@@ -5,7 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../img/logo.jpg">
     <link rel="stylesheet" type="text/css" href="../usuario.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Login</title>
 </head>
 
@@ -23,12 +26,14 @@
         </nav>
     </header>
     <div class="divlogin">
-        <h1>Login</h1>
+        <h1 class="titulodiv">Login</h1>
         <form id="formlogin" action="" method="POST">
             <div class="inputForm">
                 <input type="email" id="email_usuario">
                 <label>Email *</label>
             </div>
+                <i class="fa fa-eye-slash emoji" id="esconderSenha" aria-hidden="true"></i>
+                <i class="fa fa-eye emoji" id="verSenha" aria-hidden="true" style="display:none;"></i>
             <div class="inputForm">
                 <input type="password" id="senha">
                 <label>Senha *</label>

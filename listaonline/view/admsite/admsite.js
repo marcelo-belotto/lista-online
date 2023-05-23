@@ -1,5 +1,5 @@
 const xhr = new XMLHttpRequest();
-const urlUserAdm = "https://agendaccbro.000webhostapp.com/src/controll/routes/route.usuario.php";
+const urlUserAdm = "https://listaonline.online/src/controll/routes/route.usuario.php";
 var user = document.querySelector("#user");
 
 function readAll() {

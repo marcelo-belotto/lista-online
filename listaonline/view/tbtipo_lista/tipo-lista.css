@@ -8,6 +8,10 @@
   border-radius: 10px;
 }
 
+.texttable{
+  color: var(--cor-da-fonte-menu);
+}
+
 td {
   color: white;
 }
@@ -21,7 +25,6 @@ main {
   margin: 0;
   font-size: 1.4rem;
   font-weight: 900;
-  color: var(--cor-de-fundo-menu);
 }
 
 tr:nth-child(even) {

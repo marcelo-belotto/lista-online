@@ -1,5 +1,5 @@
 const xhr = new XMLHttpRequest();
-const urlTipoLista = "https://agendaccbro.000webhostapp.com/src/controll/routes/route.tipo_lista.php";
+const urlTipoLista = "https://listaonline.online/src/controll/routes/route.tipo_lista.php";
 var lista = document.querySelector("#lista");
 var form = document.querySelector('#div');
 var editAlt = true;
@@ -33,7 +33,7 @@ function readTipoLista() {
             });
         })
         .catch(function (error) {
-            alert("Erro ao retornar dados do servidor!");
+            swal("Erro ao retornar dados do servidor!");
         });
 }
 
@@ -58,13 +58,42 @@ function delTipoLista(id_lista, listanome) {
     dados.append("id_usuario", localStorage.getItem("id_usu"));
     dados.append("id_lista", id_lista);
     dados.append("verbo", "DELETE");
+    swal({
+    title: "Atenção!",
+    text: "Clique no botão para confirmar sua ação!",
+    icon: "warning",
+    buttons: true,
+    }).then(function(result) {
+        if (result) {
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === this.DONE) {
+                    let resposta = JSON.parse(this.responseText);
+                    if (resposta.hasOwnProperty("erro")) {
+                        swal(resposta.erro);
+                    }
+                }
+            });
+            xhr.open("POST", urlTipoLista);
+            xhr.send(dados);
+            cancelar();
+        } else {
+          cancelar();
+        }
+    });
+}
+
+/*function delTipoLista(id_lista, listanome) {
+    let dados = new FormData();
+    dados.append("id_usuario", localStorage.getItem("id_usu"));
+    dados.append("id_lista", id_lista);
+    dados.append("verbo", "DELETE");
     if (confirm("Deseja excluir Lista '" + listanome + "'?")) {
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
                 console.log(this.responseText);
                 let resposta = JSON.parse(this.responseText);
                 if (resposta.hasOwnProperty("erro")) {
-                    alert(resposta.erro);
+                    swal(resposta.erro);
                 }
                 //setTimeout(() => { window.location.reload(); }, 500);
             }
@@ -73,7 +102,7 @@ function delTipoLista(id_lista, listanome) {
         xhr.send(dados);
         cancelar();
     }
-}
+}*/
 
 function salvarAlteracao(id_lista, nome_lista) {
     let dados = new FormData();
@@ -83,12 +112,10 @@ function salvarAlteracao(id_lista, nome_lista) {
     dados.append("verbo", "PUT");
     xhr.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
-            console.log(this.responseText);
             let resposta = JSON.parse(this.responseText);
             if (resposta.hasOwnProperty("erro")) {
-                alert(resposta.erro);
+                swal(resposta.erro);
             }
-            //setTimeout(() => { window.location.reload(); }, 500);
         }
     });
     xhr.open("POST", urlTipoLista);
@@ -115,7 +142,11 @@ function cancelarAdicionar() {
 function salvarNovaLista() {
     let novoItem = document.querySelector('#input_lista').value;
     if (novoItem === "") {
-        alert("Preencha o Campo Com o Nome da lista!")
+        swal({
+        title: "Atenção!",
+        text: "Preencha todos os campos!",
+        icon: "info",
+        });
     } else {
         let btnsalvar = document.querySelector("#btnsalvar");
         btnsalvar.style.display = "none";
@@ -125,12 +156,10 @@ function salvarNovaLista() {
         dados.append("verbo", "POST");
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
-                console.log(this.responseText);
                 let resposta = JSON.parse(this.responseText);
                 if (resposta.hasOwnProperty("erro")) {
-                    alert(resposta.erro);
+                    swal(resposta.erro);
                 }
-                //setTimeout(() => { window.location.reload(); }, 500);
             }
         });
         xhr.open("POST", urlTipoLista);

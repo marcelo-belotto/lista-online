@@ -1,5 +1,5 @@
 const xhr = new XMLHttpRequest();
-const urlConta = "https://agendaccbro.000webhostapp.com/src/controll/routes/route.conta.php";
+const urlConta = "https://listaonline.online/src/controll/routes/route.conta.php";
 var conta = document.querySelector("#conta");
 var div = document.querySelector("#div");
 var marcado = document.getElementById('pago');
@@ -30,6 +30,7 @@ function readConta() {
                     var moeda = parseInt(valorSplit[0]).toFixed(2).split('.');
                     moeda[0] = "R$ " + moeda[0].split(/(?=(?:...)*$)/).join('.');
                     let valorCompleto = moeda[0] + "," + valorSplit[1]; //Formata valor para moeda
+                    
                     let row = document.createElement("section");
                     if (dado.status_conta == "pago") {
                         row.innerHTML += `<p class="con">${dado.nome_conta}</p>`;
@@ -40,7 +41,7 @@ function readConta() {
                         row.style.background = "#008000";
                         row.style.color = "var(--cor-da-fonte-menu)";
                     } else {
-                        alert("Falta menos de 5 dias para o vencimento da conta '" + dado.nome_conta + "'");
+                        swal("Falta menos de 5 dias para o vencimento da conta '" + dado.nome_conta + "'");
                         row.innerHTML += `<p class="con">${dado.nome_conta}</p>`;
                         row.innerHTML += `<p class="con">${dado.vencimento}</p>`;
                         row.innerHTML += `<p class="con">${valorCompleto}</p>`;
@@ -76,7 +77,7 @@ function readConta() {
             });
         })
         .catch(function (error) {
-            alert("Erro ao retornar dados do usuario do servidor!");
+            swal("Erro ao retornar dados do usuario do servidor!");
         });
 }
 
@@ -100,19 +101,17 @@ function checado(check, indice) {
             if (this.readyState === this.DONE) {
                 let resp = JSON.parse(this.responseText);
                 if (resp.hasOwnProperty("erro")) {
-                    msg.innerHTML = resp.erro;
+                    swal(resp.erro);
                 } else {
-                    alert(localStorage.getItem("nome_usu") + " Menos uma divida, show de bola!");
+                    alert(localStorage.getItem("nome_usu") + " parabéns menos uma divida!");
                 }
-                //setTimeout(() => { window.location.reload(); }, 500);
             }
         });
         xhr.open("POST", urlConta);
         xhr.send(dados);
         cancelar();
     } else { //se desmarcar conta não paga
-        tdconta.style.textDecoration = 'line-through';    //Passa um alinha sobre o texto da td
-
+        tdconta.style.textDecoration = 'line-through';
         let dados = new FormData();
         dados.append("id_conta", arrayLista[indice].id_conta);
         dados.append("id_usuario", localStorage.getItem("id_usu"));
@@ -125,10 +124,8 @@ function checado(check, indice) {
             if (this.readyState === this.DONE) {
                 let resp = JSON.parse(this.responseText);
                 if (resp.hasOwnProperty("erro")) {
-                    msg.innerHTML = resp.erro;
+                    swal(resp.erro);
                 }
-                //setTimeout(() => { window.location.reload(); }, 500);
-                //cancelar();
             }
         });
         xhr.open("POST", urlConta);
@@ -158,30 +155,38 @@ function editConta(c, indice) { //Cria formulario e passa os valores para dentro
 }
 
 function confirmarAlteracao() { //Finaliza aleração conta
-    let btnalterar = document.querySelector("#btnalterar");
-    btnalterar.style.display = "none";
-    let valorPonto = document.querySelector("#valor").value.replace(".", ",");
-    let valorVirgula = valorPonto.replace(",", ".");
-    let dados = new FormData();
-    dados.append("id_conta", localStorage.getItem("id_con"));
-    dados.append("id_usuario", localStorage.getItem("id_usu"));
-    dados.append("nome_conta", document.querySelector("#input_conta").value);
-    dados.append("vencimento", document.querySelector("#vencimento").value);
-    dados.append("valor", valorVirgula);
-    dados.append("status_conta", "");
-    dados.append("verbo", "PUT");
-    xhr.addEventListener("readystatechange", function () {
-        if (this.readyState === this.DONE) {
-            let resp = JSON.parse(this.responseText);
-            if (resp.hasOwnProperty("erro")) {
-                msg.innerHTML = resp.erro;
+    let valorConta = document.querySelector("#valor");
+    let nomeConta = document.querySelector("#input_conta");
+    let vencimentoConta = document.querySelector("#vencimento");
+    
+    if (nomeConta.value != "" && vencimentoConta.value != "" && valorConta.value != "") {
+        let btnalterar = document.querySelector("#btnalterar");
+        btnalterar.style.display = "none";
+        let valorPonto = document.querySelector("#valor").value.replace(".", ",");
+        let valorVirgula = valorPonto.replace(",", ".");
+        
+        let dados = new FormData();
+        dados.append("id_conta", localStorage.getItem("id_con"));
+        dados.append("id_usuario", localStorage.getItem("id_usu"));
+        dados.append("nome_conta", nomeConta.value);
+        dados.append("vencimento", vencimentoConta.value);
+        dados.append("valor", valorVirgula);
+        dados.append("status_conta", "");
+        dados.append("verbo", "PUT");
+        xhr.addEventListener("readystatechange", function () {
+            if (this.readyState === this.DONE) {
+                let resp = JSON.parse(this.responseText);
+                if (resp.hasOwnProperty("erro")) {
+                    swal(resp.erro);
+                }
             }
-            //setTimeout(() => { window.location.reload(); }, 500);
-        }
-    });
-    xhr.open("POST", urlConta);
-    xhr.send(dados);
-    cancelar();
+        });
+        xhr.open("POST", urlConta);
+        xhr.send(dados);
+        cancelar();
+    } else {
+        swal("Preencha todos os campos!");
+    }
 }
 
 function novaConta() {  //Cria formulario para adicionar nova conta
@@ -198,40 +203,73 @@ function novaConta() {  //Cria formulario para adicionar nova conta
 }
 
 function finalizar() {  //Function para salvar nova conta
-    let btnsalvar = document.querySelector("#btnsalvar");
-    btnsalvar.style.display = "none";
+    let valorConta = document.querySelector("#valor");
     let nomeConta = document.querySelector("#input_conta");
     let vencimentoConta = document.querySelector("#vencimento").value.split("-");
     let formatadata = vencimentoConta[0] + "-" + vencimentoConta[1] + "-" + vencimentoConta[2];
-    //let valorConta = document.querySelector("#valor");
-    let valorPonto = document.querySelector("#valor").value.replace(",", ".");
-    //let valorVirgula = valorPonto.replace(",", ".");
-    if (nomeConta.value != "" && vencimentoConta.value != "" && valorPonto.value != "") {
+    let valorPonto = document.querySelector("#valor").value.replace(".", "");
+    let valorVirgula = valorPonto.replace(",", ".");
+    
+    if (nomeConta.value != "" && vencimentoConta.value != "" && valorConta.value != "") {
+        let btnsalvar = document.querySelector("#btnsalvar");
+        btnsalvar.style.display = "none";
         let dados = new FormData();
         dados.append("id_usuario", localStorage.getItem("id_usu"));
         dados.append("nome_conta", nomeConta.value);
         dados.append("vencimento", formatadata);
-        dados.append("valor", valorPonto);
+        dados.append("valor", valorVirgula);
         dados.append("status_conta", "pendente");
         dados.append("verbo", "POST");
         xhr.addEventListener("readystatechange", function () {
             if (this.readyState === this.DONE) {
                 let resp = JSON.parse(this.responseText);
                 if (resp.hasOwnProperty("erro")) {
-                    alert(resp.erro);
+                    swal(resp.erro);
                 }
-                //setTimeout(() => { window.location.reload(); }, 500);
             }
         });
         xhr.open("POST", urlConta);
         xhr.send(dados);
         cancelar();
     } else {
-        alert("Favor preencher todos os campos!");
+        swal({
+        title: "Atenção!",
+        text: "Preencha todos os campos!",
+        icon: "info",
+        });
     }
 }
 
 function delConta(indice) {
+    let dados = new FormData();
+    dados.append("id_conta", arrayLista[indice].id_conta);
+    dados.append("verbo", "DELETE");
+    swal({
+    title: "Atenção!",
+    text: "Clique no botão para confirmar ação!",
+    icon: "warning",
+    buttons: true,
+    }).then(function(result) {
+        if (result) {
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === this.DONE) {
+                    let resp = JSON.parse(this.responseText);
+                    if (resp.hasOwnProperty("erro")) {
+                        msg.innerHTML = resp.erro;
+                    }
+                    //setTimeout(() => { window.location.reload(); }, 500);
+                }
+            });
+            xhr.open("POST", urlConta);
+            xhr.send(dados);
+            cancelar();
+        } else {
+          cancelar();
+        }
+    });
+}
+
+/*function delConta(indice) {
     let dados = new FormData();
     dados.append("id_conta", arrayLista[indice].id_conta);
     dados.append("verbo", "DELETE");
@@ -249,7 +287,7 @@ function delConta(indice) {
         xhr.send(dados);
         cancelar();
     }
-}
+}*/
 
 function formatarMoeda() {  //Function para formata valor em real
     var elemento = document.getElementById('valor');
@@ -266,7 +304,7 @@ function formatarMoeda() {  //Function para formata valor em real
         }
         elemento.value = valor;
     } else {
-        elemento.value = "00,00";
+        elemento.value = "00.00";
     }
 }
 

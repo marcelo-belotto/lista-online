@@ -4,14 +4,22 @@ h1 {
   margin: 0;
 }
 
+main{
+    margin-top: 15px;
+}
+
 .container_cabecalho {
   display: grid;
   grid-template-columns: 1fr 4fr;
   align-items: center;
   text-align: center;
-  padding: 1rem;
+  padding: 0.2rem;
   word-break: break-all;
   background: #0B2447;
+}
+
+.text{
+    color: var(--cor-da-fonte-menu);
 }
 
 .item {
@@ -121,4 +129,13 @@ input.checkbox-acoes {
     background-color: white;
     border: 1px solid var(--cor-de-fundo-menu);
   }
+  
+  .container_cabecalho {
+      background: var(--cor-da-fonte-menu);
+  }
+  
+  .text{
+    color: var(--cor-de-fundo-menu);
+  }
+
 }

@@ -7,6 +7,10 @@ form{
   flex-direction: column;
 }
 
+::placeholder{
+    font-size: 0.9rem;
+}
+
 .input-usuario{
   display: flex;
   flex-wrap: wrap;
