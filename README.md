@@ -6,5 +6,4 @@
 #### Data de inicio:
 > <p>06/02/2023</p>
 #### Status:
-> <p>Em Desenvolvimento</p>
-> <p>Atualização em 20/04/2023</p>
+> <p>Finalizado</p>
